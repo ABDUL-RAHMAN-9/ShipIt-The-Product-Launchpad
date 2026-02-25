@@ -90,6 +90,11 @@ The project implements NeonDB (PostgreSQL) paired with Drizzle ORM. This allows 
 
 ---
 
+## License
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
 ## Project Lead
 **[Abdul Rahman](https://github.com/ABDUL-RAHMAN-9)**  
 *Focusing on the craft of clean, type-safe system architecture.*

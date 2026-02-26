@@ -1,28 +1,31 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const outfit = Outfit({
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "ShipIt",
-  description: "A community platform where developers and creators Ship their products to get feedback, votes, and users.",
+  title: "ShipIt | The Community Platform for Independent Creators",
+  description: "A professional showcase for developers to launch projects, gather community feedback, and connect with other builders. Ship your next big idea today.",
+  keywords: ["Project Showcase", "Developer Community", "SaaS Launches", "Fullstack Portfolio", "Product Discovery"],
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${inter.variable} antialiased`}
+        className={`${outfit.className} antialiased relative min-h-screen`}
       >
-        {children}
+        {/* THE TEXTURE OVERLAY  */}
+        <div className="texture" aria-hidden="true" />
+        <main className="relative z-10">
+          {children}
+        </main>
       </body>
     </html>
   );

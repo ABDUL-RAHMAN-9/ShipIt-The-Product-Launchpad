@@ -1,6 +1,10 @@
+import HeroSection from "@/components/landing-page/hero-section";
 
 export default function Home() {
   return (
-    <div className=" text-2xl">ShipIt The Product Launchpad</div>
+    <div>
+      <HeroSection />
+    </div>
   );
 }
+

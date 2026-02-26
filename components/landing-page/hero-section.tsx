@@ -48,23 +48,24 @@ const statsData = [
 
 export default function HeroSection() {
     return (
-        <section className="relative pt-20 pb-16 lg:pt-32 lg:pb-24">
+        <section className="relative pt-20 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
             <div className="wrapper relative z-10">
                 <div className="flex flex-col items-center justify-center text-center">
-
-                    <DiscoveryBadge />
-
-                    <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-8 max-w-4xl text-foreground leading-[0.95]">
+                    <div className="animate-in fade-in slide-in-from-top-6 duration-1000 fill-mode-both">
+                        <DiscoveryBadge />
+                    </div>
+                    <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-8 max-w-4xl text-foreground leading-[0.95] 
+                        animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 fill-mode-both">
                         Where Great Ideas <br />
                         <span className="text-primary drop-shadow-sm">Find Their Home.</span>
                     </h1>
-
-                    <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium">
+                    <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium
+                        animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-400 fill-mode-both">
                         ShipIt is a cozy corner of the internet for creators to showcase their craft.
                         Whether it’s an AI tool, a SaaS, or a side project—share it with a community that values the art of building.
                     </p>
-
-                    <div className="flex flex-col sm:flex-row gap-6 mb-20">
+                    <div className="flex flex-col sm:flex-row gap-5 mb-20 
+                        animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-600 fill-mode-both">
                         <Button asChild size="lg">
                             <Link href="/submit">
                                 <Navigation className="mr-2 size-5 rotate-45" />
@@ -79,8 +80,8 @@ export default function HeroSection() {
                             </Link>
                         </Button>
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-3xl w-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-3xl w-full
+                        animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-800 fill-mode-both">
                         {statsData.map((stat) => (
                             <StatsCard key={stat.label} {...stat} />
                         ))}

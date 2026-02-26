@@ -188,6 +188,21 @@
     z-index: 9999;
     background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
   }
+    .delay-200 {
+      animation-delay: 200ms;
+    }
+  
+    .delay-400 {
+      animation-delay: 400ms;
+    }
+  
+    .delay-600 {
+      animation-delay: 600ms;
+    }
+  
+    .delay-800 {
+      animation-delay: 800ms;
+    }
 }
 
 @layer components {

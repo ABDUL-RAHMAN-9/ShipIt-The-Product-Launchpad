@@ -30,20 +30,21 @@ export default function Header() {
 
                 <nav className="flex items-center gap-6">
                     {/* Main Nav - Hidden on mobile, shown on md+ */}
-                    <div className="hidden md:flex items-center gap-1">
+                    <div className="flex items-center gap-1 sm:gap-2">
                         <Link
                             href="/"
-                            className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
+                            className="flex items-center gap-2 px-3 py-2 text-sm font-bold text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
                         >
-                            <Home className="size-4" />
-                            <span>Home</span>
+                            <Home className="size-5" />
+                            <span className="hidden sm:inline">Home</span> {/* Text hides on small mobile */}
                         </Link>
+
                         <Link
                             href="/explore"
-                            className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
+                            className="flex items-center gap-2 px-3 py-2 text-sm font-bold text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
                         >
-                            <Compass className="size-4" />
-                            <span>Explore</span>
+                            <Compass className="size-5" />
+                            <span className="hidden sm:inline">Explore</span> {/* Text hides on small mobile */}
                         </Link>
                     </div>
 

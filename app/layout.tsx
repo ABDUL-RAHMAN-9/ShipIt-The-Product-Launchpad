@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/header";
 import { ClerkProvider } from '@clerk/nextjs'
+import Footer from "@/components/common/footer";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
           <main className="relative z-10">
             <Header />
             {children}
+            <Footer />
           </main>
         </body>
       </html>

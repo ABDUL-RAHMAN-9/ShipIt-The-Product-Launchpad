@@ -2,11 +2,12 @@ import SectionHeader from "@/components/common/section-header";
 import { CalendarDays } from "lucide-react";
 import ProductCard from "@/components/products/product-card";
 import EmptyState from "@/components/common/empty-state";
+import { getRecentProducts } from "@/lib/products/product-select";
 
-// Mock data: empty array to show the clean EmptyState
-const recentProducts: any[] = [];
 
-export default function RecentLaunches() {
+export default async function RecentLaunches() {
+    const recentProducts = await getRecentProducts();
+
     return (
         <section className="py-24 bg-background">
             <div className="wrapper">

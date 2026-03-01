@@ -2,7 +2,7 @@ import { db } from "@/db";
 import { products } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 
-export default async function getFeaturedProdcuts() {
+export async function getFeaturedProdcuts() {
     const productsData = await db
         .select()
         .from(products)

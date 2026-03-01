@@ -1,7 +1,7 @@
 import SectionHeader from "@/components/common/section-header"
 import { Trophy } from "lucide-react";
 import ProductCard from "@/components/products/product-card";
-import getFeaturedProdcuts from "@/lib/products/product-select";
+import { getFeaturedProdcuts } from "@/lib/products/product-select";
 
 
 export default async function FeaturedProducts() {

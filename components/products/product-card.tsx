@@ -10,15 +10,10 @@ import {
 import { ChevronUp, Sparkles } from "lucide-react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { InferSelectModel } from "drizzle-orm"; // Import the helper
+import { products } from "@/db/schema";
 
-interface Product {
-    id: number;
-    name: string;
-    description: string;
-    tags: string[];
-    votes: number;
-    isFeatured: boolean;
-}
+type Product = InferSelectModel<typeof products>;
 
 export default function ProductCard({ product }: { product: Product }) {
     const hasVoted = false;
@@ -28,7 +23,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <Card className="relative h-full bg-secondary/10 border-2 border-foreground/10 transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-[6px_6px_0px_0px_var(--color-primary)] group-hover:-translate-y-1 group-hover:-translate-x-1 overflow-hidden">
 
                 {/* Visual "Stamp" for Featured items */}
-                {product.isFeatured && (
+                {product.voteCount > 100 && (
                     <div className="absolute top-0 right-0 p-1">
                         <div className="bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-bl-lg uppercase tracking-wider flex items-center gap-1">
                             <Sparkles className="size-3" />
@@ -61,7 +56,7 @@ export default function ProductCard({ product }: { product: Product }) {
                                 <ChevronUp className="size-4 stroke-[3px]" />
                             </Button>
                             <span className="py-1 text-sm font-black text-foreground">
-                                {product.votes}
+                                {product.voteCount}
                             </span>
                         </div>
                     </div>
@@ -69,7 +64,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
                 <CardFooter>
                     <div className="flex flex-wrap items-center gap-2">
-                        {product.tags.map((tag) => (
+                        {product.tags?.map((tag) => (
                             <Badge
                                 variant="outline"
                                 key={tag}

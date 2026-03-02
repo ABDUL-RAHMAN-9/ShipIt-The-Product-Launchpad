@@ -55,13 +55,45 @@ The project implements NeonDB (PostgreSQL) paired with Drizzle ORM. This allows 
 
 ## Development Roadmap
 
-- [x] Phase 1: Infrastructure Setup, Environment Config & Initial Architecture.
-- [ ] Phase 2: PostgreSQL Schema Design & Drizzle Migration Strategy.
-- [ ] Phase 3: Authentication Implementation & Middleware Security.
-- [ ] Phase 4: Zod-powered Product Submission Logic.
-- [ ] Phase 5: Community Voting System & Feed Optimization.
-- [ ] Phase 6: Admin Dashboard & Moderation Workflow.
-- [ ] Phase 7: Final Performance Audits & Global Deployment.
+- [x] **Phase 1: Infrastructure & Custom Branding**
+  - Configured **Next.js 16 App Router** and **React 19** for high-concurrency rendering.
+  - Engineered a custom tactile design system utilizing the **OKLCH color space** for perceptually uniform UI.
+  - Implemented atomic component architecture using **Tailwind CSS 4** for scalable styling.
+
+- [x] **Phase 2: Database Architecture & Migration Strategy**
+  - Provisioned serverless PostgreSQL via **Neon DB** with horizontal scaling capabilities.
+  - Architected type-safe relational schemas using **Drizzle ORM** for compile-time safety.
+  - Implemented automated seeding scripts and migration workflows for production environment stability.
+
+- [x] **Phase 3: Secure Authentication & Middleware**
+  - Integrated **Clerk Auth** utilizing modal-based interception flows for frictionless onboarding.
+  - Engineered server-side middleware orchestration to handle secure route guarding and session persistence.
+  - Developed custom-styled authenticated user tokens to maintain ShipIt brand consistency.
+
+- [x] **Phase 4: Data Access Layer (DAL) & UI Integration**
+  - Engineered complex SQL queries with **Drizzle** to handle popularity-based and temporal data sorting.
+  - Synchronized frontend views with live cloud data using **Async Server Components**.
+  - Developed an editorial grid architecture with responsive visual hierarchy and conditional rendering.
+
+- [ ] **Phase 5: Performance Engineering**
+  - Implementing **React Suspense** for granular streaming and non-blocking UI delivery.
+  - Developing specialized "Skeleton" loaders to optimize **Perceived Performance** and CLS scores.
+  - Configuring Next.js Cache Tags and revalidation logic for high-speed data delivery.
+
+- [ ] **Phase 6: Data Mutation & Validation**
+  - Building a robust Product Submission engine leveraging **React Server Actions**.
+  - Implementing strict schema-level data validation and sanitization using **Zod**.
+  - Orchestrating multi-step form states with real-time error boundary feedback for users.
+
+- [ ] **Phase 7: Community Engagement & Dynamic Routing**
+  - Developing a community voting system featuring **Optimistic UI** updates for instant feedback.
+  - Building dynamic `[slug]` routes for high-fidelity, SEO-optimized product detail pages.
+  - Implementing tag-based filtering and search indexing for platform discovery.
+
+- [ ] **Phase 8: Production Deployment & SEO**
+  - Executing comprehensive performance audits focusing on **Core Web Vitals** and LCP.
+  - Optimizing dynamic metadata and OpenGraph architecture for enhanced social sharing.
+  - Orchestrating global deployment on **Vercel** with automated CI/CD pipeline integration.
 
 ---
 
@@ -102,3 +134,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 > "Engineering is not just about making things work; it is about building systems that are resilient, type-safe, and inherently scalable from the first line of code."
 
 **© 2026 ShipIt — Engineering the future of product discovery.**
+

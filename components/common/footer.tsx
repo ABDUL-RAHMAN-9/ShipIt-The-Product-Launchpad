@@ -95,7 +95,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-foreground/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-widest">
-                        © {new Date().getFullYear()} ShipIt Inc. All rights reserved.
+                        © 2026 ShipIt Inc. All rights reserved.
                     </p>
                     <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground/40 uppercase tracking-widest">
                         <span>Crafted with</span>

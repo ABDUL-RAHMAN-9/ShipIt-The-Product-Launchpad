@@ -1,3 +1,5 @@
+"use cache";
+
 import SectionHeader from "@/components/common/section-header"
 import { Trophy } from "lucide-react";
 import ProductCard from "@/components/products/product-card";

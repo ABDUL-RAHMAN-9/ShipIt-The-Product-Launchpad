@@ -8,6 +8,7 @@ import {
     SignUpButton,
     UserButton
 } from "@clerk/nextjs";
+import { Suspense } from "react";
 
 const Logo = () => {
     return (
@@ -49,39 +50,41 @@ export default function Header() {
                     </div>
 
                     <div className="flex items-center gap-3 border-l border-foreground/10 pl-6">
-                        <SignedOut>
-                            {/* 
+                        <Suspense fallback={<div className="h-10 w-24 bg-secondary/10 rounded-xl animate-pulse" />}>
+                            <SignedOut>
+                                {/* 
                                FIX: Adding mode="modal" prevents the full page reload 
                                and opens the Clerk UI in a nice overlay.
-                            */}
-                            <SignInButton mode="modal">
-                                <Button variant="ghost" size="sm" className="font-bold border-transparent shadow-none hover:bg-primary/5">
-                                    Sign In
-                                </Button>
-                            </SignInButton>
+                               */}
+                                <SignInButton mode="modal">
+                                    <Button variant="ghost" size="sm" className="font-bold border-transparent shadow-none hover:bg-primary/5">
+                                        Sign In
+                                    </Button>
+                                </SignInButton>
 
-                            <SignUpButton mode="modal">
-                                <Button size="sm" className="font-bold">
-                                    Join Community
-                                </Button>
-                            </SignUpButton>
-                        </SignedOut>
+                                <SignUpButton mode="modal">
+                                    <Button size="sm" className="font-bold">
+                                        Join Community
+                                    </Button>
+                                </SignUpButton>
+                            </SignedOut>
 
-                        <SignedIn>
-                            <div className="flex items-center gap-4">
+                            <SignedIn>
+                                <div className="flex items-center gap-4">
 
-                                <Button asChild size="sm" className="hidden sm:flex font-bold">
-                                    <Link href="/submit">
-                                        <Navigation className="size-4 rotate-45" /> {/* Changed to Navigation/Paper Plane */}
-                                        Launch Project
-                                    </Link>
-                                </Button>
+                                    <Button asChild size="sm" className="hidden sm:flex font-bold">
+                                        <Link href="/submit">
+                                            <Navigation className="size-4 rotate-45" /> {/* Changed to Navigation/Paper Plane */}
+                                            Launch Project
+                                        </Link>
+                                    </Button>
 
-                                <div className="h-10 w-10 rounded-xl border-2 border-foreground bg-background flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all cursor-pointer overflow-hidden">
-                                    <UserButton afterSignOutUrl="/" />
+                                    <div className="h-10 w-10 rounded-xl border-2 border-foreground bg-background flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all cursor-pointer overflow-hidden">
+                                        <UserButton afterSignOutUrl="/" />
+                                    </div>
                                 </div>
-                            </div>
-                        </SignedIn>
+                            </SignedIn>
+                        </Suspense>
                     </div>
                 </nav>
             </div>

@@ -1,3 +1,17 @@
+"use cache";
+
+import { getFeaturedProdcuts } from "@/lib/products/product-select";
+
+export const generateStaticParams = async () => {
+    const products = await getFeaturedProdcuts();
+    return products.map((product) => (
+        {
+            id: product.id.toString(),
+        }
+    ))
+}
+
+
 export default async function Product({
     params,
 }: {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Rocket, Github, Twitter, Globe, Linkedin } from "lucide-react";
+import { Rocket, Github, Linkedin } from "lucide-react";
 
 const footerLinks = [
     {

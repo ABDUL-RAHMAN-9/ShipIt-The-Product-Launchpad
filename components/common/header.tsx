@@ -6,9 +6,9 @@ import {
     SignedOut,
     SignInButton,
     SignUpButton,
-    UserButton
 } from "@clerk/nextjs";
 import { Suspense } from "react";
+import CustomUserButton from "./custom-user-button";
 
 const Logo = () => {
     return (
@@ -71,17 +71,15 @@ export default function Header() {
 
                             <SignedIn>
                                 <div className="flex items-center gap-4">
-
+                                    {/* The Action Button remains */}
                                     <Button asChild size="sm" className="hidden sm:flex font-bold">
                                         <Link href="/submit">
-                                            <Navigation className="size-4 rotate-45" /> {/* Changed to Navigation/Paper Plane */}
+                                            <Navigation className="size-4 rotate-45" />
                                             Launch Project
                                         </Link>
                                     </Button>
-
-                                    <div className="h-10 w-10 rounded-xl border-2 border-foreground bg-background flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all cursor-pointer overflow-hidden">
-                                        <UserButton afterSignOutUrl="/" />
-                                    </div>
+                                    {/* Custom user Button */}
+                                    <CustomUserButton />
                                 </div>
                             </SignedIn>
                         </Suspense>

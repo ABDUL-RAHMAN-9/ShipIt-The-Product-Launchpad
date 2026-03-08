@@ -33,3 +33,13 @@ export async function getRecentProducts() {
         .orderBy(desc(products.createAt)) // sort by newest first
         .limit(3); // just show the 3 fresh one
 }
+
+export async function getProductBySlug(slug: string) {
+    const product = await db
+        .select()
+        .from(products)
+        .where(eq(products.slug, slug))
+        .limit(1);
+
+    return product?.[0] ?? null;
+}

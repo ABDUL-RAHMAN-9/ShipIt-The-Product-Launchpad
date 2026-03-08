@@ -1,4 +1,3 @@
-// All products data - matches ShipIt schema structure
 export const allProducts = [
     {
         name: "EchoMind AI",
@@ -12,7 +11,7 @@ export const allProducts = [
         approvedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
         submittedBy: "hello@abdulrahman.dev",
-        voteCount: 1240,
+        voteCount: 780,
     },
     {
         name: "PulseCheck",
@@ -26,7 +25,7 @@ export const allProducts = [
         approvedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
         submittedBy: "admin@shipit.com",
-        voteCount: 890,
+        voteCount: 540,
     },
     {
         name: "LeafyAnalytics",
@@ -40,7 +39,7 @@ export const allProducts = [
         approvedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
         submittedBy: "creator@leafy.com",
-        voteCount: 520,
+        voteCount: 320,
     },
     {
         name: "SwiftShip",
@@ -54,7 +53,7 @@ export const allProducts = [
         approvedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
         submittedBy: "dev@swiftship.dev",
-        voteCount: 430,
+        voteCount: 210,
     },
     {
         name: "AtlasVault",
@@ -68,7 +67,7 @@ export const allProducts = [
         approvedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
         submittedBy: "security@atlas.com",
-        voteCount: 310,
+        voteCount: 195,
     },
     {
         name: "FluxEditor",
@@ -82,7 +81,7 @@ export const allProducts = [
         approvedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
         submittedBy: "builder@flux.app",
-        voteCount: 215,
+        voteCount: 145,
     },
     {
         name: "TimberAPI",
@@ -92,8 +91,8 @@ export const allProducts = [
             "TimberAPI calculates the environmental impact of your API requests in real-time, allowing you to build greener software.",
         websiteUrl: "https://timberapi.org",
         tags: ["GreenTech", "API", "Sustainability"],
-        createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000), // 12 hours ago
-        approvedAt: null, // Still pending
+        createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000),
+        approvedAt: null,
         status: "pending" as const,
         submittedBy: "eco@builder.org",
         voteCount: 15,
@@ -106,7 +105,7 @@ export const allProducts = [
             "ZenithFlow uses heatmaps and async check-ins to prevent burnout and keep remote teams perfectly synchronized.",
         websiteUrl: "https://zenithflow.com",
         tags: ["Productivity", "SaaS", "Management"],
-        createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000), // 6 hours ago
+        createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000),
         approvedAt: null,
         status: "pending" as const,
         submittedBy: "lead@zenith.com",
@@ -120,7 +119,7 @@ export const allProducts = [
             "A specialized component library for building complex, data-heavy trading platforms and fintech applications.",
         websiteUrl: "https://forgeui.design",
         tags: ["Design", "FinTech", "Frontend"],
-        createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+        createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
         approvedAt: null,
         status: "pending" as const,
         submittedBy: "abdul@rahman.dev",

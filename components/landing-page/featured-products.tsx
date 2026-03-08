@@ -3,11 +3,11 @@
 import SectionHeader from "@/components/common/section-header"
 import { Trophy } from "lucide-react";
 import ProductCard from "@/components/products/product-card";
-import { getFeaturedProdcuts } from "@/lib/products/product-select";
+import { getFeaturedProducts } from "@/lib/products/product-select";
 
 
 export default async function FeaturedProducts() {
-    const featuredProducts = await getFeaturedProdcuts();
+    const featuredProducts = await getFeaturedProducts();
 
     return (
         <section className="py-24 bg-background/50 border-t border-foreground/5 relative">

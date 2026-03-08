@@ -4,7 +4,7 @@ import { desc, eq, and, gte } from "drizzle-orm";
 import { connection } from "next/server";
 
 // 1. SPOTLIGHT: Sorted by most popular (Votes)
-export async function getFeaturedProdcuts() {
+export async function getFeaturedProducts() {
     const productsData = await db
         .select()
         .from(products)
@@ -17,7 +17,6 @@ export async function getFeaturedProdcuts() {
 
 // 2. LATEST: Sorted by newest (CreateAt)
 export async function getRecentProducts() {
-
     await connection();
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -33,4 +32,14 @@ export async function getRecentProducts() {
         )
         .orderBy(desc(products.createAt)) // sort by newest first
         .limit(3); // just show the 3 fresh one
+}
+
+export async function getProductBySlug(slug: string) {
+    const product = await db
+        .select()
+        .from(products)
+        .where(eq(products.slug, slug))
+        .limit(1);
+
+    return product?.[0] ?? null;
 }

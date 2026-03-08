@@ -19,7 +19,7 @@ export default function ProductCard({ product }: { product: Product }) {
     const hasVoted = false;
 
     return (
-        <Link href={`/products/${product.id}`} className="block group">
+        <Link href={`/products/${product.slug}`} className="block group">
             <Card className="relative h-full bg-secondary/10 border-2 border-foreground/10 transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-[6px_6px_0px_0px_var(--color-primary)] group-hover:-translate-y-1 group-hover:-translate-x-1 overflow-hidden">
 
                 {/* Elite Badge for high-performing projects */}

@@ -9,8 +9,10 @@ import {
     ChevronLeft,
     Calendar,
     ExternalLink,
-    Star,
+    Box,
     User,
+    Trophy,
+    Globe
 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -21,6 +23,7 @@ export const generateStaticParams = async () => {
         slug: product.slug,
     }));
 };
+
 
 export default async function ProductDetailPage({
     params,
@@ -34,85 +37,98 @@ export default async function ProductDetailPage({
 
     const { name, description, websiteUrl, tags, voteCount, tagline, createAt, submittedBy } = product;
 
-    // Standardized date formatting
     const launchDate = createAt ? new Intl.DateTimeFormat('en-US', {
-        month: 'numeric',
+        month: 'long',
         day: 'numeric',
         year: 'numeric'
-    }).format(new Date(createAt)) : "Pending";
+    }).format(new Date(createAt)) : "Recently Shipped";
 
     return (
-        <main className="py-12 lg:py-20 bg-background">
+        <main className="py-12 lg:py-24 bg-background">
             <div className="wrapper">
-                {/* 1. BREADCRUMB - Top Left */}
+
+                {/* BREADCRUMB */}
                 <Link
-                    href="/explore"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-primary mb-12 transition-colors group"
+                    href="/"
+                    className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-primary mb-16 transition-all group"
                 >
-                    <ChevronLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-                    Back to Explore
+                    <div className="p-1.5 rounded-lg bg-secondary/50 group-hover:bg-primary/10 border border-foreground/5">
+                        <ChevronLeft className="size-4" />
+                    </div>
+                    Back to Catalog
                 </Link>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
-                    {/* LEFT SECTION (Main Content) */}
-                    <div className="lg:col-span-2 space-y-10">
-
-                        {/* Header Area */}
-                        <div className="space-y-4">
-                            <div className="flex items-center gap-3">
-                                
-                                <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-foreground">
-                                    {name}
-                                </h1>
+                    {/* LEFT SECTION */}
+                    <div className="lg:col-span-8 space-y-16">
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-6">
+                                <div className="p-4 bg-primary/10 rounded-2xl border-2 border-primary/20 shadow-sm shrink-0">
+                                    <Box className="size-10 text-primary" />
+                                </div>
+                                <div className="space-y-2">
+                                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-foreground leading-[0.85]">
+                                        {name}
+                                    </h1>
+                                    <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl leading-relaxed">
+                                        {tagline}
+                                    </p>
+                                </div>
                             </div>
-                            <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-tight">
-                                {tagline}
-                            </p>
 
-                            {/* Tags */}
                             <div className="flex flex-wrap gap-2 pt-2">
                                 {tags?.map((tag) => (
-                                    <Badge key={tag} variant="secondary" className="px-3 py-1 text-xs font-bold rounded-lg border-none bg-secondary/60">
-                                        {tag}
+                                    <Badge key={tag} variant="outline" className="px-4 py-1.5 bg-secondary/30 border-foreground/10 lowercase font-bold text-foreground/80 rounded-lg">
+                                        #{tag}
                                     </Badge>
                                 ))}
                             </div>
                         </div>
 
-                        {/* About Section */}
-                        <div className="space-y-4">
-                            <h2 className="text-xl font-black uppercase tracking-tight text-foreground">About</h2>
-                            <p className="text-lg text-muted-foreground leading-relaxed font-medium">
+                        <div className="space-y-6">
+                            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-foreground/30 flex items-center gap-4">
+                                Project Narrative <span className="flex-1 h-px bg-foreground/5" />
+                            </h2>
+                            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
                                 {description}
                             </p>
                         </div>
 
-                        {/* Product Details Box - Colored Background */}
-                        <div className="bg-[#f2ebe0] dark:bg-secondary/10 border-2 border-foreground/5 rounded-3xl p-8 space-y-6 shadow-sm">
-                            <h2 className="text-lg font-black tracking-tight text-foreground">Product Details</h2>
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3 text-sm">
-                                    <Calendar className="size-4 text-muted-foreground" />
-                                    <span className="text-muted-foreground font-bold uppercase tracking-wider text-[10px]">Launched:</span>
-                                    <span className="font-bold text-foreground">{launchDate}</span>
+                        <div className="bg-[#f5f0e8] dark:bg-secondary/5 border-2 border-foreground/5 rounded-[2.5rem] p-10 space-y-8 shadow-sm">
+                            <h3 className="text-lg font-black tracking-tight text-foreground">Technical Log</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                <div className="flex items-center gap-4">
+                                    <div className="size-12 rounded-xl bg-background border-2 border-foreground/5 flex items-center justify-center shadow-sm">
+                                        <Calendar className="size-5 text-primary" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Launched</p>
+                                        <p className="font-bold text-foreground text-lg">{launchDate}</p>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-3 text-sm">
-                                    <User className="size-4 text-muted-foreground" />
-                                    <span className="text-muted-foreground font-bold uppercase tracking-wider text-[10px]">Submitted by:</span>
-                                    <span className="font-bold text-foreground">{submittedBy}</span>
+                                <div className="flex items-center gap-4">
+                                    <div className="size-12 rounded-xl bg-background border-2 border-foreground/5 flex items-center justify-center shadow-sm">
+                                        <User className="size-5 text-primary" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Architect</p>
+                                        <p className="font-bold text-foreground text-lg truncate max-w-[180px]">{submittedBy}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* RIGHT SECTION (Sidebar) */}
-                    <div className="lg:col-span-1">
-                        <div className="sticky top-28 space-y-6">
+                    {/* RIGHT SECTION: Sidebar */}
+                    <div className="lg:col-span-4">
+                        <div className="sticky top-32 space-y-8">
 
-                            {/* Support Card */}
-                            <div className="bg-background border-2 border-foreground/10 rounded-3xl p-10 flex flex-col items-center justify-center text-center space-y-6">
-                                <p className="text-sm font-bold text-muted-foreground">Support this product</p>
+                            <div className="bg-background border-4 border-foreground rounded-[2.5rem] p-10 flex flex-col items-center text-center space-y-8 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
+                                <div className="space-y-2">
+                                    <h4 className="text-sm font-black uppercase tracking-widest text-foreground">Back this ship</h4>
+                                    <p className="text-xs font-medium text-muted-foreground px-4">Help this project reach the Maker&apos;s Hall of Fame.</p>
+                                </div>
 
                                 <VotingButtons
                                     productId={product.id}
@@ -121,19 +137,21 @@ export default async function ProductDetailPage({
                                 />
 
                                 {voteCount > 100 && (
-                                    <div className="w-full pt-6 border-t border-foreground/5">
-                                        <Badge className="w-full justify-center py-2.5 bg-primary text-primary-foreground font-black tracking-widest uppercase text-[10px]">
-                                            🔥 Featured Product
-                                        </Badge>
+                                    <div className="w-full pt-8 border-t-2 border-foreground/5">
+                                        <div className="w-full flex items-center justify-center gap-2 py-3 bg-primary/5 text-primary border-2 border-dashed border-primary/30 rounded-2xl">
+                                            <Trophy className="size-4" />
+                                            <span className="font-black tracking-[0.15em] uppercase text-[10px]">Elite Community Pick</span>
+                                        </div>
                                     </div>
                                 )}
                             </div>
 
-                            {/* Visit Website Button */}
+                            {/* CTA BUTTON: This is an action, so it keeps the shadow */}
                             {websiteUrl && (
-                                <Button asChild variant="outline" size="lg" className="w-full h-14 font-black uppercase tracking-widest bg-background">
+                                <Button asChild size="lg" className="w-full h-16 text-lg font-black uppercase tracking-widest rounded-3xl border-4 border-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
                                     <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
-                                        Visit Website <ExternalLink className="ml-2 size-5" />
+                                        <Globe className="mr-2 size-5" />
+                                        Explore Live
                                     </a>
                                 </Button>
                             )}

@@ -43,3 +43,21 @@ export async function getProductBySlug(slug: string) {
 
     return product?.[0] ?? null;
 }
+
+export async function getAllApprovedProducts() {
+    return await db
+        .select()
+        .from(products)
+        .where(eq(products.status, "approved"))
+        .orderBy(desc(products.voteCount));
+}
+
+export async function getAllProducts() {
+    "use cache";
+    const productsData = await db
+        .select()
+        .from(products)
+        .orderBy(desc(products.voteCount));
+
+    return productsData;
+}

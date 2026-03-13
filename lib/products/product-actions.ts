@@ -53,6 +53,7 @@ export const addProductAction = async (
             userId,
         });
 
+        revalidatePath("/admin");
         revalidatePath("/");
 
         return {

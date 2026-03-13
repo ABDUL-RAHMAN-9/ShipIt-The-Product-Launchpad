@@ -53,3 +53,19 @@ export const rejectProductAction = async (productId: ProductType["id"]) => {
         };
     }
 };
+
+export const deleteProductAction = async (productId: number) => {
+    try {
+        await db
+            .delete(products)
+            .where(eq(products.id, productId));
+
+        revalidatePath("/admin");
+        revalidatePath("/"); // Update landing page if it was approved
+
+        return { success: true, message: "Product purged from manifest." };
+    } catch (error) {
+        console.error(error);
+        return { success: false, message: "Failed to delete product." };
+    }
+};

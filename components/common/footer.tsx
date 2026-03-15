@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Rocket, Github, Linkedin } from "lucide-react";
+import { Rocket, Linkedin, Mail } from "lucide-react"; 
 
 const footerLinks = [
     {
@@ -44,29 +44,33 @@ export default function Footer() {
                             </span>
                         </Link>
 
-                        {/* PERSONALIZED BIO */}
                         <p className="text-muted-foreground font-medium max-w-sm leading-relaxed">
                             A handcrafted community platform built by <span className="text-foreground font-bold underline decoration-primary/30 underline-offset-4">Abdul Rahman</span>.
                             Designed for makers to showcase their craft and find their first 100 users.
                         </p>
 
-                        {/* LINKS */}
-                        <div className="flex items-center gap-4">
-                            <Link
-                                href="https://github.com/ABDUL-RAHMAN-9"
-                                target="_blank"
-                                className="p-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-primary transition-colors border border-transparent hover:border-primary/20"
-                            >
-                                <Github className="size-5" />
-                            </Link>
+                        {/* PROFESSIONAL CONTACT LINKS */}
+                        <div className="space-y-4">
+                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40">Connect with Me</p>
+                            <div className="flex items-center gap-4">
+                                {/* LinkedIn remains as it is your professional resume */}
+                                <Link
+                                    href="https://www.linkedin.com/in/abdulrahman-in/"
+                                    target="_blank"
+                                    className="p-2.5 rounded-xl bg-secondary/50 text-muted-foreground hover:text-primary transition-all border-2 border-transparent hover:border-primary/20 hover:shadow-sm"
+                                >
+                                    <Linkedin className="size-5" />
+                                </Link>
 
-                            <Link
-                                href="https://www.linkedin.com/in/abdulrahman-in/"
-                                target="_blank"
-                                className="p-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-primary transition-colors border border-transparent hover:border-primary/20"
-                            >
-                                <Linkedin className="size-5" />
-                            </Link>
+                                {/* New Mailbox Button for Recruiters */}
+                                <Link
+                                    href="mailto:abdulrahman161004@gmail.com"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-bold text-sm border-2 border-foreground shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] transition-all"
+                                >
+                                    <Mail className="size-4" />
+                                    Get in Touch
+                                </Link>
+                            </div>
                         </div>
                     </div>
 
@@ -98,7 +102,7 @@ export default function Footer() {
                         © 2026 ShipIt Inc. All rights reserved.
                     </p>
                     <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground/40 uppercase tracking-widest">
-                        <span>Crafted with</span>
+                        <span>Developed with</span>
                         <div className="px-2 py-0.5 bg-primary/10 text-primary rounded border border-primary/20">
                             Next.js 16
                         </div>

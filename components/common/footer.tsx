@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Rocket, Linkedin, Mail, ExternalLink } from "lucide-react"; // Added Mail
+import { Rocket, Linkedin, Mail } from "lucide-react"; 
 
 const footerLinks = [
     {

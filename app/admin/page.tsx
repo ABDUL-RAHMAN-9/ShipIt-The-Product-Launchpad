@@ -44,7 +44,7 @@ export default async function AdminPage() {
                     <SectionHeader
                         title="Control Center"
                         icon={ShieldIcon}
-                        description="Administrative workspace for project moderation and manifest management."
+                        description="Administrative workspace for project moderation and registry management."
                         hideButton={true}
                     />
                 </div>
@@ -84,7 +84,7 @@ export default async function AdminPage() {
                     <div className="flex items-center gap-3">
                         <div className="h-8 w-1.5 bg-primary/40 rounded-full" />
                         <h2 className="text-2xl font-black uppercase tracking-tight text-foreground">
-                            Complete Manifest
+                            Processed Registry
                         </h2>
                     </div>
 

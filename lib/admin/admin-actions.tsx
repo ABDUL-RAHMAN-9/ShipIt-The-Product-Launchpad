@@ -63,7 +63,7 @@ export const deleteProductAction = async (productId: number) => {
         revalidatePath("/admin");
         revalidatePath("/"); // Update landing page if it was approved
 
-        return { success: true, message: "Product purged from manifest." };
+        return { success: true, message: "Product purged from registry." };
     } catch (error) {
         console.error(error);
         return { success: false, message: "Failed to delete product." };

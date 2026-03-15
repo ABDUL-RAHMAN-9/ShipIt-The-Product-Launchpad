@@ -12,7 +12,7 @@ export default function StatsCard({
     rejected: number;
 }) {
     const stats = [
-        { label: "Total Manifest", count: all, color: "border-foreground/10" },
+        { label: "Total registry", count: all, color: "border-foreground/10" },
         { label: "Awaiting Review", count: pending, color: "border-primary/40 bg-primary/5" },
         { label: "Approved Ships", count: approved, color: "border-green-600/20" },
         { label: "Rejected", count: rejected, color: "border-destructive/20" },

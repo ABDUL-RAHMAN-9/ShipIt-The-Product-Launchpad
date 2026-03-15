@@ -8,7 +8,7 @@ const db = drizzle(process.env.DATABASE_URL!);
 async function main() {
     console.log("🌱 Seeding database...");
 
-    // Clear existing data
+    // Clear existing data to avoid "Duplicate Slug" errors
     await db.delete(products);
     console.log("✅ Cleared existing data");
 
@@ -22,7 +22,7 @@ async function main() {
             websiteUrl: product.websiteUrl,
             tags: product.tags,
             voteCount: product.voteCount || 0,
-            createdAt: product.createdAt,
+            createAt: product.createdAt,
             approvedAt: product.approvedAt,
             status: product.status,
             submittedBy: product.submittedBy,
@@ -53,6 +53,6 @@ main()
         process.exit(1);
     })
     .finally(() => {
-        console.log("\n✨ Seeding complete!");
+        console.log("\n✨ Seeding process finished.");
         process.exit(0);
     });

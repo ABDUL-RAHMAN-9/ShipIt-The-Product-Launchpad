@@ -28,19 +28,25 @@ export default function ProductSubmitForm() {
     };
 
     return (
-        <div className="w-full max-w-2xl mx-auto py-12 mb-20">
+        <div className="w-full max-w-2xl mx-auto">
             {/* HEADER: Smaller text, better spacing */}
-            <div className="mb-12 space-y-3 border-l-4 border-primary/20 pl-6">
-                <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-[0.2em] text-xs">
-                    <NotebookPen className="size-3.5" />
-                    Project Registry
+            <div className="mb-10 space-y-3 border-l-4 border-primary/20 pl-6">
+                <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-[0.2em] text-[10px]">
+                    <div className="p-1 bg-primary/10 rounded-md">
+                        <NotebookPen className="size-3.5" />
+                    </div>
+                    New Submission
                 </div>
-                <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
-                    The Shipping Manifest
-                </h1>
-                <p className="text-sm text-muted-foreground font-medium max-w-lg">
-                    Tell the community about your craft. Every submission is reviewed.
-                </p>
+
+                {/* 2. THE TITLE: The name of the institutional system */}
+                <div className="space-y-2">
+                    <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+                        The Project Registry
+                    </h1>
+                    <p className="text-sm text-muted-foreground font-medium max-w-lg leading-relaxed">
+                        Record your latest craft in the community archives. Every entry is manually reviewed to ensure a high-quality showcase.
+                    </p>
+                </div>
             </div>
             <form action={formAction} className="flex flex-col gap-10 bg-secondary/5 p-8 md:p-10 rounded-3xl border-2 border-foreground/5 relative overflow-hidden">
 
@@ -134,7 +140,7 @@ export default function ProductSubmitForm() {
                 </div>
 
                 {/* SUBMIT ACTION */}
-                <div className="pt-8">
+                <div>
                     <Button
                         type="submit"
                         size="lg"

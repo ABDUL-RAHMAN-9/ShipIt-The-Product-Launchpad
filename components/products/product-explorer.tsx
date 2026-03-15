@@ -47,7 +47,7 @@ export default function ProductExplorer({ products: initialProducts }: { product
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-primary size-5 opacity-50" />
                     <Input
                         type="text"
-                        placeholder="Search the manifest..."
+                        placeholder="Search the registry..."
                         className="h-14 pl-12 bg-background border-2 border-foreground/10 rounded-2xl focus:border-primary transition-all text-base font-medium shadow-none"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -105,7 +105,7 @@ export default function ProductExplorer({ products: initialProducts }: { product
                 </div>
             ) : (
                 <div className="py-24 text-center bg-secondary/5 rounded-[3rem] border-2 border-dashed border-foreground/10">
-                    <p className="text-lg font-bold text-muted-foreground">No projects match your search manifest.</p>
+                    <p className="text-lg font-bold text-muted-foreground">No projects match your search registry.</p>
                 </div>
             )}
         </div>

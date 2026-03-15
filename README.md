@@ -34,7 +34,7 @@ The project implements NeonDB (PostgreSQL) paired with Drizzle ORM. This allows 
 - Real-time UI updates using path revalidation and server actions.
 
 ### 3. Identity & Security
-- Secure session management and OAuth integration via Clerk.
+- Secure session management and uth integration via Clerk.
 - Protected API routes and server-side middleware to handle authorization.
 
 ---
@@ -85,7 +85,7 @@ The project implements NeonDB (PostgreSQL) paired with Drizzle ORM. This allows 
   - Implementing strict schema-level data validation and sanitization using **Zod**.
   - Orchestrating multi-step form states with real-time error boundary feedback for users.
 
-- [ ] **Phase 7: Community Engagement & Dynamic Routing**
+- [x] **Phase 7: Community Engagement & Dynamic Routing**
   - Developing a community voting system featuring **Optimistic UI** updates for instant feedback.
   - Building dynamic `[slug]` routes for high-fidelity, SEO-optimized product detail pages.
   - Implementing tag-based filtering and search indexing for platform discovery.
@@ -97,33 +97,10 @@ The project implements NeonDB (PostgreSQL) paired with Drizzle ORM. This allows 
 
 ---
 
-## Local Development
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/ABDUL-RAHMAN-9/ShipIt-The-Product-Launchpad.git
-
-2. **Install dependencies**
-   ```bash
-    pnpm install
-
-3. **Environment Setup**
-    ```bash
-    Create a .env file in both client and server directories with your Clerk, ImageKit, and MongoDB credentials.
-    ```
-   
-4. **Database Push:**
-   ```bash
-    npx drizzle-kit push
-
-5. **Execute Development:**
-   ```bash
-    pnpm dev
-
----
-
 ## License
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+**Notice:** As a Cloud-Native build, local execution requires a synchronized environment with private API keys and a provisioned PostgreSQL cluster. The source code is provided for architectural review and logic verification.
 
 ---
 

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import AdminProductCard from "@/components/admin/admin-product-card";
 import StatsCard from "@/components/admin/stats-card";
 import EmptyState from "@/components/common/empty-state";
@@ -7,6 +8,9 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import { InboxIcon, ShieldIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 
+export const metadata: Metadata = {
+    title: "Admin Control Center",
+};
 
 export default async function AdminPage() {
     const { userId } = await auth();

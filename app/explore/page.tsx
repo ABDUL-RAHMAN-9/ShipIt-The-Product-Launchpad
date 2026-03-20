@@ -1,7 +1,13 @@
+import type { Metadata } from 'next';
 import SectionHeader from "@/components/common/section-header";
 import ProductExplorer from "@/components/products/product-explorer";
 import { getAllApprovedProducts } from "@/lib/products/product-select";
 import { Compass } from "lucide-react";
+
+export const metadata: Metadata = {
+    title: "Explore the Registry",
+    description: "Browse high-quality projects from our global community."
+};
 
 export default async function ExplorePage() {
     const products = await getAllApprovedProducts();
@@ -13,7 +19,7 @@ export default async function ExplorePage() {
                     title="The Discovery Hub"
                     icon={Compass}
                     description="Browse the complete catalog of community-built projects. Filter by popularity or recency to find your next inspiration."
-                    hideButton={true} 
+                    hideButton={true}
                 />
 
                 <ProductExplorer products={products} />

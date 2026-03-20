@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import ProductSubmitForm from "@/components/products/product-submit-form";
+
+export const metadata: Metadata = {
+    title: "Register a Project",
+};
+
 
 export default function SubmitPage() {
     return (

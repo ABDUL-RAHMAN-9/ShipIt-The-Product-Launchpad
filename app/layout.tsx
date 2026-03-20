@@ -10,7 +10,11 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "ShipIt | The Community Platform for Independent Creators",
+
+  title: {
+    default: "ShipIt | The Product Dossier",
+    template: "%s | ShipIt"
+  },
   description: "A professional showcase for developers to launch projects, gather community feedback, and connect with other builders. Ship your next big idea today.",
   keywords: ["Project Showcase", "Developer Community", "SaaS Launches", "Fullstack Portfolio", "Product Discovery"],
 };

@@ -15,10 +15,10 @@ export const addProductAction = async (
     try {
         const { userId, orgId } = await auth();
 
-        if (!userId || !orgId) {
+        if (!userId) {
             return {
                 success: false,
-                message: "You must be signed in and part of an organization.",
+                message: "You must be signed in to submit a product.",
             };
         }
 

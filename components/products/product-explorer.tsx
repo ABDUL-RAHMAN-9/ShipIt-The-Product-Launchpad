@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock, Search, TrendingUp, LayoutGrid } from "lucide-react";
+import { Clock, Search, ShieldCheck, Activity } from "lucide-react"; // Swapped TrendingUp for ShieldCheck
 import { Input } from "@/components/ui/input";
 import ProductCard from "@/components/products/product-card";
 import { useMemo, useState } from "react";
@@ -8,7 +8,6 @@ import { products } from "@/db/schema";
 import { InferSelectModel } from "drizzle-orm";
 import { cn } from "@/lib/utils";
 
-// 1. STRICT TYPING: Infer the type directly from the DB Schema
 type Product = InferSelectModel<typeof products>;
 
 export default function ProductExplorer({ products: initialProducts }: { products: Product[] }) {
@@ -18,7 +17,6 @@ export default function ProductExplorer({ products: initialProducts }: { product
     const filteredProducts = useMemo(() => {
         let result = [...initialProducts];
 
-        // Search Logic
         if (searchQuery.length > 0) {
             const query = searchQuery.toLowerCase();
             result = result.filter((p) =>
@@ -27,10 +25,8 @@ export default function ProductExplorer({ products: initialProducts }: { product
             );
         }
 
-        // Sort Logic
         return result.sort((a, b) => {
             if (sortBy === "trending") return b.voteCount - a.voteCount;
-            // Using createAt (the field name from your schema)
             const dateA = a.createAt ? new Date(a.createAt).getTime() : 0;
             const dateB = b.createAt ? new Date(b.createAt).getTime() : 0;
             return dateB - dateA;
@@ -42,21 +38,21 @@ export default function ProductExplorer({ products: initialProducts }: { product
             {/* SEARCH & FILTER CONTROL PANEL */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 bg-secondary/5 p-6 rounded-[2rem] border-2 border-foreground/5 shadow-sm">
 
-                {/* Tactical Search Bar */}
+                {/* Tactical Query Bar */}
                 <div className="flex-1 relative max-w-xl">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-primary size-5 opacity-50" />
                     <Input
                         type="text"
-                        placeholder="Search the registry..."
+                        placeholder="Query System Nodes..." // Professional Label
                         className="h-14 pl-12 bg-background border-2 border-foreground/10 rounded-2xl focus:border-primary transition-all text-base font-medium shadow-none"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
 
-                {/* Editorial Sort Switcher (Tactile Toggle) */}
+                {/* Infrastructure Filter (Tactile Toggle) */}
                 <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40 ml-2">Sort By:</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40 ml-2">Intelligence Filter:</span>
                     <div className="flex p-1 bg-background border-2 border-foreground/5 rounded-2xl">
                         <button
                             type="button"
@@ -68,8 +64,8 @@ export default function ProductExplorer({ products: initialProducts }: { product
                                     : "text-muted-foreground hover:text-foreground"
                             )}
                         >
-                            <TrendingUp className="size-4" />
-                            Trending
+                            <ShieldCheck className="size-4" />
+                            Reliability Index {/* High-end Enterprise term for Upvotes */}
                         </button>
                         <button
                             type="button"
@@ -82,17 +78,17 @@ export default function ProductExplorer({ products: initialProducts }: { product
                             )}
                         >
                             <Clock className="size-4" />
-                            Latest
+                            Audit Log {/* High-end Enterprise term for Recent */}
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* RESULTS METADATA */}
+            {/* SYSTEM TELEMETRY */}
             <div className="flex items-center justify-between px-2">
                 <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
-                    <LayoutGrid className="size-4 text-primary/40" />
-                    Catalog contains {filteredProducts.length} entries
+                    <Activity className="size-4 text-primary/40" />
+                    Registry Status: {filteredProducts.length} Active Nodes Online
                 </div>
             </div>
 
@@ -105,7 +101,7 @@ export default function ProductExplorer({ products: initialProducts }: { product
                 </div>
             ) : (
                 <div className="py-24 text-center bg-secondary/5 rounded-[3rem] border-2 border-dashed border-foreground/10">
-                    <p className="text-lg font-bold text-muted-foreground">No projects match your search registry.</p>
+                    <p className="text-lg font-bold text-muted-foreground italic">No infrastructure nodes discovered in the current registry segment.</p>
                 </div>
             )}
         </div>

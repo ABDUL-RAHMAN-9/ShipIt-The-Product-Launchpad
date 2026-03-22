@@ -1,7 +1,7 @@
 "use cache";
 
 import SectionHeader from "@/components/common/section-header"
-import { Trophy } from "lucide-react";
+import { Zap } from "lucide-react"; // Swapped Trophy for Zap
 import ProductCard from "@/components/products/product-card";
 import { getFeaturedProducts } from "@/lib/products/product-select";
 
@@ -13,9 +13,9 @@ export default async function FeaturedProducts() {
         <section className="py-24 bg-background/50 border-t border-foreground/5 relative">
             <div className="wrapper">
                 <SectionHeader
-                    title="Maker's Spotlight"
-                    icon={Trophy}
-                    description="Discover the most innovative projects handcrafted by our global community. Each week we feature the top 6 rising gems."
+                    title="Strategic Infrastructure" // Professional Title
+                    icon={Zap} // Matches the "Atlash" high-velocity brand
+                    description="Monitor high-performance systems currently optimizing global workflows. These verified assets represent the highest standard of architectural efficiency and 70% reduced operational overhead."
                     href="/explore"
                 />
 

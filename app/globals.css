@@ -58,79 +58,6 @@
 */
 :root {
   /* Paper/Canvas Texture Background */
-  --background: oklch(0.94 0.03 85);
-  --foreground: oklch(0.28 0.04 80);
-  /* Deep Earthy Brown */
-
-  /* Cards & Popovers: Slightly lighter than background */
-  --card: oklch(0.96 0.02 85);
-  --card-foreground: oklch(0.28 0.04 80);
-  --popover: oklch(0.96 0.02 85);
-  --popover-foreground: oklch(0.28 0.04 80);
-
-  /* Primary: Forest Green (The Ghibli Hero Color) */
-  --primary: oklch(0.48 0.11 140);
-  --primary-foreground: oklch(0.98 0.01 90);
-
-  /* Secondary: Soft Moss/Sage */
-  --secondary: oklch(0.88 0.06 130);
-  --secondary-foreground: oklch(0.35 0.06 130);
-
-  /* Muted: Dusty Sky Gray */
-  --muted: oklch(0.85 0.02 240);
-  --muted-foreground: oklch(0.45 0.04 80);
-
-  /* Accent: Warm Clay / Sunset Orange */
-  --accent: oklch(0.82 0.09 70);
-  --accent-foreground: oklch(0.28 0.04 80);
-
-  /* Destructive: Deep Terracotta Red */
-  --destructive: oklch(0.55 0.15 35);
-  --destructive-foreground: oklch(1 0 0);
-
-  /* Borders & Inputs: Subtle brown/gray */
-  --border: oklch(0.82 0.03 80);
-  --input: oklch(0.82 0.03 80);
-  --ring: oklch(0.48 0.11 140);
-
-  /* Sidebar: Often looks nice as a slightly different paper shade */
-  --sidebar: oklch(0.92 0.04 85);
-  --sidebar-foreground: oklch(0.28 0.04 80);
-  --sidebar-primary: oklch(0.48 0.11 140);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.88 0.06 130);
-  --sidebar-accent-foreground: oklch(0.35 0.06 130);
-  --sidebar-border: oklch(0.82 0.03 80);
-  --sidebar-ring: oklch(0.48 0.11 140);
-
-  /* Nature-inspired Charts (Earthy colors) */
-  --chart-1: oklch(0.55 0.12 140);
-  /* Green */
-  --chart-2: oklch(0.65 0.10 210);
-  /* Soft Blue */
-  --chart-3: oklch(0.75 0.12 70);
-  /* Ochre */
-  --chart-4: oklch(0.55 0.15 35);
-  /* Clay */
-  --chart-5: oklch(0.45 0.05 180);
-  /* Teal */
-
-  --radius: 0.75rem;
-  /* Soft, organic corners */
-
-  /* Soft Shadows: Using a warm brown tint instead of harsh black */
-  --shadow-color: oklch(0.28 0.04 80 / 0.1);
-  --shadow-sm: 0 1px 2px 0 var(--shadow-color);
-  --shadow-md: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
-  --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
-}
-
-/* 
-  DARK MODE 
-  "The Midnight Forest" Palette
-*/
-.dark {
-  /* Deep Navy/Forest Night */
   --background: oklch(0.18 0.03 260);
   --foreground: oklch(0.92 0.02 85);
 
@@ -164,7 +91,30 @@
   --sidebar-foreground: oklch(0.92 0.02 85);
   --sidebar-border: oklch(0.25 0.03 260);
   --sidebar-ring: oklch(0.65 0.12 145);
+
+  /* Nature-inspired Charts (Earthy colors) */
+  --chart-1: oklch(0.55 0.12 140);
+  /* Green */
+  --chart-2: oklch(0.65 0.10 210);
+  /* Soft Blue */
+  --chart-3: oklch(0.75 0.12 70);
+  /* Ochre */
+  --chart-4: oklch(0.55 0.15 35);
+  /* Clay */
+  --chart-5: oklch(0.45 0.05 180);
+  /* Teal */
+
+  --radius: 0.75rem;
+  /* Soft, organic corners */
+
+  /* Soft Shadows: Using a warm brown tint instead of harsh black */
+  --shadow-color: oklch(0.28 0.04 80 / 0.1);
+  --shadow-sm: 0 1px 2px 0 var(--shadow-color);
+  --shadow-md: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
+  --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
 }
+
+
 
 @layer base {
   * {
@@ -172,37 +122,26 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-300 antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ADDING THE TEXTURE CLASS */
-  .texture {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    opacity: 0.15;
-    /* Subtly visible on white, deeper on dark */
-    z-index: 9999;
-    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  .delay-200 {
+    animation-delay: 200ms;
   }
-    .delay-200 {
-      animation-delay: 200ms;
-    }
-  
-    .delay-400 {
-      animation-delay: 400ms;
-    }
-  
-    .delay-600 {
-      animation-delay: 600ms;
-    }
-  
-    .delay-800 {
-      animation-delay: 800ms;
-    }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .delay-800 {
+    animation-delay: 800ms;
+  }
 }
 
 @layer components {

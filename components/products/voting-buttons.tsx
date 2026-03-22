@@ -2,7 +2,7 @@
 
 import { upvoteProductAction } from "@/lib/products/product-actions";
 import { cn } from "@/lib/utils";
-import { ChevronUp, Loader2 } from "lucide-react";
+import { ShieldCheck, Loader2, ArrowBigUpDash } from "lucide-react"; // Swapped Chevron for ArrowBigUpDash
 import { useOptimistic, useTransition, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -20,15 +20,15 @@ export default function VotingButtons({
 
     const [optimisticVoteCount, addOptimisticVote] = useOptimistic(
         initialVoteCount,
-        // Math.min ensures the count never exceeds 999
+        // Math.min 999 becomes "Max Confidence Level"
         (state, newState: number) => Math.min(999, state + newState)
     );
 
-    const handleVote = async (e: React.MouseEvent) => {
+    const handleVerification = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
 
-        // 999 LIMIT: If it's already 999, stop voting
+        // LOGIC: Verify the reliability of the node
         if (localHasVoted || isPending || optimisticVoteCount >= 999) return;
 
         setLocalHasVoted(true);
@@ -39,43 +39,53 @@ export default function VotingButtons({
                 await upvoteProductAction(productId);
             } catch (error) {
                 setLocalHasVoted(false);
-                console.error("Voting failed", error);
+                console.error("Verification protocol failed", error);
             }
         });
     };
 
     return (
         <div className={cn(
-            "flex flex-col items-center border-2 rounded-xl bg-background overflow-hidden shrink-0 transition-all w-14 h-fit",
+            "flex flex-col items-center border-2 rounded-xl bg-background overflow-hidden shrink-0 transition-all w-14 h-fit group",
             localHasVoted
                 ? "border-primary shadow-none translate-x-[1px] translate-y-[1px]"
-                : "border-foreground/10 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.1)] hover:border-primary/50"
+                : "border-foreground/10 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:border-primary/40"
         )}>
+            {/* 1. THE ACTION: Verify Node */}
             <Button
-                onClick={handleVote}
+                onClick={handleVerification}
                 variant="ghost"
                 size="sm"
+                title="Verify Infrastructure Reliability"
                 disabled={localHasVoted || isPending || optimisticVoteCount >= 999}
                 className={cn(
-                    "h-8 w-full rounded-none border-b-2 border-foreground/5 transition-colors px-2",
+                    "h-9 w-full rounded-none border-b-2 border-foreground/5 transition-colors px-2",
                     localHasVoted
                         ? "bg-primary text-primary-foreground"
-                        : "hover:bg-primary/10 hover:text-primary"
+                        : "hover:bg-primary/5 hover:text-primary"
                 )}
             >
                 {isPending ? (
                     <Loader2 className="size-4 animate-spin" />
+                ) : localHasVoted ? (
+                    <ShieldCheck className="size-4 stroke-[3px]" />
                 ) : (
-                    <ChevronUp className={cn("size-4 stroke-[3px]", localHasVoted && "text-primary-foreground")} />
+                    <ArrowBigUpDash className="size-4 stroke-[2px] transition-transform group-hover:-translate-y-0.5" />
                 )}
             </Button>
 
-            <span className={cn(
-                "py-1.5 text-sm font-black text-center w-full tabular-nums",
-                localHasVoted ? "text-primary" : "text-foreground"
-            )}>
-                {optimisticVoteCount}
-            </span>
+            {/* 2. THE METRIC: Reliability Index */}
+            <div className="flex flex-col items-center py-1.5 w-full">
+                <span className={cn(
+                    "text-sm font-black tabular-nums leading-none",
+                    localHasVoted ? "text-primary" : "text-foreground"
+                )}>
+                    {optimisticVoteCount}
+                </span>
+                <span className="text-[7px] font-bold uppercase tracking-tighter text-muted-foreground/40 mt-1">
+                    Index
+                </span>
+            </div>
         </div>
     );
 }

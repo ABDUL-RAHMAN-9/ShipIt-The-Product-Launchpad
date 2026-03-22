@@ -1,5 +1,5 @@
 import SectionHeader from "@/components/common/section-header";
-import { CalendarDays } from "lucide-react";
+import { Activity } from "lucide-react"; // Changed from CalendarDays to Activity
 import ProductCard from "@/components/products/product-card";
 import EmptyState from "@/components/common/empty-state";
 import { getRecentProducts } from "@/lib/products/product-select";
@@ -11,15 +11,15 @@ export default async function RecentLaunches() {
     return (
         <section className="py-24 bg-background">
             <div className="wrapper">
-                {/* Section Header stays to define the area */}
+                {/* Updated Header for Atlash Branding */}
                 <SectionHeader
-                    title="Latest Arrivals"
-                    icon={CalendarDays}
-                    description="The freshest ideas from our growing community. Be the first to explore and vote on what just landed."
+                    title="Recent Integrations" // Professional Title
+                    icon={Activity} // Matches the "System Monitoring" vibe
+                    description="Real-time audit of newly initialized infrastructure. Monitor early-stage reliability logs and preliminary performance data for the latest system nodes."
                     href="/explore"
                 />
 
-                {/* Simplified Ternary: Grid OR Clean Empty State */}
+                {/* Simplified Ternary: Grid OR Enterprise Empty State */}
                 {recentProducts.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {recentProducts.map((product) => (
@@ -28,9 +28,9 @@ export default async function RecentLaunches() {
                     </div>
                 ) : (
                     <EmptyState
-                        message="The catalog is quiet... for now."
-                        description="No new ships have docked in the last 7 days. Check back soon for fresh community projects."
-                        icon={CalendarDays}
+                        message="Integration Queue: Optimal" // Professional Message
+                        description="No new deployment logs recorded in the last 7 days. Systems are currently stable with 100% architectural uptime across existing nodes."
+                        icon={Activity}
                     />
                 )}
             </div>

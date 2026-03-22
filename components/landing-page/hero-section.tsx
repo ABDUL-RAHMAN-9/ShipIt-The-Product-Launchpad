@@ -1,11 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    Box,
-    Compass,
-    Hammer,
-    Navigation,
-    Users
+    Activity,   // Changed from Box
+    Zap,        // Changed from Navigation
+    ShieldCheck, // Changed from Users
+    Server,      // Changed from Hammer
+    Compass
 } from "lucide-react";
 import Link from "next/link";
 import StatsCard from "./stats-card";
@@ -16,33 +16,32 @@ const DiscoveryBadge = () => {
             variant="default"
             className="mb-8 py-1.5 border-2"
         >
-            {/* Keeping the pulse dot loop as it doesn't affect text visibility */}
             <span className="relative flex h-2 w-2 mr-1">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
 
-            <span className="pl-1 text-primary">Community is shipping now</span>
+            <span className="pl-1 text-primary">ENTERPRISE PERFORMANCE OPTIMIZED</span>
         </Badge>
     )
 }
 
 const statsData = [
     {
-        icon: Hammer,
+        icon: Server, // High-tech replacement for Hammer
         value: "2,480",
-        label: "Handcrafted Tools"
+        label: "Verified Assets" // Professional label
     },
     {
-        icon: Users,
+        icon: ShieldCheck, // Trust icon replacement for Users
         value: "1,240",
-        label: "Kind Souls Building",
+        label: "Security Audits", // Industry term
         hasBorder: true,
     },
     {
-        icon: Box,
+        icon: Activity, // Live data icon replacement for Box
         value: "15k+",
-        label: "Monthly Ships"
+        label: "Active Deployments" // Professional label
     },
 ]
 
@@ -55,31 +54,34 @@ export default function HeroSection() {
                     <DiscoveryBadge />
 
                     <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-8 max-w-4xl text-foreground leading-[0.95]">
-                        Where Great Ideas <br />
-                        <span className="text-primary drop-shadow-sm">Find Their Home.</span>
+                        The High-Velocity <br />
+                        <span className="text-primary drop-shadow-sm">
+                            Deployment Hub
+                        </span>
                     </h1>
 
                     <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium">
-                        ShipIt is a cozy corner of the internet for creators to showcase their craft.
-                        Whether it’s an AI tool, a SaaS, or a side project—share it with a community that values the art of building.
+                        Experience the high-velocity deployment hub designed to eliminate infrastructure silos. Atlash integrates fragmented assets into a single dashboard, reducing operational friction by 70% and reclaiming 30% of lost engineering time.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-5 mb-20">
                         <Button asChild size="lg">
                             <Link href="/submit">
-                                <Navigation className="mr-2 size-5 rotate-45" />
-                                Launch Your Project
+                                {/* Changed Navigation to Zap to match the "High Velocity" brand */}
+                                <Zap className="mr-2 size-5 fill-current" />
+                                Initialize Deployment
                             </Link>
                         </Button>
 
                         <Button asChild variant="outline" size="lg">
                             <Link href="/explore">
-                                Explore the Gallery
+                                Analyze Infrastructure
                                 <Compass className="ml-2 size-5" />
                             </Link>
                         </Button>
                     </div>
 
+                    {/* These Stats now look like a real System Dashboard */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-3xl w-full">
                         {statsData.map((stat) => (
                             <StatsCard key={stat.label} {...stat} />

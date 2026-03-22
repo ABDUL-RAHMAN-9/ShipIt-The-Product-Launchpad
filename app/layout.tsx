@@ -12,10 +12,10 @@ const outfit = Outfit({
 export const metadata: Metadata = {
 
   title: {
-    default: "ShipIt | The Product Dossier",
+    default: "Atlash | High-Velocity Deployment Hub",
     template: "%s | ShipIt"
   },
-  description: "A professional showcase for developers to launch projects, gather community feedback, and connect with other builders. Ship your next big idea today.",
+  description: "Atlash is the industry-standard intelligence layer for scaling digital infrastructure. By centralizing product lifecycles and simplifying multi-stack verification, Atlash reduces operational overhead by 70% and accelerates time-to-market by 45%.",
   keywords: ["Project Showcase", "Developer Community", "SaaS Launches", "Fullstack Portfolio", "Product Discovery"],
 };
 

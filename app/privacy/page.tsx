@@ -10,7 +10,7 @@ export default function PrivacyPage() {
                     <div className="p-1 rounded-md bg-secondary/50 group-hover:bg-primary/10 border border-foreground/5">
                         <ChevronLeft className="size-4" />
                     </div>
-                    Back to Home
+                    Back to Hub
                 </Link>
 
                 <div className="space-y-12">
@@ -25,7 +25,8 @@ export default function PrivacyPage() {
 
                     <div className="space-y-8 text-lg text-muted-foreground leading-relaxed font-medium">
                         <section className="space-y-4">
-                            <h2 className="text-xl font-black text-foreground uppercase tracking-tight text-primary flex items-center gap-2">
+                            {/* FIX: Removed text-foreground to resolve CSS conflict */}
+                            <h2 className="text-xl font-black uppercase tracking-tight text-primary flex items-center gap-2">
                                 <ShieldCheck className="size-5" />
                                 1. Identity Orchestration
                             </h2>
@@ -33,7 +34,8 @@ export default function PrivacyPage() {
                         </section>
 
                         <section className="space-y-4">
-                            <h2 className="text-xl font-black text-foreground uppercase tracking-tight text-primary flex items-center gap-2">
+                            {/* FIX: Removed text-foreground to resolve CSS conflict */}
+                            <h2 className="text-xl font-black uppercase tracking-tight text-primary flex items-center gap-2">
                                 <ShieldCheck className="size-5" />
                                 2. Node Deployment Data
                             </h2>
@@ -41,7 +43,8 @@ export default function PrivacyPage() {
                         </section>
 
                         <section className="space-y-4">
-                            <h2 className="text-xl font-black text-foreground uppercase tracking-tight text-primary flex items-center gap-2">
+                            {/* FIX: Removed text-foreground to resolve CSS conflict */}
+                            <h2 className="text-xl font-black uppercase tracking-tight text-primary flex items-center gap-2">
                                 <ShieldCheck className="size-5" />
                                 3. Strategic Infrastructure Partners
                             </h2>

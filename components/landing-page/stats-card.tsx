@@ -14,17 +14,21 @@ export default function StatsCard({
 }) {
     return (
         <div className={cn(
-            "flex flex-col items-center p-4 transition-all",
-            // Use a soft vertical divider instead of a harsh box
+            "flex flex-col items-center p-4 transition-all group",
+            // The soft vertical divider looks great in the Midnight Forest theme
             hasBorder && "sm:border-x-2 border-foreground/5"
         )}>
-            <div className="flex items-center justify-center gap-3 mb-1">
-                <Icon className="size-5 text-primary/60" />
-                <p className="text-4xl font-extrabold tracking-tighter text-foreground">
+            <div className="flex items-center justify-center gap-3 mb-2">
+                {/* Changed primary/60 to primary for a "Live Status" glow effect */}
+                <Icon className="size-5 text-primary drop-shadow-[0_0_8px_rgba(var(--primary),0.2)] transition-transform group-hover:scale-110" />
+
+                <p className="text-4xl font-extrabold tracking-tighter text-foreground leading-none">
                     {value}
                 </p>
             </div>
-            <p className="text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground/80">
+
+            {/* Professional System Metric Label */}
+            <p className="text-[10px] uppercase tracking-[0.25em] font-black text-muted-foreground/60">
                 {label}
             </p>
         </div>

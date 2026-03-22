@@ -77,7 +77,7 @@ export default async function ProductDetailPage({
                     <div className="p-1.5 rounded-lg bg-secondary/50 group-hover:bg-primary/10 border border-foreground/5">
                         <ChevronLeft className="size-4" />
                     </div>
-                    Back to Catalog
+                    Back to System Directory
                 </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -110,14 +110,14 @@ export default async function ProductDetailPage({
 
                         <div className="space-y-6">
                             <h2 className="text-xs font-black uppercase tracking-[0.3em] text-foreground/30 flex items-center gap-4">
-                                Project Narrative <span className="flex-1 h-px bg-foreground/5" />
+                                Deployment Overview <span className="flex-1 h-px bg-foreground/5" />
                             </h2>
                             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
                                 {description}
                             </p>
                         </div>
 
-                        <div className="bg-[#f5f0e8] dark:bg-secondary/5 border-2 border-foreground/5 rounded-[2.5rem] p-10 space-y-8 shadow-sm">
+                        <div className="bg-secondary/10 dark:bg-secondary/5 border-2 border-foreground/5 rounded-[2.5rem] p-10 space-y-8 shadow-sm">
                             <h3 className="text-lg font-black tracking-tight text-foreground">Technical Log</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div className="flex items-center gap-4">
@@ -148,8 +148,8 @@ export default async function ProductDetailPage({
 
                             <div className="bg-background border-4 border-foreground rounded-[2.5rem] p-10 flex flex-col items-center text-center space-y-8 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
                                 <div className="space-y-2">
-                                    <h4 className="text-sm font-black uppercase tracking-widest text-foreground">Back this ship</h4>
-                                    <p className="text-xs font-medium text-muted-foreground px-4">Help this project reach the Maker&apos;s Hall of Fame.</p>
+                                    <h4 className="text-sm font-black uppercase tracking-widest text-foreground">Verify Reliability</h4>
+                                    <p className="text-xs font-medium text-muted-foreground px-4">Help this project reach the Industry Trust Index</p>
                                 </div>
 
                                 <VotingButtons
@@ -162,7 +162,7 @@ export default async function ProductDetailPage({
                                     <div className="w-full pt-8 border-t-2 border-foreground/5">
                                         <div className="w-full flex items-center justify-center gap-2 py-3 bg-primary/5 text-primary border-2 border-dashed border-primary/30 rounded-2xl">
                                             <Trophy className="size-4" />
-                                            <span className="font-black tracking-[0.15em] uppercase text-[10px]">Elite Community Pick</span>
+                                            <span className="font-black tracking-[0.15em] uppercase text-[10px]">Elite Infrastructure Node</span>
                                         </div>
                                     </div>
                                 )}

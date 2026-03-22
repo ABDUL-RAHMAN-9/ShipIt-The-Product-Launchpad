@@ -1,21 +1,21 @@
 import Link from "next/link";
-import { Rocket, Linkedin, Mail } from "lucide-react"; 
+import { Activity, Linkedin, Mail } from "lucide-react"; // Swapped Rocket for Activity
 
 const footerLinks = [
     {
-        title: "Platform",
+        title: "Infrastructure", // Changed from Platform
         links: [
-            { label: "Explore Projects", href: "/explore" },
-            { label: "Latest Arrivals", href: "/explore?sort=recent" },
-            { label: "Maker Spotlight", href: "/explore?sort=featured" },
+            { label: "System Directory", href: "/explore" }, // Changed from Explore Projects
+            { label: "Recent Integrations", href: "/explore?sort=recent" }, // Changed from Latest Arrivals
+            { label: "Strategic Assets", href: "/explore?sort=featured" }, // Changed from Maker Spotlight
         ],
     },
     {
-        title: "Community",
+        title: "Operations", // Changed from Community
         links: [
-            { label: "Submit a Ship", href: "/submit" },
-            { label: "Guidelines", href: "/guidelines" },
-            { label: "Discord", href: "#" },
+            { label: "Initialize Deployment", href: "/submit" }, // Changed from Submit a Ship
+            { label: "Compliance Guide", href: "/guidelines" }, // Changed from Guidelines
+            { label: "System Status", href: "#" }, // Changed from Discord
         ],
     },
     {
@@ -37,23 +37,22 @@ export default function Footer() {
                     <div className="lg:col-span-2 space-y-6">
                         <Link href="/" className="flex items-center gap-2 group">
                             <div className="size-10 rounded-xl bg-primary flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-foreground transition-transform group-hover:scale-105">
-                                <Rocket className="size-5 text-primary-foreground" />
+                                <Activity className="size-5 text-primary-foreground" />
                             </div>
                             <span className="text-2xl font-black tracking-tighter text-foreground">
-                                ShipIt
+                                Atlash
                             </span>
                         </Link>
 
                         <p className="text-muted-foreground font-medium max-w-sm leading-relaxed">
-                            A handcrafted community platform built by <span className="text-foreground font-bold underline decoration-primary/30 underline-offset-4">Abdul Rahman</span>.
-                            Designed for makers to showcase their craft and find their first 100 users.
+                            A high-velocity infrastructure management platform built by <span className="text-foreground font-bold underline decoration-primary/30 underline-offset-4">Abdul Rahman</span>.
+                            Engineered to consolidate fragmented digital assets and optimize operational efficiency by 70%.
                         </p>
 
                         {/* PROFESSIONAL CONTACT LINKS */}
                         <div className="space-y-4">
-                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40">Connect with Me</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40">Network & Support</p>
                             <div className="flex items-center gap-4">
-                                {/* LinkedIn remains as it is your professional resume */}
                                 <Link
                                     href="https://www.linkedin.com/in/abdulrahman-in/"
                                     target="_blank"
@@ -62,7 +61,6 @@ export default function Footer() {
                                     <Linkedin className="size-5" />
                                 </Link>
 
-                                {/* New Mailbox Button for Recruiters */}
                                 <Link
                                     href="mailto:abdulrahman161004@gmail.com"
                                     className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground font-bold text-sm border-2 border-foreground shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] transition-all"
@@ -99,12 +97,12 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-foreground/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-widest">
-                        © 2026 ShipIt Inc. All rights reserved.
+                        © 2026 ATLASH HUB. ALL RIGHTS RESERVED.
                     </p>
                     <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground/40 uppercase tracking-widest">
-                        <span>Developed with</span>
+                        <span>Architecture</span>
                         <div className="px-2 py-0.5 bg-primary/10 text-primary rounded border border-primary/20">
-                            Next.js 16
+                            T3 STACK / NEXT.JS 15
                         </div>
                     </div>
                 </div>

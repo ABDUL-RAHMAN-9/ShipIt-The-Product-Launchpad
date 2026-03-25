@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { addProductAction } from "@/lib/products/product-actions";
 import { cn } from "@/lib/utils";
 import { FormState } from "@/types";
-import { Loader2, Zap, LayoutPanelTop } from "lucide-react"; // Swapped icons
+import { Loader2, Zap, LayoutPanelTop } from "lucide-react";
 import { useActionState } from "react";
 
 const initialState: FormState = {
@@ -45,12 +45,7 @@ export default function ProductSubmitForm() {
                 </h1>
             </div>
 
-            <form action={formAction} className="flex flex-col gap-6 bg-secondary/5 p-6 md:p-8 rounded-2xl border-2 border-foreground/5 relative overflow-hidden shadow-xl">
-
-                {/* Subtle Background Icon */}
-                <div className="absolute -top-4 -right-4 opacity-[0.03] pointer-events-none">
-                    <Zap className="size-48 rotate-12 fill-current" />
-                </div>
+            <form action={formAction} className="flex flex-col gap-6 bg-secondary/5 p-6 md:p-8 rounded-2xl border-2 border-foreground/5 overflow-hidden shadow-xl">
 
                 {message && (
                     <div className={cn(

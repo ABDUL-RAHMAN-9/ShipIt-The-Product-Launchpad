@@ -13,10 +13,16 @@ export const metadata: Metadata = {
 
   title: {
     default: "Atlash | High-Velocity Deployment Hub",
-    template: "%s | ShipIt"
+    template: "%s | Atlash Hub"
   },
   description: "Atlash is the industry-standard intelligence layer for scaling digital infrastructure. By centralizing product lifecycles and simplifying multi-stack verification, Atlash reduces operational overhead by 70% and accelerates time-to-market by 45%.",
-  keywords: ["Project Showcase", "Developer Community", "SaaS Launches", "Fullstack Portfolio", "Product Discovery"],
+  keywords: [
+    "Infrastructure Registry",
+    "Deployment Control Plane",
+    "Reliability Index",
+    "Enterprise Digital Assets",
+    "Architectural Integrity"
+  ],
 };
 
 export default function RootLayout({

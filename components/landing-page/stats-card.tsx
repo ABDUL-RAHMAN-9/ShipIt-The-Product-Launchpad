@@ -28,7 +28,7 @@ export default function StatsCard({
             </div>
 
             {/* Professional System Metric Label */}
-            <p className="text-[10px] uppercase tracking-[0.25em] font-black text-muted-foreground/60">
+            <p className="text-[12px] tracking-[0.25em] font-black text-muted-foreground/60">
                 {label}
             </p>
         </div>

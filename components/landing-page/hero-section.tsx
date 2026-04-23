@@ -1,11 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    Activity,   // Changed from Box
-    Zap,        // Changed from Navigation
-    ShieldCheck, // Changed from Users
-    Server,      // Changed from Hammer
-    Compass
+    Activity,
+    Zap,
+    ShieldCheck,
+    Server,
+    Compass,
 } from "lucide-react";
 import Link from "next/link";
 import StatsCard from "./stats-card";
@@ -21,27 +21,29 @@ const DiscoveryBadge = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
 
-            <span className="pl-1 text-primary">ENTERPRISE PERFORMANCE OPTIMIZED</span>
+            <span className="pl-1 text-primary lowercase font-bold tracking-tight">
+                Join thousands of creators sharing their work
+            </span>
         </Badge>
     )
 }
 
 const statsData = [
     {
-        icon: Server, // High-tech replacement for Hammer
+        icon: Server,
         value: "2,480",
-        label: "Verified Assets" // Professional label
+        label: "Systems Shared"
     },
     {
-        icon: ShieldCheck, // Trust icon replacement for Users
+        icon: ShieldCheck,
         value: "1,240",
-        label: "Security Audits", // Industry term
+        label: "Active Architects",
         hasBorder: true,
     },
     {
-        icon: Activity, // Live data icon replacement for Box
+        icon: Activity,
         value: "15k+",
-        label: "Active Deployments" // Professional label
+        label: "Monthly Visitors"
     },
 ]
 
@@ -53,35 +55,33 @@ export default function HeroSection() {
 
                     <DiscoveryBadge />
 
-                    <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-8 max-w-4xl text-foreground leading-[0.95]">
-                        The High-Velocity <br />
+                    <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-8 max-w-5xl text-foreground leading-[0.95]">
+                        Reveal the Future <br />
                         <span className="text-primary drop-shadow-sm">
-                            Deployment Hub
+                            Discover What&apos;s Scaling
                         </span>
                     </h1>
 
-                    <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium">
-                        Experience the high-velocity deployment hub designed to eliminate infrastructure silos. Atlash integrates fragmented assets into a single dashboard, reducing operational friction by 70% and reclaiming 30% of lost engineering time.
+                    <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-3xl leading-relaxed font-medium">
+                        A community platform for architects to showcase their systems, cloud tools, and dev projects. Authentic launches, real builders, genuine feedback.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-5 mb-20">
                         <Button asChild size="lg">
                             <Link href="/submit">
-                                {/* Changed Navigation to Zap to match the "High Velocity" brand */}
                                 <Zap className="mr-2 size-5 fill-current" />
-                                Initialize Deployment
+                                Share Your Project
                             </Link>
                         </Button>
 
                         <Button asChild variant="outline" size="lg">
                             <Link href="/explore">
-                                Analyze Infrastructure
+                                Explore Projects
                                 <Compass className="ml-2 size-5" />
                             </Link>
                         </Button>
                     </div>
 
-                    {/* These Stats now look like a real System Dashboard */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-3xl w-full">
                         {statsData.map((stat) => (
                             <StatsCard key={stat.label} {...stat} />

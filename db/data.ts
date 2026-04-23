@@ -3,11 +3,11 @@ export const allProducts = [
         name: "EchoMind AI",
         slug: "echomind-ai",
         tagline:
-            "Enterprise RAG-based intelligence for technical documentation.",
+            "A smarter way to search and understand your team's documentation.",
         description:
-            "EchoMind utilizes advanced Retrieval-Augmented Generation (RAG) to index internal documentation and codebases, reducing research overhead by 70% for engineering teams.",
+            "EchoMind helps teams find answers buried in their docs and codebases instantly. No more digging through folders—just ask and get the answer you need.",
         websiteUrl: "https://echomind.co.uk/",
-        tags: ["AI", "Enterprise", "Knowledge-Base"],
+        tags: ["ai", "knowledge", "productivity"],
         createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -16,13 +16,13 @@ export const allProducts = [
     },
     {
         name: "PulseCheck",
-        slug: "pulsecheck-monitor",
+        slug: "pulsecheck",
         tagline:
-            "Infrastructure health monitoring with automated incident orchestration.",
+            "Simple uptime monitoring that alerts you before your users notice.",
         description:
-            "Zero-config uptime monitoring for microservices. PulseCheck automates alerting via encrypted channels to maintain 100% architectural uptime across distributed nodes.",
-        websiteUrl: "https://www.site24x7.com/ads/cloud-monitoring.html",
-        tags: ["Infrastructure", "SaaS", "DevOps"],
+            "Get instant notifications when your site or services go down. PulseCheck keeps it simple so you can focus on building, not monitoring.",
+        websiteUrl: "https://pulsecheck.io",
+        tags: ["monitoring", "devops", "saas"],
         createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -32,11 +32,12 @@ export const allProducts = [
     {
         name: "LeafyAnalytics",
         slug: "leafy-analytics",
-        tagline: "Privacy-compliant telemetry for high-traffic infrastructure.",
+        tagline:
+            "Privacy-first web analytics for people who value their users.",
         description:
-            "A lightweight, cookie-less telemetry platform that provides deep-dive infrastructure insights while maintaining 100% compliance with global data privacy standards.",
-        websiteUrl: "https://www.lexalytics.com/",
-        tags: ["Data", "Privacy", "Analytics"],
+            "Understand your visitors without tracking them. Leafy provides clean, simple, and cookie-free analytics that respect everyone's privacy.",
+        websiteUrl: "https://leafy.io",
+        tags: ["analytics", "privacy", "data"],
         createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -47,11 +48,11 @@ export const allProducts = [
         name: "PixelCraft UI",
         slug: "pixelcraft-ui",
         tagline:
-            "High-fidelity React component library for industrial dashboards.",
+            "Beautiful React components for building clean dashboards faster.",
         description:
-            "An engineered library of React components designed for high-concurrency data visualization and mission-critical dashboard aesthetics in the Atlash ecosystem.",
-        websiteUrl: "https://oncy.framer.media/project/pixelcraft-mobile-ui",
-        tags: ["Frontend", "Design-System", "React"],
+            "Stop rebuilding the same UI elements. PixelCraft provides a library of polished React components designed specifically for data-heavy apps.",
+        websiteUrl: "https://pixelcraft.ui",
+        tags: ["react", "ui-kit", "frontend"],
         createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -60,12 +61,12 @@ export const allProducts = [
     },
     {
         name: "DeepWork",
-        slug: "deepwork-focus",
-        tagline: "Cognitive load management for distributed engineering teams.",
+        slug: "deepwork",
+        tagline: "Focus tools to help remote teams find their flow state.",
         description:
-            "A high-performance productivity suite designed to optimize flow-states in remote environments, reducing project documentation time by 30%.",
-        websiteUrl: "https://medium.com/@deepwork-summary",
-        tags: ["Productivity", "Optimization", "SaaS"],
+            "DeepWork blocks distractions and helps you manage your cognitive load, ensuring you get your most important work done without the stress.",
+        websiteUrl: "https://deepwork.sh",
+        tags: ["focus", "productivity", "remote"],
         createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -74,13 +75,12 @@ export const allProducts = [
     },
     {
         name: "QueryFlow",
-        slug: "queryflow-api",
-        tagline:
-            "Visual architectural layer for complex relational data mapping.",
+        slug: "queryflow",
+        tagline: "A visual way to explore and map your database relationships.",
         description:
-            "Build, audit, and document high-concurrency API endpoints. QueryFlow simplifies complex database schemas into actionable visual nodes for faster deployment.",
-        websiteUrl: "https://developers.klaviyo.com/reference/flows",
-        tags: ["API", "DevTools", "Architecture"],
+            "Build and document your database schemas without complex SQL queries. QueryFlow turns your data into visual nodes that anyone can understand.",
+        websiteUrl: "https://queryflow.dev",
+        tags: ["database", "devtools", "backend"],
         createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -91,11 +91,11 @@ export const allProducts = [
         name: "LoomSecurity",
         slug: "loom-security",
         tagline:
-            "Zero-trust encryption layer for Next.js enterprise applications.",
+            "Easy-to-use security and encryption for Next.js applications.",
         description:
-            "Automated thread-safe encryption protocols for modern web deployments. Protect corporate assets with automated compliance workflows and military-grade security.",
-        websiteUrl: "https://www.loomsecurity.io/",
-        tags: ["Security", "Compliance", "Next.js"],
+            "Protect your user data without being a security expert. Loom provides simple, pre-built encryption tools designed specifically for the modern web.",
+        websiteUrl: "https://loomsecurity.io",
+        tags: ["security", "nextjs", "web"],
         createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -104,13 +104,13 @@ export const allProducts = [
     },
     {
         name: "SwiftShip",
-        slug: "swift-ship-api",
+        slug: "swiftship",
         tagline:
-            "Unified logistics API for high-velocity supply chain management.",
+            "The all-in-one API to manage shipping and logistics with ease.",
         description:
-            "Automate global shipping carrier integrations. Atlash SwiftShip reduces e-commerce logistical overhead by 70% through optimized label generation and tracking.",
-        websiteUrl: "https://shipswift.app/",
-        tags: ["Logistics", "API", "Supply-Chain"],
+            "Connect to any global carrier in minutes. SwiftShip handles the heavy lifting of logistics so you can focus on getting products to your customers.",
+        websiteUrl: "https://shipswift.app",
+        tags: ["api", "logistics", "shipping"],
         createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -119,13 +119,13 @@ export const allProducts = [
     },
     {
         name: "AtlasVault",
-        slug: "atlas-vault-security",
+        slug: "atlas-vault",
         tagline:
-            "Encrypted asset vault for sensitive corporate financial data.",
+            "A private, secure space to manage your sensitive digital assets.",
         description:
-            "Secure storage for high-value financial assets. AtlasVault implements zero-knowledge encryption to protect organizational data from external vulnerabilities.",
-        websiteUrl: "https://www.atlasvaults.com/",
-        tags: ["Security", "FinTech", "Storage"],
+            "Keep your keys, passwords, and digital assets safe. AtlasVault uses zero-knowledge security so only you can ever access your information.",
+        websiteUrl: "https://atlasvaults.com",
+        tags: ["security", "privacy", "vault"],
         createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -134,12 +134,12 @@ export const allProducts = [
     },
     {
         name: "FluxEditor",
-        slug: "flux-visual-editor",
-        tagline: "Collaborative design-to-code engine for rapid prototyping.",
+        slug: "flux-editor",
+        tagline: "Drag-and-drop your way to production-ready React code.",
         description:
-            "An industrial-grade visual editor that exports production-ready Tailwind CSS and React code, accelerating front-end deployment speed by 40%.",
-        websiteUrl: "https://bfl.ai/",
-        tags: ["Design", "OSS", "Deployment"],
+            "A visual builder that exports clean Tailwind CSS and React components. Speed up your prototyping and get from design to code in minutes.",
+        websiteUrl: "https://flux.app",
+        tags: ["design", "react", "nocode"],
         createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
         approvedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
         status: "approved" as const,
@@ -148,13 +148,13 @@ export const allProducts = [
     },
     {
         name: "TimberAPI",
-        slug: "timber-impact-api",
+        slug: "timber-api",
         tagline:
-            "Environmental impact audit for cloud infrastructure clusters.",
+            "Track and reduce the carbon footprint of your web applications.",
         description:
-            "Real-time tracking of carbon footprints across API requests. TimberAPI provides automated ESG compliance reporting for sustainable engineering teams.",
-        websiteUrl: "https://timberapi.com/",
-        tags: ["GreenTech", "API", "Sustainability"],
+            "Measure the environmental impact of every API request. Timber helps developers build a more sustainable internet, one cluster at a time.",
+        websiteUrl: "https://timberapi.com",
+        tags: ["green", "sustainability", "api"],
         createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000),
         approvedAt: null,
         status: "pending" as const,
@@ -163,13 +163,13 @@ export const allProducts = [
     },
     {
         name: "ZenithFlow",
-        slug: "zenith-team-flow",
+        slug: "zenithflow",
         tagline:
-            "Resource allocation and workload monitoring for remote units.",
+            "Mindful team management to keep everyone happy and productive.",
         description:
-            "ZenithFlow uses predictive heatmaps to prevent burnout and synchronize distributed engineering units for maximum architectural output.",
-        websiteUrl: "https://www.fourinc.com/zenithflow/",
-        tags: ["Productivity", "Management", "Operations"],
+            "Balance workloads and prevent burnout with simple, visual resource planning designed for the modern remote engineering team.",
+        websiteUrl: "https://zenithflow.io",
+        tags: ["management", "teamwork", "wellness"],
         createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000),
         approvedAt: null,
         status: "pending" as const,

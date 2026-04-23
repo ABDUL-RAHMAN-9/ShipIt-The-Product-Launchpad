@@ -1,10 +1,7 @@
-"use cache";
-
 import SectionHeader from "@/components/common/section-header"
-import { Zap } from "lucide-react"; // Swapped Trophy for Zap
+import { Stars } from "lucide-react";
 import ProductCard from "@/components/products/product-card";
 import { getFeaturedProducts } from "@/lib/products/product-select";
-
 
 export default async function FeaturedProducts() {
     const featuredProducts = await getFeaturedProducts();
@@ -13,9 +10,9 @@ export default async function FeaturedProducts() {
         <section className="py-24 bg-background/50 border-t border-foreground/5 relative">
             <div className="wrapper">
                 <SectionHeader
-                    title="Strategic Infrastructure" // Professional Title
-                    icon={Zap} // Matches the "Atlash" high-velocity brand
-                    description="Monitor high-performance systems currently optimizing global workflows. These verified assets represent the highest standard of architectural efficiency and 70% reduced operational overhead."
+                    title="Featured Today"
+                    icon={Stars}
+                    description="Top picks from our community of architects this week."
                     href="/explore"
                 />
 

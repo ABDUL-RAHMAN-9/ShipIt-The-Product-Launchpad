@@ -11,12 +11,16 @@ import {
     Calendar,
     Box,
     User,
-    Trophy,
-    Globe
+    Sparkles,
+    ExternalLink
 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+/** 
+ * SEO METADATA GENERATOR
+ * Dynamically sets the tab title and description 
+ */
 export async function generateMetadata({
     params
 }: {
@@ -32,13 +36,15 @@ export async function generateMetadata({
     }
 
     return {
-        title: product.name,
+        title: `${product.name}`,
         description: product.tagline,
     };
-
 }
 
-
+/** 
+ * STATIC PARAMS GENERATOR
+ * Pre-renders these pages at build time for maximum speed 
+ */
 export const generateStaticParams = async () => {
     const products = await getFeaturedProducts();
     return products.map((product) => ({
@@ -46,7 +52,9 @@ export const generateStaticParams = async () => {
     }));
 };
 
-
+/**
+ * PRODUCT DETAIL PAGE COMPONENT
+ */
 export default async function ProductDetailPage({
     params,
 }: {
@@ -57,7 +65,16 @@ export default async function ProductDetailPage({
 
     if (!product) notFound();
 
-    const { name, description, websiteUrl, tags, voteCount, tagline, createAt, submittedBy } = product;
+    const {
+        name,
+        description,
+        websiteUrl,
+        tags,
+        voteCount,
+        tagline,
+        createAt,
+        submittedBy
+    } = product;
 
     const launchDate = createAt ? new Intl.DateTimeFormat('en-US', {
         month: 'long',
@@ -69,20 +86,19 @@ export default async function ProductDetailPage({
         <main className="py-12 lg:py-24 bg-background">
             <div className="wrapper">
 
-                {/* BREADCRUMB */}
                 <Link
-                    href="/"
+                    href="/explore"
                     className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-primary mb-16 transition-all group"
                 >
                     <div className="p-1.5 rounded-lg bg-secondary/50 group-hover:bg-primary/10 border border-foreground/5">
                         <ChevronLeft className="size-4" />
                     </div>
-                    Back to System Directory
+                    Back to Explore
                 </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
-                    {/* LEFT SECTION */}
+                    {/* LEFT SECTION (Main Content) */}
                     <div className="lg:col-span-8 space-y-16">
                         <div className="space-y-6">
                             <div className="flex items-start gap-6">
@@ -110,15 +126,16 @@ export default async function ProductDetailPage({
 
                         <div className="space-y-6">
                             <h2 className="text-xs font-black uppercase tracking-[0.3em] text-foreground/30 flex items-center gap-4">
-                                Deployment Overview <span className="flex-1 h-px bg-foreground/5" />
+                                About <span className="flex-1 h-px bg-foreground/5" />
                             </h2>
                             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
                                 {description}
                             </p>
                         </div>
 
+                        {/* PRODUCT DETAILS CARD */}
                         <div className="bg-secondary/10 dark:bg-secondary/5 border-2 border-foreground/5 rounded-[2.5rem] p-10 space-y-8 shadow-sm">
-                            <h3 className="text-lg font-black tracking-tight text-foreground">Technical Log</h3>
+                            <h3 className="text-lg font-black tracking-tight text-foreground uppercase">Product Details</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div className="flex items-center gap-4">
                                     <div className="size-12 rounded-xl bg-background border-2 border-foreground/5 flex items-center justify-center shadow-sm">
@@ -134,7 +151,7 @@ export default async function ProductDetailPage({
                                         <User className="size-5 text-primary" />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Architect</p>
+                                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Submitted by</p>
                                         <p className="font-bold text-foreground text-lg truncate max-w-[180px]">{submittedBy}</p>
                                     </div>
                                 </div>
@@ -142,14 +159,21 @@ export default async function ProductDetailPage({
                         </div>
                     </div>
 
-                    {/* RIGHT SECTION: Sidebar */}
+                    {/* RIGHT SECTION (Sidebar) */}
                     <div className="lg:col-span-4">
                         <div className="sticky top-32 space-y-8">
 
+                            {/* VOTING BLOCK */}
                             <div className="bg-background border-4 border-foreground rounded-[2.5rem] p-10 flex flex-col items-center text-center space-y-8 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
                                 <div className="space-y-2">
-                                    <h4 className="text-sm font-black uppercase tracking-widest text-foreground">Verify Reliability</h4>
-                                    <p className="text-xs font-medium text-muted-foreground px-4">Help this project reach the Industry Trust Index</p>
+                                    {/* Humanized Heading */}
+                                    <h4 className="text-sm font-black uppercase tracking-widest text-foreground">
+                                        Upvote this Project
+                                    </h4>
+                                    {/* Humanized lowercase description */}
+                                    <p className="text-xs font-medium text-muted-foreground px-4 lowercase leading-relaxed">
+                                        help this creator reach the community featured list and gain more visibility.
+                                    </p>
                                 </div>
 
                                 <VotingButtons
@@ -161,19 +185,21 @@ export default async function ProductDetailPage({
                                 {voteCount > 100 && (
                                     <div className="w-full pt-8 border-t-2 border-foreground/5">
                                         <div className="w-full flex items-center justify-center gap-2 py-3 bg-primary/5 text-primary border-2 border-dashed border-primary/30 rounded-2xl">
-                                            <Trophy className="size-4" />
-                                            <span className="font-black tracking-[0.15em] uppercase text-[10px]">Elite Infrastructure Node</span>
+                                            <Sparkles className="size-4" />
+                                            <span className="font-black tracking-[0.15em] uppercase text-[10px]">
+                                                Community Favorite
+                                            </span>
                                         </div>
                                     </div>
                                 )}
                             </div>
 
-                            {/* CTA BUTTON: This is an action, so it keeps the shadow */}
+                            {/* EXTERNAL LINK: Concise CTA */}
                             {websiteUrl && (
                                 <Button asChild size="lg" className="w-full h-16 text-lg font-black uppercase tracking-widest rounded-3xl border-4 border-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
                                     <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
-                                        <Globe className="mr-2 size-5" />
-                                        Explore Live
+                                        Visit Website
+                                        <ExternalLink className="ml-2 size-5" />
                                     </a>
                                 </Button>
                             )}

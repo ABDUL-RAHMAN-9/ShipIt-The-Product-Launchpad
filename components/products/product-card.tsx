@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle
 } from "@/components/ui/card";
-import { ShieldCheck, Hash } from "lucide-react"; // Swapped Sparkles for ShieldCheck
+import { ShieldCheck, Hash } from "lucide-react";
 import { InferSelectModel } from "drizzle-orm";
 import { products } from "@/db/schema";
 import VotingButtons from "./voting-buttons";
@@ -19,34 +19,26 @@ export default function ProductCard({ product }: { product: Product }) {
 
     return (
         <Link href={`/products/${product.slug}`} className="block group">
-            {/* 1. THE CARD: Modern "Brutalist" Enterprise Styling */}
             <Card className="relative h-full bg-secondary/5 border-2 border-foreground/5 transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-[6px_6px_0px_0px_rgba(var(--primary),0.2)] group-hover:-translate-y-1 overflow-hidden">
-
-                {/* 2. ELITE STATUS: Rebranded as "Verified Node" */}
                 {product.voteCount > 100 && (
-                    <div className="absolute top-0 right-0 p-1">
-                        <div className="bg-primary text-primary-foreground text-[9px] font-black px-2 py-0.5 rounded-bl-lg uppercase tracking-widest flex items-center gap-1 shadow-sm">
-                            <ShieldCheck className="size-3" />
+                    <div className="absolute top-0 right-0">
+                        <div className="bg-primary/10 backdrop-blur-md text-primary border-l border-b border-primary/20 text-[9px] font-black px-3 py-1.5 rounded-bl-xl uppercase tracking-[0.15em] flex items-center gap-1.5">
+                            <ShieldCheck className="size-3.5" />
                             Elite Node
                         </div>
                     </div>
                 )}
 
-                <CardHeader className="space-y-4 pt-8">
+                <CardHeader className="space-y-4 pt-6">
                     <div className="flex items-start justify-between gap-4">
                         <div className="space-y-2 flex-1 min-w-0">
-                            {/* System Title */}
-                            <CardTitle className="text-xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors truncate uppercase">
+                            <CardTitle className="text-lg font-black tracking-widest text-foreground group-hover:text-primary transition-colors truncate">
                                 {product.name}
                             </CardTitle>
-
-                            {/* Using Tagline for the grid to keep it clean (Above the Fold logic) */}
-                            <CardDescription className="text-sm leading-relaxed line-clamp-2 font-bold text-muted-foreground/70 uppercase tracking-tight">
+                            <CardDescription className="text-sm leading-relaxed line-clamp-2 font-medium text-muted-foreground/80 lowercase">
                                 {product.tagline}
                             </CardDescription>
                         </div>
-
-                        {/* Reliability Index (formerly Upvotes) */}
                         <VotingButtons
                             productId={product.id}
                             voteCount={product.voteCount}
@@ -55,15 +47,14 @@ export default function ProductCard({ product }: { product: Product }) {
                     </div>
                 </CardHeader>
 
-                <CardFooter className="pb-6">
+                <CardFooter className="pb-2">
                     <div className="flex flex-wrap items-center gap-2">
                         {product.tags?.map((tag) => (
                             <Badge
                                 variant="outline"
                                 key={tag}
-                                className="bg-background/20 border-foreground/5 lowercase font-bold text-[10px] px-2 py-0 text-muted-foreground/60 flex items-center gap-1"
+                                className="bg-background/10 border-foreground/10 lowercase font-bold text-[11px] px-3 py-0.5 text-muted-foreground/80 flex items-center gap-1 transition-colors hover:bg-primary/5"
                             >
-                                <Hash className="size-2.5 opacity-30" />
                                 {tag}
                             </Badge>
                         ))}

@@ -28,20 +28,18 @@ export default function ProductSubmitForm() {
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto px-4"> {/* Increased max-width for better horizontal use */}
+        <div className="w-full max-w-4xl mx-auto px-4">
 
-            {/* COMPACT HEADER: Paragraph removed for maximum vertical efficiency */}
             <div className="mb-6 space-y-1 border-l-4 border-primary/20 pl-4">
                 <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-[0.2em] text-[10px]">
                     <div className="p-1 bg-primary/10 rounded-md">
                         <LayoutPanelTop className="size-3.5" />
                     </div>
-                    System Initialization
+                    Submit Product
                 </div>
 
-                {/* Simplified Title - No description to save space */}
                 <h1 className="text-2xl md:text-3xl font-black tracking-tight text-foreground uppercase">
-                    Initialize Infrastructure
+                    Share your creation
                 </h1>
             </div>
 
@@ -56,70 +54,67 @@ export default function ProductSubmitForm() {
                     </div>
                 )}
 
-                {/* MAIN FORM GRID - Optimized to reduce height */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
 
-                    {/* LEFT COLUMN: Identity & Tags */}
+                    {/* LEFT COLUMN */}
                     <div className="space-y-5">
                         <FormField
-                            label="Node / Product Name"
+                            label="Product Name"
                             name="name"
                             id="name"
-                            placeholder="e.g. EchoMind AI"
+                            placeholder="My Awesome Product"
                             required
                             onChange={() => { }}
                             error={getFieldErrors("name")}
                         />
                         <FormField
-                            label="System Slug"
+                            label="Slug"
                             name="slug"
                             id="slug"
-                            placeholder="echomind-ai"
+                            placeholder="my-product-slug"
                             required
                             onChange={() => { }}
                             error={getFieldErrors("slug")}
                         />
                         <FormField
-                            label="Primary Tags"
+                            label="Tags"
                             name="tags"
                             id="tags"
-                            placeholder="AI, SaaS, DevOps"
+                            placeholder="AI, Productivity, SaaS"
                             required
                             onChange={() => { }}
                             error={getFieldErrors("tags")}
                         />
                     </div>
 
-                    {/* RIGHT COLUMN: URL & One-Liner */}
+                    {/* RIGHT COLUMN */}
                     <div className="space-y-5">
                         <FormField
-                            label="Access URL"
+                            label="Website URL"
                             name="websiteUrl"
                             id="websiteUrl"
-                            placeholder="https://atlash.io/node-1"
+                            placeholder="https://yourproduct.com"
                             required
                             onChange={() => { }}
                             error={getFieldErrors("websiteUrl")}
                         />
                         <FormField
-                            label="System Tagline"
+                            label="Tagline"
                             name="tagline"
                             id="tagline"
-                            placeholder="High-velocity data orchestration layer"
+                            placeholder="A brief, catchy description"
                             required
                             onChange={() => { }}
                             error={getFieldErrors("tagline")}
                         />
-                        {/* MOVED DESCRIPTION HERE TO BALANCE GRID HEIGHT IF NEEDED */}
                     </div>
 
-                    {/* FULL WIDTH: Detailed Specification */}
                     <div className="md:col-span-2">
                         <FormField
-                            label="Deployment Specification (Detailed Description)"
+                            label="Description"
                             name="description"
                             id="description"
-                            placeholder="Detail the problem solved and the architectural impact..."
+                            placeholder="Tell us more about your product..."
                             required
                             onChange={() => { }}
                             error={getFieldErrors("description")}
@@ -128,7 +123,6 @@ export default function ProductSubmitForm() {
                     </div>
                 </div>
 
-                {/* COMPACT SUBMIT ACTION */}
                 <div className="pt-2 border-t border-foreground/5">
                     <Button
                         type="submit"
@@ -141,7 +135,7 @@ export default function ProductSubmitForm() {
                         ) : (
                             <>
                                 <Zap className="size-4 mr-2 fill-current" />
-                                Deploy to Global Registry
+                                Submit Product
                             </>
                         )}
                     </Button>

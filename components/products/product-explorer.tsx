@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock, Search, ShieldCheck, Activity } from "lucide-react"; // Swapped TrendingUp for ShieldCheck
+import { Clock, Search, TrendingUp, Activity } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ProductCard from "@/components/products/product-card";
 import { useMemo, useState } from "react";
@@ -34,61 +34,58 @@ export default function ProductExplorer({ products: initialProducts }: { product
     }, [searchQuery, initialProducts, sortBy]);
 
     return (
-        <div className="space-y-12">
-            {/* SEARCH & FILTER CONTROL PANEL */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 bg-secondary/5 p-6 rounded-[2rem] border-2 border-foreground/5 shadow-sm">
+        <div className="space-y-8">
+            {/* SEARCH & FILTER SECTION - Improved for Desktop & Tablet */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
 
-                {/* Tactical Query Bar */}
-                <div className="flex-1 relative max-w-xl">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-primary size-5 opacity-50" />
+                {/* Search Bar - No max-width so it 'touches' the buttons area */}
+                <div className="relative flex-1">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground size-5 opacity-50" />
                     <Input
                         type="text"
-                        placeholder="Query System Nodes..." // Professional Label
-                        className="h-14 pl-12 bg-background border-2 border-foreground/10 rounded-2xl focus:border-primary transition-all text-base font-medium shadow-none"
+                        placeholder="Search products..."
+                        className="h-12 pl-12 bg-background border-2 border-foreground/10 rounded-xl focus:border-primary/40 transition-all text-sm shadow-none w-full"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
 
-                {/* Infrastructure Filter (Tactile Toggle) */}
-                <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40 ml-2">Intelligence Filter:</span>
-                    <div className="flex p-1 bg-background border-2 border-foreground/5 rounded-2xl">
-                        <button
-                            type="button"
-                            onClick={() => setSortBy("trending")}
-                            className={cn(
-                                "flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all",
-                                sortBy === "trending"
-                                    ? "bg-primary text-primary-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                                    : "text-muted-foreground hover:text-foreground"
-                            )}
-                        >
-                            <ShieldCheck className="size-4" />
-                            Reliability Index {/* High-end Enterprise term for Upvotes */}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setSortBy("latest")}
-                            className={cn(
-                                "flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all",
-                                sortBy === "latest"
-                                    ? "bg-primary text-primary-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                                    : "text-muted-foreground hover:text-foreground"
-                            )}
-                        >
-                            <Clock className="size-4" />
-                            Audit Log {/* High-end Enterprise term for Recent */}
-                        </button>
-                    </div>
+                {/* Filter Buttons */}
+                <div className="flex items-center gap-2">
+                    <button
+                        type="button"
+                        onClick={() => setSortBy("trending")}
+                        className={cn(
+                            "flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all border-2",
+                            sortBy === "trending"
+                                ? "bg-primary text-primary-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                                : "bg-background border-foreground/5 text-muted-foreground hover:border-foreground/10"
+                        )}
+                    >
+                        <TrendingUp className="size-4" />
+                        Trending
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setSortBy("latest")}
+                        className={cn(
+                            "flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all border-2",
+                            sortBy === "latest"
+                                ? "bg-primary text-primary-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                                : "text-muted-foreground bg-background border-foreground/5 hover:border-foreground/10"
+                        )}
+                    >
+                        <Clock className="size-4" />
+                        Recent
+                    </button>
                 </div>
             </div>
 
-            {/* SYSTEM TELEMETRY */}
-            <div className="flex items-center justify-between px-2">
+            {/* STATUS INDICATOR */}
+            <div className="flex items-center justify-between px-1">
                 <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
                     <Activity className="size-4 text-primary/40" />
-                    Registry Status: {filteredProducts.length} Active Nodes Online
+                    Showing {filteredProducts.length} Active Nodes
                 </div>
             </div>
 
@@ -100,8 +97,8 @@ export default function ProductExplorer({ products: initialProducts }: { product
                     ))}
                 </div>
             ) : (
-                <div className="py-24 text-center bg-secondary/5 rounded-[3rem] border-2 border-dashed border-foreground/10">
-                    <p className="text-lg font-bold text-muted-foreground italic">No infrastructure nodes discovered in the current registry segment.</p>
+                <div className="py-24 text-center bg-secondary/5 rounded-3xl border-2 border-dashed border-foreground/10">
+                    <p className="text-lg font-bold text-muted-foreground italic">No products discovered in this segment.</p>
                 </div>
             )}
         </div>

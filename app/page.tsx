@@ -8,7 +8,11 @@ export default function Home() {
   return (
     <div>
       <HeroSection />
-      <FeaturedProducts />
+      <Suspense
+        fallback={<ProductSkeleton />}>
+        <FeaturedProducts />
+      </Suspense>
+      
       <Suspense
         fallback={<ProductSkeleton />}>
         <RecentLaunches />

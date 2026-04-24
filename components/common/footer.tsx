@@ -15,7 +15,7 @@ const footerLinks = [
         links: [
             { label: "Submit Your Work", href: "/submit" },
             { label: "Community Rules", href: "/guidelines" },
-            { label: "Help & Support", href: "mailto:support@atlash.hub" },
+            { label: "Help & Support", href: "/support" },
         ],
     },
     {

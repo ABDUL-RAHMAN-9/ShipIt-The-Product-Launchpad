@@ -1,21 +1,21 @@
 import Link from "next/link";
-import { Activity, Linkedin, Mail } from "lucide-react"; // Swapped Rocket for Activity
+import { Activity, Linkedin, Mail } from "lucide-react";
 
 const footerLinks = [
     {
-        title: "Infrastructure", // Changed from Platform
+        title: "Explore",
         links: [
-            { label: "System Directory", href: "/explore" }, // Changed from Explore Projects
-            { label: "Recent Integrations", href: "/explore?sort=recent" }, // Changed from Latest Arrivals
-            { label: "Strategic Assets", href: "/explore?sort=featured" }, // Changed from Maker Spotlight
+            { label: "Explore Projects", href: "/explore" },
+            { label: "Recently Launched", href: "/explore?sort=recent" },
+            { label: "Featured Picks", href: "/explore?sort=featured" },
         ],
     },
     {
-        title: "Operations", // Changed from Community
+        title: "Community",
         links: [
-            { label: "Initialize Deployment", href: "/submit" }, // Changed from Submit a Ship
-            { label: "Compliance Guide", href: "/guidelines" }, // Changed from Guidelines
-            { label: "System Status", href: "#" }, // Changed from Discord
+            { label: "Submit Your Work", href: "/submit" },
+            { label: "Community Rules", href: "/guidelines" },
+            { label: "Help & Support", href: "mailto:support@atlash.hub" },
         ],
     },
     {
@@ -44,12 +44,13 @@ export default function Footer() {
                             </span>
                         </Link>
 
+                        {/* Bio */}
                         <p className="text-muted-foreground font-medium max-w-sm leading-relaxed">
-                            A high-velocity infrastructure management platform built by <span className="text-foreground font-bold underline decoration-primary/30 underline-offset-4">Abdul Rahman</span>.
-                            Engineered to consolidate fragmented digital assets and optimize operational efficiency by 70%.
+                            Atlash is a curated gallery for architects and builders to showcase their modern infrastructure.
+                            Built with passion by <span className="text-foreground font-bold underline decoration-primary/30 underline-offset-4">Abdul Rahman</span> to help the community discover, share, and scale systems together.
                         </p>
 
-                        {/* PROFESSIONAL CONTACT LINKS */}
+                        {/* CONTACT LINKS */}
                         <div className="space-y-4">
                             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40">Network & Support</p>
                             <div className="flex items-center gap-4">
@@ -100,9 +101,9 @@ export default function Footer() {
                         © 2026 ATLASH HUB. ALL RIGHTS RESERVED.
                     </p>
                     <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground/40 uppercase tracking-widest">
-                        <span>Architecture</span>
-                        <div className="px-2 py-0.5 bg-primary/10 text-primary rounded border border-primary/20">
-                            T3 STACK / NEXT.JS 15
+                        <span className="opacity-50">Handcrafted by</span>
+                        <div className="px-2 py-0.5 bg-primary/10 text-primary rounded border border-primary/20 font-bold">
+                            Abdul Rahman
                         </div>
                     </div>
                 </div>

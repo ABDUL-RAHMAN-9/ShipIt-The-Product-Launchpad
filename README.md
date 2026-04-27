@@ -35,7 +35,7 @@ We built **Atlash Hub** to bridge the "Discovery Gap." It is more than just a re
 - [Repository Layout](#repository-layout)
 - [Technology Stack](#technology-stack)
 - [Getting Started](#getting-started)
-- [The Future](#the-future)
+- [Future Roadmap](#future-roadmap)
 - [License](#license)
 - [Project Lead](#project-lead)
 
@@ -177,13 +177,34 @@ pnpm drizzle-kit push
 pnpm dev
 ```
 
-## The Future
+## Future Roadmap 
 
-We are evolving Atlash Hub from a simple gallery into an **Active Observation Platform**:
+Building the initial registry was just the first step. Our goal is to turn Atlash Hub from a list of links into a living, breathing brain for your infrastructure. Here is where we are heading next:
 
-- **Real-time Monitoring:** Visualizing project health and uptime directly on the dashboard.
-- **Builder Profiles:** Dedicated spaces for creators to showcase their entire portfolio.
-- **Atlash CLI:** Submit and manage your projects directly from your local terminal.
+### 1. Searching for what you "mean," not just what you type
+Most search bars are pretty basic—if you have a typo or don't know the exact name of a tool, you won't find it. We want to change that by using a "smart search" system that actually understands your intent.
+*   **How it works:** Think of it like talking to a colleague. Instead of typing "Database-7," you could type "I need the storage tool our team uses for the mobile app," and the system will understand the context to find it.
+*   **The benefit:** This stops that frustrating cycle of asking around in Slack just to find a URL. It makes discovery feel natural and human, rather than like digging through a cold database.
+
+### 2. A "Check Engine" light for your infrastructure
+Right now, we see if a tool is stable based on what people think. In the next version, the system will start looking at the history of every project to predict when something might go wrong before it actually happens.
+*   **How it works:** The system will look at how often a tool has been "de-listed" or flagged in the past. It uses this history to give every project a "health score" that updates automatically.
+*   **The benefit:** This gives your team an early warning. It’s much better to know a system is "getting tired" on a Tuesday afternoon than to have it crash and burn on a Sunday night.
+
+### 3. Moving at the speed of code (The CLI)
+Clicking buttons in a dashboard is great, but busy developers often prefer to stay in their terminal. We are building a dedicated Command Line Interface (CLI) so you can manage your infrastructure without ever leaving your code editor.
+*   **How it works:** You’ll be able to type a simple command like `atlash deploy` to register a new project. The system will handle all the paperwork and syncing in the background for you.
+*   **The benefit:** It removes the "extra step" of documentation. By making it part of your normal workflow, your registry stays up to date automatically, and nothing ever gets forgotten or lost.
+
+### 4. An automated "Security Guard" on autopilot
+Security is usually a boring manual chore, but it’s the most important part of the job. We want to implement a system that checks every project's security certificates and "health" every few minutes without a human needing to lift a finger.
+*   **How it works:** The system will act like a "secret shopper," visiting your API endpoints and tools to make sure they are safe and following the rules. 
+*   **The benefit:** If a tool becomes unsafe or its security expires, Atlash Hub will instantly hide it from the gallery. This keeps your entire company perimeter safe without you having to run manual audits every month.
+
+### 5. Instant updates where you actually hang out
+You shouldn't have to keep refreshing a dashboard to see what’s happening. We’re working on a "live stream" of events that pushes important news directly to the places your team already uses, like Slack or Microsoft Teams.
+*   **How it works:** We are using "web-sockets," which is just a fancy way of saying the app stays "awake" and talks to your other tools the second a change happens.
+*   **The benefit:** The moment a new tool is authorized or an old one is removed, your team gets a friendly notification. It keeps everyone on the same page and makes the whole company feel more connected.
 
 ## License
 

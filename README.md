@@ -9,13 +9,13 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js%2016-Framework-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
-  <img src="https://img.shields.io/badge/React%2019-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/Tailwind%204-Styling-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
-  <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Clerk-Auth-6111FF?style=for-the-badge&logo=clerk&logoColor=white" alt="Clerk" />
-  <img src="https://img.shields.io/badge/PostgreSQL-Neon-00E599?style=for-the-badge&logo=postgresql&logoColor=black" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=flat&logo=nextdotjs" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19-%2361DAFB?style=flat&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind-4-%2306B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-%233178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Clerk-Auth-%236C47FF?style=flat&logo=clerk&logoColor=white" alt="Clerk" />
+  <img src="https://img.shields.io/badge/PostgreSQL-Neon-%234169E1?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Vercel-Deployment-black?style=flat&logo=vercel" alt="Vercel" />
 </p>
 
 ## The Story Behind Atlash
@@ -192,4 +192,3 @@ This project is open-sourced under the **MIT License**. See the [LICENSE](LICENS
 ## Project Lead 
 
 Crafted with passion by **[Abdul Rahman](https://github.com/ABDUL-RAHMAN-9)**  
-Building tools to help the community scale together.

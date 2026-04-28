@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Activity, Linkedin, Mail } from "lucide-react";
+import { Activity, Linkedin, Mail, Twitter } from "lucide-react";
 
 const footerLinks = [
     {
@@ -57,9 +57,21 @@ export default function Footer() {
                                 <Link
                                     href="https://www.linkedin.com/in/abdulrahman-in/"
                                     target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Follow on LinkedIn"
                                     className="p-2.5 rounded-xl bg-secondary/50 text-muted-foreground hover:text-primary transition-all border-2 border-transparent hover:border-primary/20 hover:shadow-sm"
                                 >
                                     <Linkedin className="size-5" />
+                                </Link>
+
+                                <Link
+                                    href="https://x.com/_AbdulRahman09"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Follow on X (Twitter)"
+                                    className="p-2.5 rounded-xl bg-secondary/50 text-muted-foreground hover:text-primary transition-all border-2 border-transparent hover:border-primary/20 hover:shadow-sm"
+                                >
+                                    <Twitter className="size-5" />
                                 </Link>
 
                                 <Link

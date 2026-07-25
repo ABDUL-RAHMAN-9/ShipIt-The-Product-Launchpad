@@ -1,12 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import {
-    Card,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import { Flame, Rocket, Sparkles, Users, ArrowRight } from "lucide-react";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { Flame, Rocket, Sparkles, Users, ArrowUpRight } from "lucide-react";
 import { InferSelectModel } from "drizzle-orm";
 import { products } from "@/db/schema";
 import VotingButtons from "./voting-buttons";
@@ -46,53 +41,15 @@ export default function ProductCard({
 
     const status = getStatus();
     const StatusIcon = status.icon;
-
-    // fake social proof for now
     const makers = Math.floor(product.voteCount * 0.55 + 40);
 
-    const hooks = [
-        "People are bookmarking this.",
-        "Growing fast this week.",
-        "Built by indie makers.",
-        "Getting community traction.",
-        "Worth checking out.",
-    ];
-
-    const hook = hooks[product.voteCount % hooks.length];
-
     return (
-        <Link href={`/products/${product.slug}`} className="block group">
-            <Card
-                className="
-                    relative
-                    h-full
-                    bg-white
-                    border-2
-                    border-black
-                    rounded-2xl
-                    overflow-hidden
-                    transition-all
-                    shadow-[6px_6px_0px_0px_#000]
-                    group-hover:translate-x-[3px]
-                    group-hover:translate-y-[3px]
-                    group-hover:shadow-none
-                ">
-                {/* top */}
-                <div className="flex items-center justify-between px-6">
+        <Link href={`/products/${product.slug}`} className="group block h-full">
+            <Card className="relative h-full bg-white border-2 border-black rounded-3xl transition-all duration-300 shadow-[6px_6px_0px_0px_#000] group-hover:shadow-[2px_2px_0px_0px_#000] group-hover:translate-x-1 group-hover:translate-y-1 flex flex-col overflow-hidden">
+                {/* Header */}
+                <div className="flex items-start justify-between px-6 pt-4">
                     <div
-                        className={`
-                            ${status.color}
-                            border-2
-                            border-black
-                            rounded-full
-                            px-3
-                            py-1
-                            flex
-                            items-center
-                            gap-2
-                            text-[10px]
-                            font-black
-                        `}>
+                        className={`${status.color} flex items-center gap-1.5 rounded-full border-2 border-black px-2.5 py-1 text-[10px] font-black uppercase tracking-wide`}>
                         <StatusIcon className="size-3" />
                         {status.label}
                     </div>
@@ -104,72 +61,46 @@ export default function ProductCard({
                     />
                 </div>
 
-                <CardHeader className="px-6 pt-5 pb-5">
-                    {/* title */}
-                    <CardTitle className="text-2xl font-black text-black mb-3">
-                        {product.name}
-                    </CardTitle>
+                {/* Content */}
+                <div className="flex flex-1 flex-col px-6 pt-4">
+                    <div className="flex items-start justify-between gap-3">
+                        <CardTitle className="text-2xl font-black leading-tight text-black">
+                            {product.name}
+                        </CardTitle>
 
-                    {/* WHY SHOULD I CARE */}
-                    <div className="mb-4">
-                        <p className="text-xs uppercase tracking-widest font-black text-black/40 mb-2">
-                            WHY PEOPLE LIKE IT
-                        </p>
-
-                        <CardDescription className="text-base font-semibold text-black/75 leading-relaxed line-clamp-2">
-                            {product.tagline}
-                        </CardDescription>
+                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-black/20 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-black" />
                     </div>
 
-                    {/* social proof */}
-                    <div className="flex items-center gap-2 mb-5">
-                        <Users className="size-4 text-black/50" />
+                    <CardDescription className="mt-2 line-clamp-2 text-sm font-semibold leading-relaxed text-black/70">
+                        {product.tagline}
+                    </CardDescription>
 
-                        <p className="text-sm font-bold text-black/60">
-                            Used by {makers} makers
-                        </p>
-
-                        <span className="text-black/20">•</span>
-
-                        <p className="text-sm font-bold text-black/60">
-                            {hook}
-                        </p>
+                    <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-black/45">
+                        <Users className="size-3.5" />
+                        <span>{makers} makers using this</span>
                     </div>
 
-                    {/* tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                        {product.tags?.slice(0, 3).map((tag) => (
-                            <Badge
-                                key={tag}
-                                variant="outline"
-                                className="
-                                        bg-black/5
-                                        border-black/10
-                                        rounded-full
-                                        px-3
-                                        py-1
-                                        text-[10px]
-                                        font-black
-                                        uppercase
-                                        tracking-wide
-                                    ">
-                                #{tag}
-                            </Badge>
-                        ))}
-                    </div>
+                    <div className="mt-auto pt-5">
+                        <div className="rounded-xl border border-black/10 bg-black/3 px-3 py-3">
+                            <div className="flex flex-wrap items-center gap-2">
+                                {product.tags?.slice(0, 2).map((tag) => (
+                                    <Badge
+                                        key={tag}
+                                        variant="outline"
+                                        className="rounded-md border-black/10 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">
+                                        #{tag}
+                                    </Badge>
+                                ))}
 
-                    {/* footer */}
-                    <div className="border-t border-black/10 pt-4 flex items-center justify-between">
-                        <p className="text-xs font-black uppercase text-black/35">
-                            Explore product
-                        </p>
-
-                        <div className="flex items-center gap-1 font-black text-sm">
-                            View
-                            <ArrowRight className="size-4" />
+                                {product.tags && product.tags.length > 2 && (
+                                    <span className="text-[10px] font-semibold text-black/40">
+                                        +{product.tags.length - 2} more
+                                    </span>
+                                )}
+                            </div>
                         </div>
                     </div>
-                </CardHeader>
+                </div>
             </Card>
         </Link>
     );

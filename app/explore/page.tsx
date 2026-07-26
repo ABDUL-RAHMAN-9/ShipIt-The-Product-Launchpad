@@ -44,8 +44,8 @@ export default async function ExplorePage() {
                                 shadow-[3px_3px_0px_0px_#000]
                                 transition-all
                                 group-hover:shadow-none
-                                group-hover:translate-x-[2px]
-                                group-hover:translate-y-[2px]
+                                group-hover:translate-x-0.5
+                                group-hover:translate-y-0.5
                             ">
                             <ChevronLeft className="size-4" />
                         </div>
@@ -70,11 +70,8 @@ export default async function ExplorePage() {
                                     leading-none
                                     mb-4
                                 ">
-                                Find products worth
-                                <span className="text-[#967AE9]">
-                                    {" "}
-                                    exploring.
-                                </span>
+                                Find what
+                                <span className="text-[#967AE9]"> scales.</span>
                             </h1>
 
                             <p
@@ -103,7 +100,7 @@ export default async function ExplorePage() {
                                     px-4
                                     py-3
                                     shadow-[4px_4px_0px_0px_#000]
-                                    min-w-[110px]
+                                    min-w-27.5
                                 ">
                                 <div className="flex items-center gap-2 mb-1">
                                     <Rocket className="size-4" />
@@ -126,7 +123,7 @@ export default async function ExplorePage() {
                                     px-4
                                     py-3
                                     shadow-[4px_4px_0px_0px_#000]
-                                    min-w-[110px]
+                                    min-w-27.5
                                 ">
                                 <div className="flex items-center gap-2 mb-1">
                                     <Users className="size-4" />
@@ -149,7 +146,7 @@ export default async function ExplorePage() {
                                     px-4
                                     py-3
                                     shadow-[4px_4px_0px_0px_#000]
-                                    min-w-[110px]
+                                    min-w-27.5
                                 ">
                                 <div className="flex items-center gap-2 mb-1">
                                     <TrendingUp className="size-4" />

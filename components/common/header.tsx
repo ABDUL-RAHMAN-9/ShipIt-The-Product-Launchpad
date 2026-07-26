@@ -13,19 +13,23 @@ export default async function Header() {
     return (
         <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-8">
             <header className="max-w-6xl mx-auto h-16 bg-white border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-between px-6">
-                {/* Branding Block with dynamic Next.js Image Component */}
+                {/* Branding Block */}
                 <Link
                     href="/"
-                    className="flex items-center gap-2.5 font-black text-xl shrink-0">
+                    className="flex items-center gap-2 group transition-transform active:scale-95">
                     <Image
                         src={logoIcon}
                         alt="ATLASH Logo"
-                        width={24}
-                        height={24}
-                        className="size-6 shrink-0"
-                        priority // Instructs Next.js to preload the logo above the fold
+                        width={26}
+                        height={26}
+                        className="size-6.5"
+                        priority
                     />
-                    ATLASH
+
+                    {/* Logotype Styling */}
+                    <span className="text-[22px] font-[1000] uppercase tracking-tighter leading-none text-black selection:bg-[#B19CFF]">
+                        Atlash
+                    </span>
                 </Link>
 
                 {session ? (
@@ -40,14 +44,16 @@ export default async function Header() {
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="lowercase">
-                                log in
+                                className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer">
+                                Log in
                             </Button>
                         </Link>
 
                         <Link href="/sign-in">
-                            <Button size="sm" className="lowercase">
-                                get started
+                            <Button
+                                size="sm"
+                                className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer active:shadow-none active:translate-x-px active:translate-y-px">
+                                Get started
                             </Button>
                         </Link>
                     </div>

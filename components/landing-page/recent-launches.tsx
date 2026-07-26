@@ -11,7 +11,7 @@ export default async function RecentLaunches() {
         <section className="py-24 bg-background">
             <div className="wrapper">
                 <SectionHeader
-                    title="Fresh From The Builders"
+                    title="Featured Weekly Picks"
                     description="The latest startups, side projects and experiments launched by our community."
                     href="/explore"
                 />

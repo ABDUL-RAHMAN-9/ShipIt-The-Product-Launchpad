@@ -5,10 +5,7 @@ import type { Metadata } from "next";
 import VotingButtons from "@/components/products/voting-buttons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-    getFeaturedProducts,
-    getProductBySlug,
-} from "@/lib/products/product-select";
+import { getProductBySlug } from "@/lib/products/product-select";
 import {
     ChevronLeft,
     Calendar,
@@ -19,7 +16,6 @@ import {
     TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 /**
  * SEO Metadata
@@ -34,35 +30,33 @@ export async function generateMetadata({
 
     if (!product) {
         return {
-            title: "Project Not Found | Atlash",
+            title: "Project Not Found",
         };
     }
 
-    const description =
-        product.tagline ??
-        "Discover innovative products built by makers on Atlash.";
+    const productDescription =
+        product.tagline ?? "Discover this builder's project on Atlash.";
 
     return {
-        title: `${product.name} | Atlash`,
-        description,
+        title: `${product.name} — Atlash`,
+        description: productDescription,
         keywords: [
             product.name,
             ...(product.tags ?? []),
-            "startup",
-            "product showcase",
-            "indie hackers",
-            "developer tools",
-            "atlash",
+            "builder community",
+            "atlash hub",
+            "software launch",
         ],
         openGraph: {
-            title: product.name,
-            description,
+            title: `${product.name} | Atlash`,
+            description: productDescription,
             type: "website",
+            images: [{ url: "/banner.png" }],
         },
         twitter: {
             card: "summary_large_image",
-            title: product.name,
-            description,
+            title: `${product.name} | Atlash`,
+            description: productDescription,
         },
     };
 }
@@ -111,8 +105,8 @@ export default async function ProductDetailPage({
                         shadow-[3px_3px_0px_0px_#000]
                         transition-all
                         group-hover:shadow-none
-                        group-hover:translate-x-[2px]
-                        group-hover:translate-y-[2px]
+                        group-hover:translate-x-0.5
+                        group-hover:translate-y-0.5
                     ">
                             <ChevronLeft className="size-4" />
                         </div>
@@ -156,7 +150,7 @@ export default async function ProductDetailPage({
                                     <Badge
                                         key={tag}
                                         variant="outline"
-                                        className="bg-white border-2 border-black/10 rounded-full px-4 py-1 font-bold">
+                                        className="rounded-md border-black/10 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">
                                         #{tag}
                                     </Badge>
                                 ))}
@@ -164,9 +158,9 @@ export default async function ProductDetailPage({
                         </div>
 
                         {/* Description */}
-                        <div className="bg-white border-2 border-black rounded-[32px] p-8 md:p-10 shadow-[8px_8px_0px_0px_#000]">
+                        <div className="bg-white border-2 border-black rounded-4xl p-8 md:p-10 shadow-[8px_8px_0px_0px_#000]">
                             <div className="flex items-center gap-3 mb-8">
-                                <span className="text-xs font-black uppercase tracking-[0.3em] text-black/40">
+                                <span className="text-xs font-black uppercase tracking-wider text-black/40">
                                     about this project
                                 </span>
 
@@ -217,7 +211,7 @@ export default async function ProductDetailPage({
                     {/* RIGHT */}
                     <div className="lg:col-span-4 sticky top-32 space-y-6">
                         {/* voting */}
-                        <div className="bg-[#B19CFF] border-2 border-black rounded-[32px] p-8 shadow-[8px_8px_0px_0px_#000]">
+                        <div className="bg-[#B19CFF] border-2 border-black rounded-4xl p-8 shadow-[8px_8px_0px_0px_#000]">
                             <div className="flex items-center gap-2 mb-4">
                                 <TrendingUp className="size-4" />
 

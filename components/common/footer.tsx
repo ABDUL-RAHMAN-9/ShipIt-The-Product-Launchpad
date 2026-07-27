@@ -112,15 +112,23 @@ export default function Footer() {
 
                 {/* bottom bar */}
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-[12px] font-semibold text-white/20 tracking-widest font-mono">
-                        © 2026 atlash hub inc. All rights reserved.
+                    <p className="text-[11px] font-medium text-white/30 tracking-widest">
+                        © 2026{" "}
+                        <span className="text-white/60 font-black">
+                            Atlash Hub Inc.
+                        </span>
                     </p>
 
-                    <div className="flex items-center gap-2 text-[12px] font-semibold text-white/20">
-                        <span>Built by</span>
-                        <div className="px-2 py-0.5 bg-[#FFB38A] text-black rounded font-black font-mono">
+                    {/* Right Side: Signature */}
+                    <div className="flex items-center gap-2 text-[11px] font-medium text-white/30">
+                        <span className="tracking-widest">Crafted by</span>
+                        <Link
+                            href="https://abdul-folio-in.vercel.app"
+                            target="_blank"
+                            className="text-white/60 hover:text-[#B19CFF] font-black transition-colors flex items-center gap-1.5 group">
                             Abdul Rahman
-                        </div>
+                            <span className="size-1 rounded-full bg-[#FFB38A] group-hover:animate-ping" />
+                        </Link>
                     </div>
                 </div>
             </div>

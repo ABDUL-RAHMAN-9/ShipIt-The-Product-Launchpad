@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { ArrowLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,15 +14,30 @@ import Image from "next/image";
 type AuthProvider = "email" | "google" | "github" | null;
 
 export default function SignInPage() {
+    const router = useRouter();
+    const { data: session, isPending } = authClient.useSession();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
     const [loadingProvider, setLoadingProvider] = useState<AuthProvider>(null);
-
     const [error, setError] = useState("");
 
-    const isLoading = loadingProvider !== null;
+    const isLoading = loadingProvider !== null || isPending;
+
+    useEffect(() => {
+        if (session) {
+            router.push("/dashboard");
+        }
+    }, [session, router]);
+
+    if (isPending) {
+        return (
+            <div className="flex min-h-screen w-full items-center justify-center bg-[#F3F0FA] dark:bg-[#09080D]">
+                <Loader2 className="size-8 animate-spin text-[#6E42F4] dark:text-[#B19CFF]" />
+            </div>
+        );
+    }
 
     const handleCredentialsSignIn = async (
         event: React.FormEvent<HTMLFormElement>,

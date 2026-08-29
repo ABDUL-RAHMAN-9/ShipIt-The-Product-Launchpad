@@ -13,7 +13,6 @@ export default async function Header() {
     return (
         <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-8">
             <header className="max-w-6xl mx-auto h-16 bg-white border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-between px-6">
-                {/* Branding Block */}
                 <Link
                     href="/"
                     className="flex items-center gap-2 group transition-transform active:scale-95">
@@ -25,8 +24,6 @@ export default async function Header() {
                         className="size-6.5"
                         priority
                     />
-
-                    {/* Logotype Styling */}
                     <span className="text-[22px] font-[1000] uppercase tracking-tighter leading-none text-black selection:bg-[#B19CFF]">
                         Atlash
                     </span>
@@ -49,7 +46,7 @@ export default async function Header() {
                             </Button>
                         </Link>
 
-                        <Link href="/sign-in">
+                        <Link href="/sign-up">
                             <Button
                                 size="sm"
                                 className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer active:shadow-none active:translate-x-px active:translate-y-px">

@@ -2,28 +2,28 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import { ArrowLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import logoIcon from "@/app/icon.svg";
-import Image from "next/image";
 
 type AuthProvider = "email" | "google" | "github" | null;
 
-export default function SignInPage() {
+export default function SignUpPage() {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const [loadingProvider, setLoadingProvider] = useState<AuthProvider>(null);
-
     const [error, setError] = useState("");
 
     const isLoading = loadingProvider !== null;
 
-    const handleCredentialsSignIn = async (
+    const handleCredentialsSignUp = async (
         event: React.FormEvent<HTMLFormElement>,
     ) => {
         event.preventDefault();
@@ -34,17 +34,20 @@ export default function SignInPage() {
         setLoadingProvider("email");
 
         try {
-            const { error: signInError } = await authClient.signIn.email({
+            const { error: signUpError } = await authClient.signUp.email({
                 email,
                 password,
+                name,
                 callbackURL: "/dashboard",
             });
 
-            if (signInError) {
-                setError(signInError.message || "Invalid email or password.");
+            if (signUpError) {
+                setError(signUpError.message || "Failed to create an account.");
             }
         } catch {
-            setError("Unable to sign in right now. Please try again.");
+            setError(
+                "Unable to create your account right now. Please try again.",
+            );
         } finally {
             setLoadingProvider(null);
         }
@@ -87,7 +90,7 @@ export default function SignInPage() {
                         <Link href="/" className="flex items-center gap-2.5">
                             <Image
                                 src={logoIcon}
-                                alt="ATLASH logo"
+                                alt="ATLASH Logo"
                                 width={24}
                                 height={24}
                                 className="size-6 shrink-0 dark:invert"
@@ -183,11 +186,12 @@ export default function SignInPage() {
                     <div className="w-full">
                         <div className="mb-6">
                             <h1 className="text-2xl font-bold tracking-tight text-zinc-950 dark:text-white">
-                                Welcome back
+                                Create your account
                             </h1>
 
                             <p className="mt-1 text-xs font-medium text-muted-foreground">
-                                Sign in to continue to Atlash Hub.
+                                Free tier, join 12k+ active builders shipping
+                                today.
                             </p>
                         </div>
 
@@ -201,8 +205,26 @@ export default function SignInPage() {
                         )}
 
                         <form
-                            onSubmit={handleCredentialsSignIn}
+                            onSubmit={handleCredentialsSignUp}
                             className="space-y-4">
+                            <div className="space-y-1.5">
+                                <Label htmlFor="name">Name</Label>
+
+                                <Input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    autoComplete="name"
+                                    required
+                                    disabled={isLoading}
+                                    value={name}
+                                    onChange={(event) =>
+                                        setName(event.target.value)
+                                    }
+                                    className="h-10 rounded-lg border-zinc-200 bg-transparent dark:border-zinc-800"
+                                />
+                            </div>
+
                             <div className="space-y-1.5">
                                 <Label htmlFor="email">Email</Label>
 
@@ -212,7 +234,6 @@ export default function SignInPage() {
                                     type="email"
                                     inputMode="email"
                                     autoComplete="email"
-                                    placeholder="name@example.com"
                                     required
                                     disabled={isLoading}
                                     value={email}
@@ -224,9 +245,7 @@ export default function SignInPage() {
                             </div>
 
                             <div className="space-y-1.5">
-                                <div className="flex items-center justify-between">
-                                    <Label htmlFor="password">Password</Label>
-                                </div>
+                                <Label htmlFor="password">Password</Label>
 
                                 <div className="relative">
                                     <Input
@@ -235,9 +254,10 @@ export default function SignInPage() {
                                         type={
                                             showPassword ? "text" : "password"
                                         }
-                                        autoComplete="current-password"
-                                        placeholder="••••••••"
+                                        autoComplete="new-password"
                                         required
+                                        minLength={8}
+                                        maxLength={128}
                                         disabled={isLoading}
                                         value={password}
                                         onChange={(event) =>
@@ -280,7 +300,7 @@ export default function SignInPage() {
                                 {loadingProvider === "email" && (
                                     <Loader2 className="mr-2 size-4 animate-spin" />
                                 )}
-                                Sign In
+                                Create Account
                             </Button>
                         </form>
 
@@ -342,12 +362,28 @@ export default function SignInPage() {
                                         fill="currentColor"
                                         viewBox="0 0 24 24"
                                         aria-hidden="true">
-                                        <path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.14c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.95.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.67 0-1.25.45-2.27 1.19-3.08.12-.29-.52-1.46.11-3.04 0 0 .98-.31 3.2 1.18a11.1 11.1 0 015.82 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.08 0 4.4-2.69 5.37-5.25 5.66.41.36.78 1.06.78 2.14v3.17c0 .31.21.66.79.55A11.52 11.52 0 0023.5 12C23.5 5.66 18.35.5 12 .5z" />
+                                        <path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.14c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.95.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.67 0-1.25.45-2.27 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .98-.31 3.2 1.18a11.1 11.1 0 015.82 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.08 0 4.4-2.69 5.37-5.25 5.66.41.36.78 1.06.78 2.14v3.17c0 .31.21.66.79.55A11.52 11.52 0 0023.5 12C23.5 5.66 18.35.5 12 .5z" />
                                     </svg>
                                 )}
                                 GitHub
                             </Button>
                         </div>
+
+                        <p className="mt-6 text-center text-xs leading-normal text-muted-foreground select-none">
+                            By creating an account, you agree to our{" "}
+                            <Link
+                                href="/terms"
+                                className="font-semibold text-zinc-700 hover:text-zinc-950 underline dark:text-zinc-300 dark:hover:text-zinc-50">
+                                Terms of Service
+                            </Link>{" "}
+                            and{" "}
+                            <Link
+                                href="/privacy"
+                                className="font-semibold text-zinc-700 hover:text-zinc-950 underline dark:text-zinc-300 dark:hover:text-zinc-50">
+                                Privacy Policy
+                            </Link>
+                            .
+                        </p>
                     </div>
 
                     <div className="mt-8 flex items-center justify-between border-t border-zinc-100 pt-6 dark:border-zinc-900">
@@ -363,11 +399,11 @@ export default function SignInPage() {
                         </Link>
 
                         <p className="text-xs font-medium text-muted-foreground">
-                            New here?{" "}
+                            Have an account?{" "}
                             <Link
-                                href="/sign-up"
+                                href="/sign-in"
                                 className="font-semibold text-[#6E42F4] hover:underline dark:text-[#B19CFF]">
-                                Create an account
+                                Sign in
                             </Link>
                         </p>
                     </div>

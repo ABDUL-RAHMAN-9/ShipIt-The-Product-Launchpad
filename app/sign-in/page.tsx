@@ -27,7 +27,7 @@ export default function SignInPage() {
 
     useEffect(() => {
         if (session) {
-            router.push("/dashboard");
+            router.push("/explore");
         }
     }, [session, router]);
 
@@ -53,7 +53,7 @@ export default function SignInPage() {
             const { error: signInError } = await authClient.signIn.email({
                 email,
                 password,
-                callbackURL: "/dashboard",
+                callbackURL: "/explore",
             });
 
             if (signInError) {
@@ -75,7 +75,7 @@ export default function SignInPage() {
         try {
             const { error: socialError } = await authClient.signIn.social({
                 provider,
-                callbackURL: "/dashboard",
+                callbackURL: "/explore",
             });
 
             if (socialError) {

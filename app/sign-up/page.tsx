@@ -29,7 +29,7 @@ export default function SignUpPage() {
 
     useEffect(() => {
         if (session) {
-            router.push("/dashboard");
+            router.push("/explore");
         }
     }, [session, router]);
 
@@ -56,7 +56,7 @@ export default function SignUpPage() {
                 email,
                 password,
                 name,
-                callbackURL: "/dashboard",
+                callbackURL: "/explore",
             });
 
             if (signUpError) {
@@ -80,7 +80,7 @@ export default function SignUpPage() {
         try {
             const { error: socialError } = await authClient.signIn.social({
                 provider,
-                callbackURL: "/dashboard",
+                callbackURL: "/explore",
             });
 
             if (socialError) {

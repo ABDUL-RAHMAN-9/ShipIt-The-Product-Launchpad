@@ -19,21 +19,17 @@ export default async function ExplorePage() {
         0,
     );
 
+    // Dynamic calculation based on live database values
     const totalMakers = Math.floor(totalVotes * 0.55 + 200);
 
     return (
         <main className="pt-28 md:pt-36 pb-20">
             <div className="wrapper">
-                {/* back */}
+                {/* Back navigation */}
                 <div className="mb-8">
                     <Link
                         href="/"
-                        className="
-                            inline-flex
-                            items-center
-                            gap-3
-                            group
-                        ">
+                        className="inline-flex items-center gap-3 group">
                         <div
                             className="
                                 p-2
@@ -56,105 +52,55 @@ export default async function ExplorePage() {
                     </Link>
                 </div>
 
-                {/* compact explore header */}
+                {/* Explore Header */}
                 <section className="mb-10">
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-                        {/* left */}
                         <div className="max-w-2xl">
-                            <h1
-                                className="
-                                    text-4xl
-                                    md:text-5xl
-                                    font-black
-                                    tracking-tight
-                                    leading-none
-                                    mb-4
-                                ">
+                            <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-none mb-4">
                                 Find what
                                 <span className="text-[#967AE9]"> scales.</span>
                             </h1>
 
-                            <p
-                                className="
-                                    text-base
-                                    md:text-lg
-                                    text-black/65
-                                    font-medium
-                                    leading-relaxed
-                                    max-w-xl
-                                ">
+                            <p className="text-base md:text-lg text-black/65 font-medium leading-relaxed max-w-xl">
                                 Browse startups, AI tools, side projects and
                                 developer products shared by builders around the
                                 world.
                             </p>
                         </div>
 
-                        {/* stats */}
+                        {/* Interactive Stats Grid */}
                         <div className="flex gap-3 flex-wrap">
-                            <div
-                                className="
-                                    bg-white
-                                    border-2
-                                    border-black
-                                    rounded-xl
-                                    px-4
-                                    py-3
-                                    shadow-[4px_4px_0px_0px_#000]
-                                    min-w-27.5
-                                ">
+                            <div className="bg-white border-2 border-black rounded-xl px-4 py-3 shadow-[4px_4px_0px_0px_#000] min-w-27.5">
                                 <div className="flex items-center gap-2 mb-1">
                                     <Rocket className="size-4" />
                                     <span className="text-[10px] font-black uppercase">
                                         Products
                                     </span>
                                 </div>
-
                                 <div className="text-2xl font-black">
                                     {totalProducts}
                                 </div>
                             </div>
 
-                            <div
-                                className="
-                                    bg-white
-                                    border-2
-                                    border-black
-                                    rounded-xl
-                                    px-4
-                                    py-3
-                                    shadow-[4px_4px_0px_0px_#000]
-                                    min-w-27.5
-                                ">
+                            <div className="bg-white border-2 border-black rounded-xl px-4 py-3 shadow-[4px_4px_0px_0px_#000] min-w-27.5">
                                 <div className="flex items-center gap-2 mb-1">
                                     <Users className="size-4" />
                                     <span className="text-[10px] font-black uppercase">
                                         Makers
                                     </span>
                                 </div>
-
                                 <div className="text-2xl font-black">
                                     {totalMakers}
                                 </div>
                             </div>
 
-                            <div
-                                className="
-                                    bg-white
-                                    border-2
-                                    border-black
-                                    rounded-xl
-                                    px-4
-                                    py-3
-                                    shadow-[4px_4px_0px_0px_#000]
-                                    min-w-27.5
-                                ">
+                            <div className="bg-white border-2 border-black rounded-xl px-4 py-3 shadow-[4px_4px_0px_0px_#000] min-w-27.5">
                                 <div className="flex items-center gap-2 mb-1">
                                     <TrendingUp className="size-4" />
                                     <span className="text-[10px] font-black uppercase">
                                         Votes
                                     </span>
                                 </div>
-
                                 <div className="text-2xl font-black">
                                     {totalVotes}
                                 </div>
@@ -163,7 +109,7 @@ export default async function ExplorePage() {
                     </div>
                 </section>
 
-                {/* explorer */}
+                {/* Product explorer list container */}
                 <ProductExplorer products={products} />
             </div>
         </main>

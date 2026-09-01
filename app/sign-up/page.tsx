@@ -56,15 +56,20 @@ export default function SignUpPage() {
                 email,
                 password,
                 name,
-                callbackURL: "/explore",
+                callbackURL: "/",
             });
 
             if (signUpError) {
                 setError(signUpError.message || "Failed to create an account.");
             }
-        } catch {
+        } catch (err) {
+            // Safe TypeScript narrowing instead of 'any' to expose the root error immediately
+            const errorMessage =
+                err instanceof Error
+                    ? err.message
+                    : "Unable to create your account right now.";
             setError(
-                "Unable to create your account right now. Please try again.",
+                `${errorMessage} Check your database connection and environment variables.`,
             );
         } finally {
             setLoadingProvider(null);
@@ -80,7 +85,7 @@ export default function SignUpPage() {
         try {
             const { error: socialError } = await authClient.signIn.social({
                 provider,
-                callbackURL: "/explore",
+                callbackURL: "/",
             });
 
             if (socialError) {
@@ -90,12 +95,12 @@ export default function SignUpPage() {
                 );
                 setLoadingProvider(null);
             }
-        } catch {
-            setError(
-                `Unable to continue with ${
-                    provider === "google" ? "Google" : "GitHub"
-                }. Please try again.`,
-            );
+        } catch (err) {
+            const errorMessage =
+                err instanceof Error
+                    ? err.message
+                    : `Unable to continue with ${provider === "google" ? "Google" : "GitHub"}.`;
+            setError(`${errorMessage} Please try again.`);
             setLoadingProvider(null);
         }
     };

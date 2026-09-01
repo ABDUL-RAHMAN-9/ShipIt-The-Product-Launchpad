@@ -53,7 +53,7 @@ export default function SignInPage() {
             const { error: signInError } = await authClient.signIn.email({
                 email,
                 password,
-                callbackURL: "/explore",
+                callbackURL: "/",
             });
 
             if (signInError) {
@@ -75,7 +75,7 @@ export default function SignInPage() {
         try {
             const { error: socialError } = await authClient.signIn.social({
                 provider,
-                callbackURL: "/explore",
+                callbackURL: "/",
             });
 
             if (socialError) {

@@ -12,10 +12,11 @@ export default async function Header() {
 
     return (
         <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-8">
-            <header className="max-w-6xl mx-auto h-16 bg-white border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-between px-6">
+            <header className="max-w-6xl mx-auto h-16 bg-white border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-between px-6 relative">
+                {/* Brand Logo - Aligned Left */}
                 <Link
                     href="/"
-                    className="flex items-center gap-2 group transition-transform active:scale-95">
+                    className="flex items-center gap-2 group transition-transform active:scale-95 shrink-0 z-10">
                     <Image
                         src={logoIcon}
                         alt="ATLASH Logo"
@@ -29,32 +30,53 @@ export default async function Header() {
                     </span>
                 </Link>
 
-                {session ? (
-                    <UserMenu
-                        name={session.user.name}
-                        image={session.user.image}
-                        isAdmin={isAdmin(session.user.email)}
-                    />
-                ) : (
-                    <div className="flex items-center gap-3">
-                        <Link href="/sign-in">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer">
-                                Log in
-                            </Button>
-                        </Link>
+                <nav className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 -translate-x-1/2 z-0">
+                    <Link
+                        href="/explore"
+                        className="text-sm font-bold text-black/60 hover:text-black transition-colors">
+                        Explore
+                    </Link>
+                    <Link
+                        href="/submit"
+                        className="text-sm font-bold text-black/60 hover:text-black transition-colors">
+                        Submit
+                    </Link>
+                    <Link
+                        href="/support"
+                        className="text-sm font-bold text-black/60 hover:text-black transition-colors">
+                        Support
+                    </Link>
+                </nav>
 
-                        <Link href="/sign-up">
-                            <Button
-                                size="sm"
-                                className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer active:shadow-none active:translate-x-px active:translate-y-px">
-                                Get started
-                            </Button>
-                        </Link>
-                    </div>
-                )}
+                {/* Auth Area - Aligned Right */}
+                <div className="z-10 shrink-0">
+                    {session ? (
+                        <UserMenu
+                            name={session.user.name}
+                            image={session.user.image}
+                            isAdmin={isAdmin(session.user.email)}
+                        />
+                    ) : (
+                        <div className="flex items-center gap-3">
+                            <Link href="/sign-in">
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer">
+                                    Log in
+                                </Button>
+                            </Link>
+
+                            <Link href="/sign-up">
+                                <Button
+                                    size="sm"
+                                    className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer active:shadow-none active:translate-x-px active:translate-y-px">
+                                    Get started
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </header>
         </div>
     );

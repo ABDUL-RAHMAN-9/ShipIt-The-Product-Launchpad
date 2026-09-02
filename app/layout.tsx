@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/common/header";
-import Footer from "@/components/common/footer";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "sonner";
-import { Suspense } from "react";
-import HeaderSkeleton from "@/components/common/header-skeleton";
 
 const outfit = Outfit({
     subsets: ["latin"],
@@ -33,24 +29,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
-}: {
+}: Readonly<{
     children: React.ReactNode;
-}) {
+}>) {
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${outfit.className} antialiased relative min-h-screen flex flex-col bg-[#F9F7F0]`}>
+                className={`${outfit.className} antialiased relative min-h-screen bg-[#F9F7F0]`}>
                 <div
-                    className="texture opacity-40 fixed inset-0 pointer-events-none z-99"
+                    className="texture pointer-events-none fixed inset-0 z-[-1] opacity-40"
                     aria-hidden="true"
                 />
-                <Suspense fallback={<HeaderSkeleton />}>
-                    <Header />
-                </Suspense>
 
-                <main className="relative z-10 flex-1">{children}</main>
-
-                <Footer />
+                {children}
 
                 <Toaster
                     position="bottom-right"

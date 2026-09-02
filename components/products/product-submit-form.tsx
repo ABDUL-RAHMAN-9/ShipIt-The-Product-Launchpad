@@ -1,193 +1,292 @@
 "use client";
 
-import { FormField } from "@/components/forms/form-field";
+import React, { useActionState, useEffect } from "react";
+import Link from "next/link";
+import { ChevronLeft, Loader2, Rocket } from "lucide-react";
+import { toast } from "sonner";
+
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+
 import { addProductAction } from "@/lib/products/product-actions";
 import { FormState } from "@/types";
-import { Loader2, ChevronLeft, Rocket, Users } from "lucide-react";
-import { useActionState, useEffect } from "react";
-import { toast } from "sonner";
-import Link from "next/link";
 
 const initialState: FormState = {
-  success: false,
-  errors: undefined,
-  message: "",
+    success: false,
+    errors: undefined,
+    message: "",
+    timestamp: undefined,
 };
 
+const LIMITS = {
+    name: 50,
+    websiteUrl: 200,
+    tagline: 80,
+    tags: 100,
+    description: 400,
+} as const;
+
 export default function ProductSubmitForm() {
-  const [state, formAction, isPending] = useActionState(
-    addProductAction,
-    initialState,
-  );
+    const [state, formAction, isPending] = useActionState(
+        addProductAction,
+        initialState,
+    );
 
-  const { errors, success } = state;
+    const { errors, success } = state;
 
-  useEffect(() => {
-    if (success) {
-      toast.success("Product submitted successfully", {
-        description: "Your project is now under review.",
-        duration: 5000,
-      });
-    }
-  }, [success]);
+    useEffect(() => {
+        if (!success) return;
 
-  const getFieldErrors = (fieldName: string): string[] => {
-    if (!errors) return [];
-    return (errors as Record<string, string[]>)[fieldName] ?? [];
-  };
+        toast.success("Product submitted successfully", {
+            description: "Your project is now under review.",
+            duration: 5000,
+        });
 
-  return (
-    <div className="max-w-7xl mx-auto pt-28 md:pt-22 pb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20 items-start">
-        {/* LEFT SIDE: Content & Info */}
-        <div className="lg:sticky lg:top-10">
-          <div className="mb-8">
-            <Link href="/" className="inline-flex items-center gap-3 group">
-              <div className="p-2 rounded-xl bg-[#FFB38A] border-2 border-black shadow-[3px_3px_0px_0px_#000] transition-all group-hover:shadow-none group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
-                <ChevronLeft className="size-4" />
-              </div>
-              <span className="font-black text-black/60 group-hover:text-black">
-                back home
-              </span>
-            </Link>
-          </div>
+        const form = document.getElementById(
+            "product-submit-form",
+        ) as HTMLFormElement | null;
 
-          <header className="space-y-6">
-            <h1 className="text-5xl lg:text-6xl font-black leading-[0.9] tracking-tight">
-              Share what you&apos;ve
-              <span className="relative inline-block mx-4 group">
-                {/* Decorative shadow layer */}
-                <span className="absolute inset-0 bg-black rounded-2xl translate-x-2 translate-y-2 opacity-20 group-hover:translate-x-1 group-hover:translate-y-1 transition-all"></span>
-                {/* Main Badge */}
-                <span className="relative block px-6 py-2 bg-[#FFB38A] border-[3px] border-black rounded-2xl -rotate-3 text-white italic shadow-[5px_5px_0px_0px_#000] group-hover:rotate-0 transition-transform cursor-default">
-                  built
-                </span>
-              </span>
-              with the community.
-            </h1>
-            <p className="text-xl text-black/65 font-medium leading-relaxed max-w-lg">
-              Launch your startup, AI tool, or experiment and get discovered by
-              builders worldwide.
-            </p>
-          </header>
+        form?.reset();
+    }, [success, state.timestamp]);
 
-          {/* Stats Cards */}
-          <div className="flex gap-4 mt-10">
-            <div className="bg-white border-2 border-black rounded-2xl px-6 py-4 shadow-[4px_4px_0px_0px_#000]">
-              <div className="flex gap-2 items-center mb-1 opacity-60">
-                <Rocket className="size-4" />
-                <span className="text-[10px] font-black uppercase tracking-wider">
-                  launches
-                </span>
-              </div>
-              <p className="text-3xl font-black">500+</p>
+    const getFieldErrors = (fieldName: string): string[] => {
+        if (!errors) return [];
+
+        const typedErrors = errors as Record<string, string[]>;
+
+        return typedErrors[fieldName] ?? [];
+    };
+
+    const fieldError = (fieldName: string) => {
+        const fieldErrors = getFieldErrors(fieldName);
+
+        return (
+            <div aria-live="polite" className="min-h-4 pt-1">
+                {fieldErrors.length > 0 && (
+                    <p className="text-[11px] font-medium leading-4 text-destructive">
+                        {fieldErrors[0]}
+                    </p>
+                )}
             </div>
-            <div className="bg-white border-2 border-black rounded-2xl px-6 py-4 shadow-[4px_4px_0px_0px_#000]">
-              <div className="flex gap-2 items-center mb-1 opacity-60">
-                <Users className="size-4" />
-                <span className="text-[10px] font-black uppercase tracking-wider">
-                  makers
-                </span>
-              </div>
-              <p className="text-3xl font-black">2k+</p>
+        );
+    };
+
+    return (
+        /* 
+          Using 'fixed inset-0 z-50' forces this container to span full-screen,
+          bypassing any parent container constraints or padding wrapper classes.
+          'overflow-y-auto' ensures vertical scrolling remains functional if content overflows.
+        */
+        <main className="fixed inset-0 z-50 overflow-y-auto bg-[#F3F0FA] px-4 font-sans dark:bg-[#09080D]">
+            <div className="flex min-h-full items-center justify-center py-8 sm:py-12">
+                {/* 
+                  Sleek white/dark card containing the submit form, borders, and shadows
+                */}
+                <div className="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-xl border border-zinc-100 dark:bg-[#111015] dark:border-zinc-900 sm:p-8 md:p-10">
+                    {/* Top navigation */}
+                    <div className="mb-5">
+                        <Link
+                            href="/"
+                            className="group flex items-center gap-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-zinc-800 dark:hover:text-zinc-200">
+                            <ChevronLeft
+                                size={14}
+                                className="transition-transform group-hover:-translate-x-0.5"
+                                aria-hidden="true"
+                            />
+                            Back to home
+                        </Link>
+                    </div>
+
+                    {/* Page heading */}
+                    <header className="mb-6">
+                        <h1 className="text-3xl font-bold leading-tight tracking-tight text-zinc-950 dark:text-white">
+                            Share what you&apos;ve{" "}
+                            <span className="text-[#6E42F4] dark:text-[#B19CFF]">
+                                built.
+                            </span>
+                        </h1>
+
+                        <p className="mt-1 text-xs font-medium text-muted-foreground">
+                            Tell the community about your product and get it
+                            discovered by other builders.
+                        </p>
+                    </header>
+
+                    {/* Form */}
+                    <form
+                        id="product-submit-form"
+                        action={formAction}
+                        className="space-y-4">
+                        <div className="space-y-3">
+                            {/* Product name */}
+                            <div>
+                                <Label
+                                    htmlFor="name"
+                                    className="text-zinc-950 dark:text-white">
+                                    Product name
+                                    <span className="ml-1 text-destructive">
+                                        *
+                                    </span>
+                                </Label>
+
+                                <Input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    required
+                                    maxLength={LIMITS.name}
+                                    autoComplete="off"
+                                    placeholder="e.g. Atlash"
+                                    className="mt-1.5 h-10 rounded-lg border-zinc-200 bg-transparent px-3 text-sm shadow-none focus-visible:border-[#6E42F4] focus-visible:ring-1 focus-visible:ring-[#6E42F4]/20 dark:border-zinc-800"
+                                />
+
+                                {fieldError("name")}
+                            </div>
+
+                            {/* Website */}
+                            <div>
+                                <Label
+                                    htmlFor="websiteUrl"
+                                    className="text-zinc-950 dark:text-white">
+                                    Website URL
+                                    <span className="ml-1 text-destructive">
+                                        *
+                                    </span>
+                                </Label>
+
+                                <Input
+                                    id="websiteUrl"
+                                    name="websiteUrl"
+                                    type="url"
+                                    required
+                                    maxLength={LIMITS.websiteUrl}
+                                    inputMode="url"
+                                    autoComplete="url"
+                                    placeholder="https://yourproduct.com"
+                                    className="mt-1.5 h-10 rounded-lg border-zinc-200 bg-transparent px-3 text-sm shadow-none focus-visible:border-[#6E42F4] focus-visible:ring-1 focus-visible:ring-[#6E42F4]/20 dark:border-zinc-800"
+                                />
+
+                                {fieldError("websiteUrl")}
+                            </div>
+
+                            {/* Tagline */}
+                            <div>
+                                <Label
+                                    htmlFor="tagline"
+                                    className="text-zinc-950 dark:text-white">
+                                    Tagline
+                                    <span className="ml-1 text-destructive">
+                                        *
+                                    </span>
+                                </Label>
+
+                                <Input
+                                    id="tagline"
+                                    name="tagline"
+                                    type="text"
+                                    required
+                                    maxLength={LIMITS.tagline}
+                                    placeholder="What does your product do?"
+                                    className="mt-1.5 h-10 rounded-lg border-zinc-200 bg-transparent px-3 text-sm shadow-none focus-visible:border-[#6E42F4] focus-visible:ring-1 focus-visible:ring-[#6E42F4]/20 dark:border-zinc-800"
+                                />
+
+                                {fieldError("tagline")}
+                            </div>
+
+                            {/* Tags */}
+                            <div>
+                                <Label
+                                    htmlFor="tags"
+                                    className="text-zinc-950 dark:text-white">
+                                    Tags
+                                    <span className="ml-1 text-muted-foreground">
+                                        (up to 6)
+                                    </span>
+                                    <span className="ml-1 text-destructive">
+                                        *
+                                    </span>
+                                </Label>
+
+                                <Input
+                                    id="tags"
+                                    name="tags"
+                                    type="text"
+                                    required
+                                    maxLength={LIMITS.tags}
+                                    placeholder="AI, SaaS, Developer Tools"
+                                    className="mt-1.5 h-10 rounded-lg border-zinc-200 bg-transparent px-3 text-sm shadow-none focus-visible:border-[#6E42F4] focus-visible:ring-1 focus-visible:ring-[#6E42F4]/20 dark:border-zinc-800"
+                                />
+
+                                {fieldError("tags")}
+                            </div>
+
+                            {/* Description */}
+                            <div>
+                                <div className="flex items-center justify-between">
+                                    <Label
+                                        htmlFor="description"
+                                        className="text-zinc-950 dark:text-white">
+                                        Product story
+                                        <span className="ml-1 text-destructive">
+                                            *
+                                        </span>
+                                    </Label>
+
+                                    <span className="text-[10px] font-medium text-muted-foreground">
+                                        Max {LIMITS.description} characters
+                                    </span>
+                                </div>
+
+                                <Textarea
+                                    id="description"
+                                    name="description"
+                                    required
+                                    maxLength={LIMITS.description}
+                                    placeholder="Tell builders what you built, why you built it, and what makes it useful."
+                                    className="mt-1.5 h-24 resize-none rounded-lg border-zinc-200 bg-transparent px-3 py-2.5 text-sm leading-5 shadow-none focus-visible:border-[#6E42F4] focus-visible:ring-1 focus-visible:ring-[#6E42F4]/20 dark:border-zinc-800"
+                                />
+
+                                {fieldError("description")}
+                            </div>
+                        </div>
+
+                        {/* Bottom action */}
+                        <div className="mt-6 pt-5 border-t border-zinc-100 dark:border-zinc-900">
+                            <div className="flex items-center justify-between gap-4">
+                                <div className="min-w-0">
+                                    <p className="text-xs font-semibold text-zinc-950 dark:text-white">
+                                        Ready to launch?
+                                    </p>
+
+                                    <p className="mt-0.5 text-[11px] text-muted-foreground">
+                                        Your submission will be reviewed before
+                                        publication.
+                                    </p>
+                                </div>
+
+                                <Button
+                                    type="submit"
+                                    disabled={isPending}
+                                    className="h-10 shrink-0 rounded-lg bg-[#6E42F4] hover:bg-[#5C36D0] px-5 text-sm font-semibold text-white transition-colors">
+                                    {isPending ? (
+                                        <>
+                                            <Loader2 className="mr-2 size-4 animate-spin" />
+                                            Submitting
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Rocket className="mr-2 size-4" />
+                                            Launch project
+                                        </>
+                                    )}
+                                </Button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-        </div>
-
-        {/* RIGHT SIDE: The Form */}
-        <form
-          action={formAction}
-          className="bg-white border-[3px] border-black rounded-[32px] p-8 md:p-10 shadow-[10px_10px_0px_0px_#000] space-y-7">
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                label="name"
-                name="name"
-                id="name"
-                placeholder="Linear"
-                required
-                onChange={() => {}}
-                error={getFieldErrors("name")}
-              />
-              <FormField
-                label="slug"
-                name="slug"
-                id="slug"
-                placeholder="linear"
-                required
-                onChange={() => {}}
-                error={getFieldErrors("slug")}
-              />
-            </div>
-
-            <FormField
-              label="website"
-              name="websiteUrl"
-              id="websiteUrl"
-              placeholder="https://linear.app"
-              required
-              onChange={() => {}}
-              error={getFieldErrors("websiteUrl")}
-            />
-            <FormField
-              label="short intro"
-              name="tagline"
-              id="tagline"
-              placeholder="Issue tracking you'll enjoy using"
-              required
-              onChange={() => {}}
-              error={getFieldErrors("tagline")}
-            />
-            <FormField
-              label="tags"
-              name="tags"
-              id="tags"
-              placeholder="saas, productivity, developer-tools"
-              required
-              onChange={() => {}}
-              error={getFieldErrors("tags")}
-            />
-            <FormField
-              label="full story"
-              name="description"
-              id="description"
-              placeholder="Tell the community what you built..."
-              required
-              onChange={() => {}}
-              error={getFieldErrors("description")}
-              textarea
-            />
-          </div>
-
-          <div className="border-t-2 border-black/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-6">
-            <div className="text-center sm:text-left">
-              <p className="font-black text-sm">Ready to launch?</p>
-              <p className="text-xs text-black/50">
-                Your submission will be reviewed first.
-              </p>
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isPending}
-              size="lg"
-              className="
-                            min-w-[220px]
-                            text-base
-                            font-black
-                        ">
-              {isPending ? (
-                <Loader2 className="size-5 animate-spin" />
-              ) : (
-                <>
-                  <Rocket className="mr-2 size-5" /> Launch Project
-                </>
-              )}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+        </main>
+    );
 }

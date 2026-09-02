@@ -7,6 +7,7 @@ import { getAllProducts } from "@/lib/products/product-select";
 import { verifyAdmin } from "@/lib/admin/verify-admin";
 
 import { ShieldCheck, Clock3, History, Sparkles } from "lucide-react";
+import BackHome from "@/components/common/back-home";
 
 export const metadata: Metadata = {
     title: "Admin Dashboard | Atlash",
@@ -61,9 +62,13 @@ export default async function AdminPage() {
     );
 
     return (
-        <main className="min-h-screen bg-background pt-32 pb-24 lg:pt-40 lg:pb-32">
-            <div className="wrapper max-w-7xl">
+        <main className="min-h-screen pt-20 pb-20">
+            <div className="wrapper">
                 {/* HERO */}
+                <div className="mb-8">
+                    <BackHome />
+                </div>
+
                 <section className="mb-14 lg:mb-20">
                     <div className="overflow-hidden rounded-[36px] border-2 border-black bg-white shadow-[8px_8px_0px_0px_#000]">
                         <div className="flex flex-col gap-10 px-6 py-8 md:px-10 md:py-10 lg:flex-row lg:items-center lg:justify-between">

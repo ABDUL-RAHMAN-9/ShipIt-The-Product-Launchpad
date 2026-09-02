@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import {
-    Scale,
-    ChevronLeft,
-    ShieldCheck,
-    FileCheck,
-    Sparkles,
-} from "lucide-react";
-import Link from "next/link";
+import { Scale, ShieldCheck, FileCheck, Sparkles } from "lucide-react";
+import BackHome from "@/components/common/back-home";
 
 export const metadata: Metadata = {
     title: "Terms of Service",
@@ -26,33 +20,11 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
     return (
-        <main className="py-16 lg:py-24 bg-background">
-            <div className="wrapper max-w-4xl px-4 pt-10 pb-20">
-                {/* back */}
+        <main className="pt-20 pb-20">
+            <div className="wrapper">
+                {/* Back navigation */}
                 <div className="mb-8">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-3 group">
-                        <div
-                            className="
-                        p-2
-                        rounded-xl
-                        bg-[#FFB38A]
-                        border-2
-                        border-black
-                        shadow-[3px_3px_0px_0px_#000]
-                        transition-all
-                        group-hover:shadow-none
-                        group-hover:translate-x-[2px]
-                        group-hover:translate-y-[2px]
-                    ">
-                            <ChevronLeft className="size-4" />
-                        </div>
-
-                        <span className="font-black text-black/60 group-hover:text-black">
-                            back home
-                        </span>
-                    </Link>
+                    <BackHome />
                 </div>
 
                 <div className="space-y-14">

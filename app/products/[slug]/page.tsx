@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getProductBySlug } from "@/lib/products/product-select";
 import {
-    ChevronLeft,
     Calendar,
     Box,
     User,
@@ -15,7 +14,7 @@ import {
     Sparkles,
     TrendingUp,
 } from "lucide-react";
-import Link from "next/link";
+import BackHome from "@/components/common/back-home";
 
 /**
  * SEO Metadata
@@ -88,35 +87,12 @@ export default async function ProductDetailPage({
     const communityScore = Math.floor(product.voteCount * 1.8 + 120);
 
     return (
-        <main className="pt-34 pb-34">
+        <main className="pt-20 pb-20">
             <div className="wrapper">
-                {/* back */}
+                {/* Back navigation */}
                 <div className="mb-8">
-                    <Link
-                        href="/explore"
-                        className="inline-flex items-center gap-3 group">
-                        <div
-                            className="
-                        p-2
-                        rounded-xl
-                        bg-[#FFB38A]
-                        border-2
-                        border-black
-                        shadow-[3px_3px_0px_0px_#000]
-                        transition-all
-                        group-hover:shadow-none
-                        group-hover:translate-x-0.5
-                        group-hover:translate-y-0.5
-                    ">
-                            <ChevronLeft className="size-4" />
-                        </div>
-
-                        <span className="font-black text-black/60 group-hover:text-black">
-                            Back to explore
-                        </span>
-                    </Link>
+                    <BackHome href="/explore" label="Back to explore" />
                 </div>
-
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
                     {/* LEFT */}
                     <div className="lg:col-span-8 space-y-10">

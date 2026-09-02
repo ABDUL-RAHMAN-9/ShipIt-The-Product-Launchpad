@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import ProductExplorer from "@/components/products/product-explorer";
 import { getAllApprovedProducts } from "@/lib/products/product-select";
-import { ChevronLeft, Rocket, Users, TrendingUp } from "lucide-react";
-import Link from "next/link";
+import { Rocket, Users, TrendingUp } from "lucide-react";
+import BackHome from "@/components/common/back-home";
 
 export const metadata: Metadata = {
     title: "Explore",
@@ -23,33 +23,11 @@ export default async function ExplorePage() {
     const totalMakers = Math.floor(totalVotes * 0.55 + 200);
 
     return (
-        <main className="pt-28 md:pt-36 pb-20">
+        <main className="pt-20 pb-20">
             <div className="wrapper">
                 {/* Back navigation */}
                 <div className="mb-8">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-3 group">
-                        <div
-                            className="
-                                p-2
-                                rounded-xl
-                                bg-[#FFB38A]
-                                border-2
-                                border-black
-                                shadow-[3px_3px_0px_0px_#000]
-                                transition-all
-                                group-hover:shadow-none
-                                group-hover:translate-x-0.5
-                                group-hover:translate-y-0.5
-                            ">
-                            <ChevronLeft className="size-4" />
-                        </div>
-
-                        <span className="font-black text-black/60 group-hover:text-black">
-                            back home
-                        </span>
-                    </Link>
+                    <BackHome />
                 </div>
 
                 {/* Explore Header */}

@@ -78,8 +78,9 @@ body::after {
     --color-brand-green: oklch(0.88 0.12 150);
     --color-brand-dark: oklch(0.12 0 0);
 
+    --font-mono: var(--font-martian);
+
     --font-sans: var(--font-sans);
-    --font-mono: var(--font-mono);
     --font-serif: var(--font-serif);
 
     --radius-sm: calc(var(--radius) - 4px);

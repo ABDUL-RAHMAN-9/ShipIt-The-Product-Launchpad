@@ -9,7 +9,12 @@ export default async function FeaturedProducts() {
         <section className="relative w-full border-b-2 border-[#10201D] bg-[#F2F2EB] py-20 md:py-28">
             <div className="wrapper">
                 <SectionHeader
-                    title="Top Picks of the Week"
+                    title={
+                        <>
+                            Top Picks of the{" "}
+                            <span className="text-[#E53A28]">Week</span>
+                        </>
+                    }
                     description="A curated selection of products gaining momentum across the builder community."
                     href="/explore"
                 />

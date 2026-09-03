@@ -1,5 +1,5 @@
+// app/terms/page.tsx
 import type { Metadata } from "next";
-import { Scale, ShieldCheck, FileCheck, Sparkles } from "lucide-react";
 import BackHome from "@/components/common/back-home";
 
 export const metadata: Metadata = {
@@ -20,101 +20,147 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
     return (
-        <main className="pt-20 pb-20">
-            <div className="wrapper">
+        <main className="pt-20 pb-20 bg-[#F3F0FA] dark:bg-[#09080D] min-h-screen font-sans">
+            <div className="mx-auto max-w-4xl px-6 md:px-8">
                 {/* Back navigation */}
-                <div className="mb-8">
+                <div className="mb-10">
                     <BackHome />
                 </div>
 
-                <div className="space-y-14">
-                    {/* Hero */}
-                    <section className="bg-white border-2 border-black rounded-[32px] p-8 md:p-10 shadow-[8px_8px_0px_0px_#000]">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#B19CFF] border-2 border-black mb-6">
-                            <Scale className="size-4" />
-                            <span className="text-xs font-black uppercase">
-                                Terms & Conditions
-                            </span>
-                        </div>
-
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4">
-                            Fair rules
-                            <br />
-                            build trust.
+                {/* Main Content Layout */}
+                <article className="space-y-12">
+                    {/* Header */}
+                    <header>
+                        <h1 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-950 dark:text-white mb-4">
+                            Terms of Service
                         </h1>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                            Fair rules build trust.
+                        </p>
+                    </header>
 
-                        <p className="text-lg md:text-xl text-black/60 leading-relaxed max-w-2xl">
-                            Atlash is built around transparency, ownership, and
-                            respect for creators. These terms explain how we
-                            keep the platform reliable for everyone.
+                    {/* Introductory Left-Bordered Callout Box */}
+                    <div className="border-l-4 border-[#B19CFF] bg-white p-6 rounded-r-2xl dark:bg-[#111015]">
+                        <p className="text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">
+                            Atlash Hub is built around transparency, ownership,
+                            and respect for creators. These terms explain how we
+                            keep the platform reliable, secure, and useful for
+                            everyone.
+                        </p>
+                    </div>
+
+                    {/* Section: Agreement to Terms */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Agreement to terms
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            Welcome to Atlash Hub. By accessing or using our
+                            community-driven product discovery platform, you
+                            agree to comply with and be bound by these Terms of
+                            Service. These rules help us maintain a
+                            high-quality, trusted ecosystem where makers can
+                            showcase their work and developers can discover
+                            reliable, validated tools.
                         </p>
                     </section>
 
-                    {/* Content */}
-                    <div className="space-y-8">
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <ShieldCheck className="size-5 text-[#B19CFF]" />
-                                <h2 className="text-2xl font-black">
-                                    Use Atlash responsibly
-                                </h2>
-                            </div>
+                    {/* Section: Accounts & Authentication */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Accounts & authentication
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            To list a product, upvote launches, or participate
+                            in the community, you must authenticate securely via
+                            our Better Auth system using Google or GitHub. You
+                            are entirely responsible for maintaining the
+                            security of your session and account. Any activity
+                            linked to your session, including submitted project
+                            metadata, is your sole responsibility.
+                        </p>
+                    </section>
 
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                By using Atlash, you agree to submit authentic
-                                products, respect other builders, and avoid
-                                malicious, fraudulent, or misleading content.
-                            </p>
-                        </section>
+                    {/* Section: Product Submission & Validation */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Product submission rules
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            Every product submitted to Atlash Hub must pass
+                            through our server-side validation pipeline. By
+                            submitting a listing, you represent and warrant that
+                            the tool is authentic, actively maintained, free
+                            from malicious code, and owned or licensed by you.
+                            Spag, misleading tags, or duplicate listings violate
+                            our database integrity constraints.
+                        </p>
+                    </section>
 
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <FileCheck className="size-5 text-[#FFB38A]" />
-                                <h2 className="text-2xl font-black">
-                                    You own your work
-                                </h2>
-                            </div>
+                    {/* Section: Ownership & Licensing */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Ownership of your work
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            You retain absolute ownership of your products,
+                            brands, assets, and intellectual property. By
+                            submitting a product to Atlash Hub, you grant us a
+                            worldwide, non-exclusive, royalty-free license to
+                            index, display, and share your project inside our
+                            discovery feed to make it discoverable by other
+                            builders.
+                        </p>
+                    </section>
 
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                Creators retain ownership of their products,
-                                brands, and intellectual property. By submitting
-                                a product, you allow Atlash to display and index
-                                it within the platform.
-                            </p>
-                        </section>
+                    {/* Section: Moderation & Quality Control */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Moderation & administrative control
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            To ensure discovering reliable software remains
+                            easy, Atlash Hub is not a static directory. We
+                            employ a multi-stage administrator moderation
+                            pipeline. We reserve the absolute right to review,
+                            reject, modify tags, or delete any project
+                            submission that lowers the overall quality of the
+                            platform or violates community guidelines.
+                        </p>
+                    </section>
 
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <Sparkles className="size-5 text-[#B19CFF]" />
-                                <h2 className="text-2xl font-black">
-                                    Community moderation
-                                </h2>
-                            </div>
+                    {/* Section: System Integrity */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            System integrity & upvoting
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            Our voting mechanism is protected by server-side
+                            validation and database-level constraints. Any
+                            attempt to manipulate vote counts, bot accounts, or
+                            exploit system authentication violates these terms.
+                            Violators face immediate session revocation and
+                            permanent platform bans to preserve the trust of our
+                            builders.
+                        </p>
+                    </section>
 
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                Atlash reserves the right to review, reject, or
-                                remove submissions that violate community
-                                standards or reduce the quality of the platform.
-                            </p>
-                        </section>
-
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <Scale className="size-5 text-[#FFB38A]" />
-                                <h2 className="text-2xl font-black">
-                                    Platform responsibility
-                                </h2>
-                            </div>
-
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                Atlash provides discovery and community
-                                features. Users should perform their own
-                                evaluation before using any third-party product
-                                or service listed on the platform.
-                            </p>
-                        </section>
-                    </div>
-                </div>
+                    {/* Section: Limitation of Liability */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Limitation of liability
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            Atlash Hub is provided on an &quot;as-is&quot; and
+                            &quot;as-available&quot; basis. While we moderate
+                            listed software, we do not verify the stability,
+                            safety, or security of external tools showcased on
+                            the platform. Users must perform their own thorough
+                            evaluations and exercise caution before utilizing
+                            any third-party services listed here.
+                        </p>
+                    </section>
+                </article>
             </div>
         </main>
     );

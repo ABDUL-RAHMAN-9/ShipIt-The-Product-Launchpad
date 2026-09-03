@@ -33,7 +33,6 @@ export default function SectionHeader({
                     <Button asChild variant="default">
                         <Link href={href} className="group">
                             View all
-                            <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                     </Button>
                 </div>

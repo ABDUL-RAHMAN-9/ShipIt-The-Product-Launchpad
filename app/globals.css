@@ -4,6 +4,41 @@
 
 @custom-variant dark (&:is(.dark *));
 
+body {
+    position: relative;
+    margin: 0;
+    isolation: isolate;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.075;
+    mix-blend-mode: multiply;
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(24, 37, 34, 0.6) 0px,
+            rgba(24, 37, 34, 0.6) 0.45px,
+            transparent 0.65px
+        ),
+        radial-gradient(
+            circle,
+            rgba(247, 247, 242, 0.6) 0px,
+            rgba(247, 247, 242, 0.6) 0.35px,
+            transparent 0.55px
+        );
+    background-position:
+        0px 0px,
+        4px 5px;
+    background-size:
+        7px 7px,
+        11px 11px;
+}
+
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -37,6 +72,7 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
     --color-brand-violet: oklch(0.72 0.16 295);
     --color-brand-peach: oklch(0.82 0.12 45);
     --color-brand-green: oklch(0.88 0.12 150);
@@ -51,27 +87,20 @@
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
 
-    /* Updated for Hard Neobrutalist Shadows */
     --shadow-sm: 2px 2px 0px 0px var(--foreground);
     --shadow-md: 4px 4px 0px 0px var(--foreground);
     --shadow-lg: 8px 8px 0px 0px var(--foreground);
 
-    /* Hard 3D Shadows */
     --shadow-nb-md: 4px 4px 0px 0px #000000;
     --shadow-nb-lg: 8px 8px 0px 0px #000000;
     --shadow-nb-ink: 4px 4px 0px 0px oklch(0.12 0 0 / 0.2);
 }
 
 :root {
-    /* Canvas Background (Cream) & Ink Foreground (Black) */
     --background: oklch(0.98 0.01 90);
     --foreground: oklch(0.12 0 0);
 
-    --primary: oklch(0.72 0.16 295); /* Violet */
-    --secondary: oklch(0.82 0.12 45); /* Peach */
-
     --border: oklch(0.12 0 0);
-
     --radius: 0.75rem;
 
     --card: oklch(1 0 0);
@@ -79,24 +108,21 @@
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.12 0 0);
 
-    /* Primary: Creem Purple */
-    --primary: oklch(0.72 0.16 295);
+    --primary: oklch(0.72 0.16 295); /* Violet */
     --primary-foreground: oklch(0.12 0 0);
 
-    /* Secondary: Creem Mint Green */
-    --secondary: oklch(0.88 0.12 150);
+    --secondary: oklch(0.88 0.12 150); /* Creem Mint Green */
     --secondary-foreground: oklch(0.12 0 0);
 
-    /* Muted & Accents (Peach/Orange) */
     --muted: oklch(0.95 0.01 90);
     --muted-foreground: oklch(0.4 0.01 260);
-    --accent: oklch(0.85 0.12 60);
+
+    --accent: oklch(0.85 0.12 60); /* Peach/Orange */
     --accent-foreground: oklch(0.12 0 0);
 
     --destructive: oklch(0.6 0.2 25);
     --destructive-foreground: oklch(1 0 0);
 
-    /* Neobrutalist Borders */
     --input: oklch(0.12 0 0);
     --ring: oklch(0.72 0.16 295);
 
@@ -114,7 +140,6 @@
 
 @layer base {
     * {
-        /* Set default border width to 2px for the neobrutalist look */
         @apply border-foreground/10 outline-ring/50 p-0 m-0;
     }
 
@@ -132,16 +157,14 @@
         @apply container mx-auto px-6 lg:px-12;
     }
 
-    /* Keeps your existing hover logic but uses the new hard shadows */
     .card-hover {
-        @apply border-2 border-foreground shadow-md hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 ease-in-out;
+        @apply border-2 border-foreground shadow-nb-md hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 ease-in-out;
     }
 
     .empty-state {
         @apply border-dashed border-4 rounded-4xl p-16 text-center bg-secondary/10;
     }
 
-    /* The "Creem" Wavy Divider Base */
     .wave-divider {
         mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48H1440V0C1400 0 1360 24 1280 24C1200 24 1160 0 1080 0C1000 0 960 24 880 24C800 24 760 0 680 0C600 0 560 24 480 24C400 24 360 0 280 0C200 0 160 24 80 24C40 24 20 12 0 0V48Z" fill="black"/></svg>');
         mask-size: 100% 48px;

@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 
 interface SectionHeaderProps {
-    title: string;
+    title: React.ReactNode;
     description?: string;
     href?: string;
     hideButton?: boolean;
@@ -18,7 +18,7 @@ export default function SectionHeader({
     return (
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-8">
             <div className="space-y-3">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-none">
+                <h2 className="font-serif font-extrabold text-[clamp(2rem,3.5vw,2.8rem)] tracking-[-0.04em] leading-[0.94] text-balance text-foreground">
                     {title}
                 </h2>
 
@@ -32,7 +32,7 @@ export default function SectionHeader({
                 <div className="shrink-0">
                     <Button asChild variant="default">
                         <Link href={href} className="group">
-                            View All
+                            View all
                             <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                     </Button>

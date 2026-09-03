@@ -28,10 +28,10 @@ export default function BackHome({
           group-hover:translate-y-0.5
           group-hover:shadow-none
         ">
-                <ChevronLeft className="size-4 text-black" />
+                <ChevronLeft className="size-4 text-[#0F201D]" />
             </div>
 
-            <span className="font-black text-black/60 transition-colors group-hover:text-black">
+            <span className="font-black text-[#0F201D]/60 transition-colors group-hover:text-[#0F201D]">
                 {label}
             </span>
         </Link>

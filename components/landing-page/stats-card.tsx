@@ -22,12 +22,12 @@ export default function StatsCard({
             )}>
             <div className="flex items-center justify-center gap-3 mb-2">
                 {/* Fixed: Icon is now used correctly */}
-                <Icon className="size-6 text-black/40 group-hover:text-primary transition-colors" />
-                <p className="text-5xl font-black tracking-tighter text-black leading-none">
+                <Icon className="size-6 text-[#0F201D]/40 group-hover:text-primary transition-colors" />
+                <p className="text-5xl font-black tracking-tighter text-[#0F201D] leading-none">
                     {value}
                 </p>
             </div>
-            <p className="text-[10px] tracking-[0.2em] font-black text-black/40 uppercase">
+            <p className="text-[10px] tracking-[0.2em] font-black text-[#0F201D]/40 uppercase">
                 {label}
             </p>
         </div>

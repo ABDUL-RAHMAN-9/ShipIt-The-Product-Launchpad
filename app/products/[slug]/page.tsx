@@ -115,7 +115,7 @@ export default async function ProductDetailPage({
                                         {product.name}
                                     </h1>
 
-                                    <p className="mt-5 text-xl md:text-2xl text-black/65 font-medium leading-relaxed max-w-3xl">
+                                    <p className="mt-5 text-xl md:text-2xl text-[#0F201D]/65 font-medium leading-relaxed max-w-3xl">
                                         {product.tagline}
                                     </p>
                                 </div>
@@ -136,14 +136,14 @@ export default async function ProductDetailPage({
                         {/* Description */}
                         <div className="bg-white border-2 border-black rounded-4xl p-8 md:p-10 shadow-[8px_8px_0px_0px_#000]">
                             <div className="flex items-center gap-3 mb-8">
-                                <span className="text-xs font-black uppercase tracking-wider text-black/40">
+                                <span className="text-xs font-black uppercase tracking-wider text-[#0F201D]/40">
                                     about this project
                                 </span>
 
                                 <div className="flex-1 h-px bg-black/10" />
                             </div>
 
-                            <p className="text-lg md:text-xl leading-9 text-black/80">
+                            <p className="text-lg md:text-xl leading-9 text-[#0F201D]/80">
                                 {product.description}
                             </p>
 
@@ -154,7 +154,7 @@ export default async function ProductDetailPage({
                                         <Calendar className="size-5 text-[#B19CFF]" />
 
                                         <div>
-                                            <p className="text-[10px] uppercase font-black text-black/40">
+                                            <p className="text-[10px] uppercase font-black text-[#0F201D]/40">
                                                 launched
                                             </p>
 
@@ -170,7 +170,7 @@ export default async function ProductDetailPage({
                                         <User className="size-5 text-[#B19CFF]" />
 
                                         <div>
-                                            <p className="text-[10px] uppercase font-black text-black/40">
+                                            <p className="text-[10px] uppercase font-black text-[#0F201D]/40">
                                                 builder
                                             </p>
 
@@ -206,7 +206,7 @@ export default async function ProductDetailPage({
                                 hasVoted={hasVotedStatus}
                             />
 
-                            <p className="mt-6 text-sm font-medium text-black/60">
+                            <p className="mt-6 text-sm font-medium text-[#0F201D]/60">
                                 Support this project and help it reach the
                                 featured leaderboard.
                             </p>
@@ -214,10 +214,7 @@ export default async function ProductDetailPage({
 
                         {/* website */}
                         {product.websiteUrl && (
-                            <Button
-                                asChild
-                                size="lg"
-                                className="w-full h-16 bg-[#FFB38A]">
+                            <Button asChild size="xl" variant="default">
                                 <a
                                     href={product.websiteUrl}
                                     target="_blank"

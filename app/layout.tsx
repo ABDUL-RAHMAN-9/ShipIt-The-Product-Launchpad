@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
-import "./globals.css";
-import { Analytics } from "@vercel/analytics/react";
+import { Outfit, Martian_Mono, Barlow_Semi_Condensed } from "next/font/google";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react";
+
+import "@/app/globals.css";
 
 const outfit = Outfit({
     subsets: ["latin"],
+});
+
+const martianMono = Martian_Mono({
+    subsets: ["latin"],
+    variable: "--font-martian",
+});
+
+const barlow = Barlow_Semi_Condensed({
+    subsets: ["latin"],
+    weight: ["700", "800"],
+    variable: "--font-barlow",
 });
 
 export const metadata: Metadata = {
@@ -14,14 +26,7 @@ export const metadata: Metadata = {
         template: "%s | Atlash Hub",
     },
     description:
-        "Atlash is the industry-standard intelligence layer for scaling digital infrastructure. By centralizing product lifecycles and simplifying multi-stack verification, Atlash reduces operational overhead by 70% and accelerates time-to-market by 45%.",
-    keywords: [
-        "Infrastructure Registry",
-        "Deployment Control Plane",
-        "Reliability Index",
-        "Enterprise Digital Assets",
-        "Architectural Integrity",
-    ],
+        "Atlash is a minimal showcase platform for discovering remarkable developer products, sharing your own open-source projects, and connecting with the global builder community.",
     icons: {
         icon: "/icon.svg",
     },
@@ -35,9 +40,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${outfit.className} antialiased relative min-h-screen bg-[#F9F7F0]`}>
-                <div aria-hidden="true" />
-
+                className={`${outfit.className} ${martianMono.variable} ${barlow.variable} antialiased relative min-h-screen bg-[#FBF7F0]`}>
                 {children}
 
                 <Toaster

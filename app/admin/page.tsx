@@ -88,7 +88,7 @@ export default async function AdminPage() {
                                     Submissions
                                 </h1>
 
-                                <p className="mt-5 max-w-2xl text-base leading-7 text-black/60 md:text-lg">
+                                <p className="mt-5 max-w-2xl text-base leading-7 text-[#0F201D]/60 md:text-lg">
                                     Review new products, approve quality
                                     launches, reject spam, and keep the Atlash
                                     directory curated for the community.
@@ -98,7 +98,7 @@ export default async function AdminPage() {
                             {/* Right Summary */}
                             <div className="grid gap-4 sm:grid-cols-2 lg:w-[280px] lg:grid-cols-1">
                                 <div className="rounded-3xl border-2 border-black bg-[#F9F7F0] p-6">
-                                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-black/40">
+                                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#0F201D]/40">
                                         Pending Reviews
                                     </p>
 
@@ -106,7 +106,7 @@ export default async function AdminPage() {
                                         {pendingProducts.length}
                                     </p>
 
-                                    <p className="mt-2 text-sm text-black/60">
+                                    <p className="mt-2 text-sm text-[#0F201D]/60">
                                         Products waiting for moderation.
                                     </p>
                                 </div>
@@ -120,7 +120,7 @@ export default async function AdminPage() {
                                         </span>
                                     </div>
 
-                                    <p className="mt-3 text-sm leading-6 text-black/70">
+                                    <p className="mt-3 text-sm leading-6 text-[#0F201D]/70">
                                         This dashboard is protected by
                                         role-based access control. Only
                                         administrators can review and manage
@@ -153,7 +153,7 @@ export default async function AdminPage() {
                                     Moderation at a glance
                                 </h2>
 
-                                <p className="mt-3 max-w-2xl text-base leading-7 text-black/60">
+                                <p className="mt-3 max-w-2xl text-base leading-7 text-[#0F201D]/60">
                                     Monitor approved launches, pending reviews,
                                     rejected submissions, and overall platform
                                     activity from a single place.
@@ -161,7 +161,7 @@ export default async function AdminPage() {
                             </div>
 
                             <div className="rounded-2xl border-2 border-black bg-[#FFF5E9] px-5 py-3">
-                                <p className="text-xs font-black uppercase tracking-[0.18em] text-black/50">
+                                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0F201D]/50">
                                     Total Products
                                 </p>
 
@@ -208,7 +208,7 @@ export default async function AdminPage() {
                                         Pending Review
                                     </h2>
 
-                                    <p className="mt-2 max-w-2xl text-base leading-7 text-black/60">
+                                    <p className="mt-2 max-w-2xl text-base leading-7 text-[#0F201D]/60">
                                         Review each submission before it becomes
                                         visible to the community.
                                     </p>
@@ -216,7 +216,7 @@ export default async function AdminPage() {
                             </div>
 
                             <div className="rounded-2xl border-2 border-black bg-[#F9F7F0] px-5 py-4 text-center">
-                                <p className="text-xs font-black uppercase tracking-[0.18em] text-black/50">
+                                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0F201D]/50">
                                     Waiting
                                 </p>
 
@@ -274,7 +274,7 @@ export default async function AdminPage() {
                                         Review History
                                     </h2>
 
-                                    <p className="mt-2 max-w-2xl text-base leading-7 text-black/60">
+                                    <p className="mt-2 max-w-2xl text-base leading-7 text-[#0F201D]/60">
                                         Browse previously reviewed products,
                                         monitor moderation activity, and revisit
                                         approval decisions whenever needed.
@@ -283,7 +283,7 @@ export default async function AdminPage() {
                             </div>
 
                             <div className="rounded-2xl border-2 border-black bg-[#F9F7F0] px-5 py-4 text-center">
-                                <p className="text-xs font-black uppercase tracking-[0.18em] text-black/50">
+                                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0F201D]/50">
                                     Processed
                                 </p>
 

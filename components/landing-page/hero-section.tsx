@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Barlow_Semi_Condensed } from "next/font/google";
 import { Button } from "@/components/ui/button";
+import HeaderTag from "../common/header-tag";
 
 const heroHeadingFont = Barlow_Semi_Condensed({
     subsets: ["latin"],
@@ -10,16 +11,14 @@ const heroHeadingFont = Barlow_Semi_Condensed({
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-svh overflow-hidden bg-[#3D5F58] text-[#F7F7F2]">
+        <section className="relative min-h-svh overflow-hidden border-b-2 border-[#10201D] bg-[#3D5F58] text-[#F7F7F2]">
             {/* Main hero content */}
             <div className="relative z-10 flex min-h-svh flex-col items-center justify-center px-6 py-[clamp(60px,6vw,100px)] text-center sm:px-8">
                 <div className="flex w-full max-w-5xl flex-col items-center">
-                    <p className="mb-6 font-mono text-[0.90rem] font-semibold tracking-[0.08em] uppercase text-[#F6C4C1] text-center">
-                        <span className="block sm:inline">Built by makers</span>
-                        <span className="block sm:inline before:content-none sm:before:content-['·_'] sm:before:pl-1.5">
-                            Discovered by people
-                        </span>
-                    </p>
+                    <HeaderTag
+                        firstTitle="Built by makers"
+                        secondTitle="Discovered by people"
+                    />
 
                     {/* Main heading */}
                     <h1

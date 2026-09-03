@@ -53,7 +53,7 @@ export default function CustomUserButton() {
                                 <h3 className="font-black uppercase">
                                     {user.name}
                                 </h3>
-                                <p className="text-sm text-black/60">
+                                <p className="text-sm text-[#0F201D]/60">
                                     Authenticated User
                                 </p>
                             </div>
@@ -69,7 +69,7 @@ export default function CustomUserButton() {
                             </h2>
                         </div>
 
-                        <p className="text-sm text-black/60 mb-4">
+                        <p className="text-sm text-[#0F201D]/60 mb-4">
                             Switch between departmental hubs and organizational
                             nodes.
                         </p>
@@ -88,7 +88,7 @@ export default function CustomUserButton() {
                             </h2>
                         </div>
 
-                        <p className="text-sm text-black/60 mb-4">
+                        <p className="text-sm text-[#0F201D]/60 mb-4">
                             Audit and authorize pending infrastructure
                             deployments.
                         </p>

@@ -53,11 +53,11 @@ export default function ProductExplorer({
         <div className="space-y-10">
             <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4">
                 <div className="relative flex-1">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-black/20 size-5" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0F201D]/20 size-5" />
                     <Input
                         type="text"
                         placeholder="Search by name, tagline, or tags (e.g. #saas)..."
-                        className="h-14 pl-12 bg-white border-2 border-black rounded-2xl focus:ring-0 focus:ring-offset-0 placeholder:text-black/20 text-base shadow-none w-full lowercase"
+                        className="h-14 pl-12 bg-white border-2 border-black rounded-2xl focus:ring-0 focus:ring-offset-0 placeholder:text-[#0F201D]/20 text-base shadow-none w-full lowercase"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -70,8 +70,8 @@ export default function ProductExplorer({
                         className={cn(
                             "flex-1 md:flex-none flex items-center justify-center gap-2 px-6 h-14 rounded-2xl text-sm font-black transition-all border-2 border-black",
                             sortBy === "trending"
-                                ? "bg-[#FFB38A] text-black shadow-[4px_4px_0px_0px_#000]"
-                                : "bg-white text-black/40 hover:bg-black/5",
+                                ? "bg-[#FFB38A] text-[#0F201D] shadow-[4px_4px_0px_0px_#000]"
+                                : "bg-white text-[#0F201D]/40 hover:bg-black/5",
                         )}>
                         <TrendingUp className="size-4" />
                         Trending
@@ -82,8 +82,8 @@ export default function ProductExplorer({
                         className={cn(
                             "flex-1 md:flex-none flex items-center justify-center gap-2 px-6 h-14 rounded-2xl text-sm font-black transition-all border-2 border-black",
                             sortBy === "latest"
-                                ? "bg-[#B19CFF] text-black shadow-[4px_4px_0px_0px_#000]"
-                                : "bg-white text-black/40 hover:bg-black/5",
+                                ? "bg-[#B19CFF] text-[#0F201D] shadow-[4px_4px_0px_0px_#000]"
+                                : "bg-white text-[#0F201D]/40 hover:bg-black/5",
                         )}>
                         <Clock className="size-4" />
                         Recents
@@ -92,14 +92,14 @@ export default function ProductExplorer({
             </div>
 
             <div className="flex items-center justify-between px-1">
-                <p className="text-[10px] text-black/40 font-black uppercase tracking-widest">
+                <p className="text-[10px] text-[#0F201D]/40 font-black uppercase tracking-widest">
                     Showing {filteredProducts.length} results
                 </p>
 
                 {searchQuery && (
                     <button
                         onClick={() => setSearchQuery("")}
-                        className="text-[10px] font-black uppercase tracking-widest text-[#B19CFF] hover:text-black transition-colors">
+                        className="text-[10px] font-black uppercase tracking-widest text-[#B19CFF] hover:text-[#0F201D] transition-colors">
                         Clear Search
                     </button>
                 )}
@@ -114,9 +114,9 @@ export default function ProductExplorer({
             ) : (
                 <div className="py-32 text-center bg-black/2 rounded-4xl border-2 border-dashed border-black/5">
                     <div className="inline-flex p-4 bg-white border border-black/5 rounded-2xl mb-4">
-                        <Filter className="size-6 text-black/20" />
+                        <Filter className="size-6 text-[#0F201D]/20" />
                     </div>
-                    <p className="text-sm font-bold text-black/40 uppercase tracking-tighter">
+                    <p className="text-sm font-bold text-[#0F201D]/40 uppercase tracking-tighter">
                         No products match your search criteria
                     </p>
                 </div>

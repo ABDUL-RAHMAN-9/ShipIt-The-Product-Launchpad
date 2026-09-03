@@ -39,7 +39,7 @@ export default async function ExplorePage() {
                                 <span className="text-[#967AE9]"> scales.</span>
                             </h1>
 
-                            <p className="text-base md:text-lg text-black/65 font-medium leading-relaxed max-w-xl">
+                            <p className="text-base md:text-lg text-[#0F201D]/65 font-medium leading-relaxed max-w-xl">
                                 Browse startups, AI tools, side projects and
                                 developer products shared by builders around the
                                 world.

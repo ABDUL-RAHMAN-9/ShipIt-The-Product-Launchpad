@@ -81,7 +81,7 @@ body::after {
     --font-mono: var(--font-martian);
 
     --font-sans: var(--font-sans);
-    --font-serif: var(--font-serif);
+    --font-serif: var(--font-barlow);
 
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);

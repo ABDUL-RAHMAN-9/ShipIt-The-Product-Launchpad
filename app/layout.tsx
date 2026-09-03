@@ -36,10 +36,7 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body
                 className={`${outfit.className} antialiased relative min-h-screen bg-[#F9F7F0]`}>
-                <div
-                    className="texture pointer-events-none fixed inset-0 z-[-1] opacity-40"
-                    aria-hidden="true"
-                />
+                <div aria-hidden="true" />
 
                 {children}
 

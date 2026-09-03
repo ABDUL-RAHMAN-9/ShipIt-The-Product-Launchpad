@@ -5,27 +5,25 @@ import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-black transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-50 shrink-0 border-2 border-black",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-xs font-bold tracking-wide uppercase transition-all disabled:pointer-events-none disabled:opacity-50 shrink-0 border-2 border-black font-mono select-none",
     {
         variants: {
             variant: {
-                // peach brand color
                 default:
-                    "bg-[#FFB38A] font-semibold text-black shadow-[3px_3px_0px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none",
-                destructive:
-                    "bg-destructive text-white shadow-[3px_3px_0px_0px_#000] hover:shadow-none",
-                // white neobrutalist
+                    "bg-[#E97B77] text-black shadow-[5px_5px_0px_0px_#671811] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#671811] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
                 outline:
-                    "bg-white font-semibold text-black shadow-[3px_3px_0px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none",
+                    "bg-transparent text-white border-white/70 shadow-[5px_5px_0px_0px_#2e4742] hover:bg-white hover:text-black hover:border-white/70 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#2e4742] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
                 secondary:
-                    "bg-[#B19CFF] font-semibold text-black shadow-[3px_3px_0px_0px_#000] hover:shadow-none",
-                ghost: "border-transparent font-semibold shadow-none hover:bg-black/5",
-                link: "border-transparent font-semibold text-primary underline-offset-4 hover:underline shadow-none",
+                    "bg-[#B19CFF] text-black shadow-[5px_5px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#000000] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
+                ghost: "border-transparent shadow-none hover:bg-black/5 dark:hover:bg-white/5",
+                link: "border-transparent text-primary underline-offset-4 hover:underline shadow-none",
+                destructive:
+                    "bg-red-500 text-white shadow-[5px_5px_0px_0px_#922218] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#922218] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
             },
             size: {
-                sm: "h-9 px-4 text-xs",
-                default: "h-10 px-5 text-sm",
-                lg: "h-12 px-8 text-base",
+                sm: "h-9 px-4 text-[10px]",
+                default: "h-11 px-6 text-xs",
+                lg: "h-12 px-8 text-sm",
                 icon: "size-10",
             },
         },

@@ -51,7 +51,7 @@ export default function AdminStatsCard({
                     )}>
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-xs font-black uppercase tracking-[0.18em] text-black/45">
+                            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0F201D]/45">
                                 {label}
                             </p>
 

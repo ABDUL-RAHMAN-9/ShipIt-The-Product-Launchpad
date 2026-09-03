@@ -56,24 +56,24 @@ export default function AdminProductCard({
                             className={cn(
                                 "border-2 border-black px-3 py-1 text-[11px] font-black uppercase shadow-[2px_2px_0px_0px_#000]",
                                 product.status === "pending" &&
-                                    "bg-[#FFE08A] text-black",
+                                    "bg-[#FFE08A] text-[#0F201D]",
                                 product.status === "approved" &&
-                                    "bg-[#B8F5A2] text-black",
+                                    "bg-[#B8F5A2] text-[#0F201D]",
                                 product.status === "rejected" &&
-                                    "bg-[#FF9A9A] text-black",
+                                    "bg-[#FF9A9A] text-[#0F201D]",
                             )}>
                             {product.status}
                         </Badge>
                     </div>
 
-                    <p className="mt-4 max-w-3xl text-[15px] leading-7 text-black/60">
+                    <p className="mt-4 max-w-3xl text-[15px] leading-7 text-[#0F201D]/60">
                         {product.tagline}
                     </p>
                 </div>
             </div>
 
             {/* Metadata */}
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-black/60">
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[#0F201D]/60">
                 <div className="flex items-center gap-2">
                     <User className="size-4" />
                     <span>{product.submittedBy}</span>
@@ -88,7 +88,7 @@ export default function AdminProductCard({
                     <Link
                         href={product.websiteUrl}
                         target="_blank"
-                        className="flex items-center gap-2 font-medium transition hover:text-black">
+                        className="flex items-center gap-2 font-medium transition hover:text-[#0F201D]">
                         <ExternalLink className="size-4" />
                         Visit website
                     </Link>
@@ -101,7 +101,7 @@ export default function AdminProductCard({
                     {product.tags.map((tag) => (
                         <Badge
                             key={tag}
-                            className="rounded-full border-2 border-black bg-[#F9F7F0] px-3 py-1 text-xs font-bold text-black">
+                            className="rounded-full border-2 border-black bg-[#F9F7F0] px-3 py-1 text-xs font-bold text-[#0F201D]">
                             #{tag}
                         </Badge>
                     ))}

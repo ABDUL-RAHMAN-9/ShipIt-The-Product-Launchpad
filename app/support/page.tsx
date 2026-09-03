@@ -105,7 +105,7 @@ export default function SupportPage() {
                         <a
                             href="mailto:support@atlash.hub"
                             className="inline-flex items-center gap-4 p-4 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-[#111015] hover:border-[#B19CFF] transition-colors group">
-                            <div className="size-10 rounded-xl bg-[#FFB38A] flex items-center justify-center text-black shrink-0">
+                            <div className="size-10 rounded-xl bg-[#FFB38A] flex items-center justify-center text-[#0F201D] shrink-0">
                                 <Mail className="size-5" />
                             </div>
                             <div>

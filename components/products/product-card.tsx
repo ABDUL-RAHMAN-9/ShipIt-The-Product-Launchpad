@@ -61,14 +61,14 @@ export default function ProductCard({
                             {product.name}
                         </CardTitle>
 
-                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-black/20 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-black" />
+                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-[#0F201D]/20 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-[#0F201D]" />
                     </div>
 
                     <CardDescription className="mt-2 line-clamp-2 text-sm font-semibold leading-relaxed text-[#0F201D]/70">
                         {product.tagline}
                     </CardDescription>
 
-                    <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-black/45">
+                    <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#0F201D]/45">
                         <Users className="size-3.5" />
                         <span>{makers} makers using this</span>
                     </div>
@@ -86,7 +86,7 @@ export default function ProductCard({
                                 ))}
 
                                 {product.tags && product.tags.length > 2 && (
-                                    <span className="text-[10px] font-semibold text-black/40">
+                                    <span className="text-[10px] font-semibold text-[#0F201D]/40">
                                         +{product.tags.length - 2} more
                                     </span>
                                 )}

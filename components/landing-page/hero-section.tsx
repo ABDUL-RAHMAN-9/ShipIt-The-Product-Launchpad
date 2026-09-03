@@ -10,7 +10,7 @@ const heroHeadingFont = Barlow_Semi_Condensed({
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-svh overflow-hidden bg-[#3D5F58] text-[#F7F7F2]">
+        <section className="relative min-h-svh overflow-hidden border-b-2 border-[#10201D] bg-[#3D5F58] text-[#F7F7F2]">
             {/* Main hero content */}
             <div className="relative z-10 flex min-h-svh flex-col items-center justify-center px-6 py-[clamp(60px,6vw,100px)] text-center sm:px-8">
                 <div className="flex w-full max-w-5xl flex-col items-center">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Martian_Mono } from "next/font/google";
+import { Outfit, Martian_Mono, Barlow_Semi_Condensed } from "next/font/google";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -12,6 +12,12 @@ const outfit = Outfit({
 const martianMono = Martian_Mono({
     subsets: ["latin"],
     variable: "--font-martian",
+});
+
+const barlow = Barlow_Semi_Condensed({
+    subsets: ["latin"],
+    weight: ["700", "800"],
+    variable: "--font-barlow",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +40,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${outfit.className} ${martianMono.variable} antialiased relative min-h-screen bg-[#FBF7F0]`}>
+                className={`${outfit.className} ${martianMono.variable} ${barlow.variable} antialiased relative min-h-screen bg-[#FBF7F0]`}>
                 {children}
 
                 <Toaster

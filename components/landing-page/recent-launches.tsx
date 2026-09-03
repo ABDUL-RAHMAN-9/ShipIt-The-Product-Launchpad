@@ -11,7 +11,12 @@ export default async function RecentLaunches() {
         <section className="relative w-full border-b-2 border-[#10201D] bg-background py-20 md:py-28">
             <div className="wrapper">
                 <SectionHeader
-                    title="Featured Weekly Picks"
+                    title={
+                        <>
+                            The latest startups{" "}
+                            <span className="text-[#F5B726]">launched</span>
+                        </>
+                    }
                     description="The latest startups, side projects and experiments launched by our community."
                     href="/explore"
                 />

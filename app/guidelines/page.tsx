@@ -1,5 +1,5 @@
+// app/guidelines/page.tsx
 import type { Metadata } from "next";
-import { Heart, Sparkles, Shield } from "lucide-react";
 import BackHome from "@/components/common/back-home";
 
 export const metadata: Metadata = {
@@ -20,102 +20,101 @@ export const metadata: Metadata = {
 
 export default function GuidelinesPage() {
     return (
-        <main className="pt-20 pb-20">
-            <div className="wrapper">
+        <main className="pt-20 pb-20 bg-[#F3F0FA] dark:bg-[#09080D] min-h-screen font-sans">
+            <div className="mx-auto max-w-4xl px-6 md:px-8">
                 {/* Back navigation */}
-                <div className="mb-8">
+                <div className="mb-10">
                     <BackHome />
                 </div>
 
-                <div className="space-y-14">
-                    {/* Hero */}
-                    <section className="bg-white border-2 border-black rounded-4xl p-8 md:p-10 shadow-[8px_8px_0px_0px_#000]">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#B19CFF] border-2 border-black mb-6">
-                            <Heart className="size-4 fill-current" />
-                            <span className="text-xs font-black uppercase">
-                                Community Principles
-                            </span>
-                        </div>
-
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4">
-                            Build with
-                            <br />
-                            integrity.
+                {/* Main Content Layout */}
+                <article className="space-y-12">
+                    {/* Header */}
+                    <header>
+                        <h1 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-950 dark:text-white mb-4">
+                            Community Guidelines
                         </h1>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                            Build with integrity.
+                        </p>
+                    </header>
 
-                        <p className="text-lg md:text-xl text-black/60 leading-relaxed max-w-2xl">
+                    {/* Introductory Left-Bordered Callout Box */}
+                    <div className="border-l-4 border-[#B19CFF] bg-white p-6 rounded-r-2xl dark:bg-[#111015]">
+                        <p className="text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">
                             Atlash exists to celebrate builders shipping
                             meaningful products. These guidelines help us keep
                             the community authentic, supportive, and valuable
                             for everyone.
                         </p>
+                    </div>
+
+                    {/* Section: Share what you've built */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Share what you have built
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            Submit products that you have personally created,
+                            contributed to, or helped launch. Authentic
+                            ownership builds genuine trust, and trust builds
+                            communities worth joining. Because every submission
+                            is linked directly to your secure Better Auth
+                            session, submitting plagiarized, misleading, or
+                            stolen work will result in immediate account
+                            suspension and removal of all listed products.
+                        </p>
                     </section>
 
-                    {/* Rules */}
-                    <div className="space-y-8">
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <Sparkles className="size-5 text-[#B19CFF]" />
-                                <h2 className="text-2xl font-black">
-                                    Share what you&apos;ve built
-                                </h2>
-                            </div>
+                    {/* Section: Support fellow builders */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Support fellow builders
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            Great products come from healthy, collaborative
+                            communities. Offer constructive, thoughtful feedback
+                            on other builders&apos; product launches, engage in
+                            productive discussions, and help others improve.
+                            Coordinated upvote manipulation, botting, or using
+                            fake sessions violates our core values of fairness
+                            and will trigger database-level audit flags.
+                        </p>
+                    </section>
 
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                Submit products you have personally created,
-                                contributed to, or helped launch. Authenticity
-                                builds trust, and trust builds communities worth
-                                joining.
-                            </p>
-                        </section>
+                    {/* Section: Maintain quality */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Maintain submission quality
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            Ensure your submissions contain clear project names,
+                            descriptive taglines, accurate tags, and active,
+                            functioning URLs. Every product goes through our
+                            server-side validation pipeline (using Zod schemas)
+                            to prevent broken links or spam metadata.
+                            High-quality listings help the entire community
+                            discover better tools and startups.
+                        </p>
+                    </section>
 
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <Heart className="size-5 text-[#FFB38A]" />
-                                <h2 className="text-2xl font-black">
-                                    Support fellow builders
-                                </h2>
-                            </div>
-
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                Great products come from great communities.
-                                Offer thoughtful feedback, celebrate launches,
-                                and help others improve their work.
-                            </p>
-                        </section>
-
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <Shield className="size-5 text-[#B19CFF]" />
-                                <h2 className="text-2xl font-black">
-                                    Maintain quality
-                                </h2>
-                            </div>
-
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                Use accurate descriptions, active links,
-                                meaningful tags, and showcase real value.
-                                Quality submissions help everyone discover
-                                better products.
-                            </p>
-                        </section>
-
-                        <section className="bg-white border-2 border-black rounded-[28px] p-8 shadow-[6px_6px_0px_0px_#000]">
-                            <div className="flex items-center gap-3 mb-5">
-                                <Shield className="size-5 text-[#FFB38A]" />
-                                <h2 className="text-2xl font-black">
-                                    Protect the ecosystem
-                                </h2>
-                            </div>
-
-                            <p className="text-lg text-black/70 leading-relaxed">
-                                Malicious software, phishing attempts, spam, and
-                                deceptive content have zero tolerance. We work
-                                hard to keep Atlash safe for every builder.
-                            </p>
-                        </section>
-                    </div>
-                </div>
+                    {/* Section: Protect the ecosystem */}
+                    <section className="space-y-3">
+                        <h2 className="text-2xl font-black tracking-tight text-zinc-950 dark:text-white">
+                            Protect the ecosystem
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                            We have zero tolerance for malicious software,
+                            phishing links, misleading redirects, or spam. To
+                            protect builders, we operate a scalable, multi-stage
+                            administrator moderation pipeline. Administrators
+                            actively review submissions and reserve the right to
+                            modify tags, reject listings, or remove products to
+                            preserve the integrity and security of the Atlash
+                            Hub index.
+                        </p>
+                    </section>
+                </article>
             </div>
         </main>
     );

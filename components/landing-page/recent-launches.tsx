@@ -8,7 +8,7 @@ export default async function RecentLaunches() {
     const recentProducts = await getRecentProducts();
 
     return (
-        <section className="py-24 bg-background">
+        <section className="relative w-full border-b-2 border-[#10201D] bg-background py-20 md:py-28">
             <div className="wrapper">
                 <SectionHeader
                     title="Featured Weekly Picks"

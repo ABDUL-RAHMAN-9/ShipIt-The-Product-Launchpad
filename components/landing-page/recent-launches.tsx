@@ -1,5 +1,5 @@
 import SectionHeader from "@/components/common/section-header";
-import { Calendar } from "lucide-react";
+import { Inbox } from "lucide-react";
 import ProductCard from "@/components/products/product-card";
 import EmptyState from "@/components/common/empty-state";
 import { getRecentProducts } from "@/lib/products/product-select";
@@ -8,16 +8,16 @@ export default async function RecentLaunches() {
     const recentProducts = await getRecentProducts();
 
     return (
-        <section className="relative w-full border-b-2 border-[#10201D] bg-background py-20 md:py-28">
+        <section className="relative w-full border-b-2 border-[#0F201D] bg-background py-20 md:py-28">
             <div className="wrapper">
                 <SectionHeader
                     title={
                         <>
-                            The latest startups{" "}
-                            <span className="text-[#F5B726]">launched</span>
+                            Fresh products newly{" "}
+                            <span className="text-[#E53A28]">launched</span>
                         </>
                     }
-                    description="The latest startups, side projects and experiments launched by our community."
+                    description="Explore the newest side projects, SaaS startups, and digital experiments built by our global community."
                     href="/explore"
                 />
 
@@ -31,7 +31,7 @@ export default async function RecentLaunches() {
                     <EmptyState
                         message="it's a quiet week!"
                         description="We're waiting for the next great launch. Check back soon or become the first builder to ship something new."
-                        icon={Calendar}
+                        icon={Inbox}
                     />
                 )}
             </div>

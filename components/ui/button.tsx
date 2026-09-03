@@ -12,7 +12,7 @@ const buttonVariants = cva(
                 default:
                     "bg-[#E97B77] text-black shadow-[5px_5px_0px_0px_#671811] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#671811] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
                 outline:
-                    "bg-transparent text-white border-white/70 shadow-[5px_5px_0px_0px_#2e4742] hover:bg-white hover:text-black hover:border-white/70 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#2e4742] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
+                    "bg-transparent text-white border-white/70 shadow-[5px_5px_0px_0px_#2e4742] hover:bg-white hover:text-[#0F201D] hover:border-white/70 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#2e4742] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
                 secondary:
                     "bg-[#B19CFF] text-black shadow-[5px_5px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[3px_3px_0px_0px_#000000] active:translate-x-[5px] active:translate-y-[5px] active:shadow-none",
                 ghost: "border-transparent shadow-none hover:bg-black/5 dark:hover:bg-white/5",
@@ -24,6 +24,7 @@ const buttonVariants = cva(
                 sm: "h-9 px-4 text-[10px]",
                 default: "h-11 px-6 text-xs",
                 lg: "h-12 px-8 text-sm",
+                xl: "h-16 w-full text-sm",
                 icon: "size-10",
             },
         },

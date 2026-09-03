@@ -1,8 +1,8 @@
-import React, { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logoIcon from "@/app/icon.svg";
+import { Suspense } from "react";
 
+import logoIcon from "@/app/icon.svg";
 import { Button } from "../ui/button";
 import UserMenu from "./user-menu";
 import { getCurrentSession } from "@/lib/auth-session";
@@ -10,12 +10,13 @@ import { isAdmin } from "@/lib/admin/admin-config";
 
 export default function Header() {
     return (
-        <div className="fixed top-4 left-0 right-0 z-50 px-4 md:px-8">
-            <header className="max-w-6xl mx-auto h-16 bg-white border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_#000] flex items-center justify-between px-6 relative dark:bg-[#111015] dark:border-zinc-800">
-                {/* Brand Logo  */}
+        <div className="fixed top-4 right-0 left-0 z-50 px-4 sm:px-6 md:px-8">
+            <header className="relative mx-auto flex h-14 max-w-240 items-center justify-between rounded-xl border-2 border-[#10201D] bg-[#F7F7F2] px-4 shadow-[4px_4px_0_#10201D] sm:px-5 md:px-6">
+                {/* Brand */}
                 <Link
                     href="/"
-                    className="flex items-center gap-2 group transition-transform active:scale-95 shrink-0 z-10">
+                    aria-label="Atlash home"
+                    className="group z-10 flex shrink-0 items-center gap-2 transition-transform duration-150 active:scale-95">
                     <Image
                         src={logoIcon}
                         alt="ATLASH Logo"
@@ -24,30 +25,36 @@ export default function Header() {
                         className="size-6.5"
                         priority
                     />
-                    <span className="text-[22px] font-[1000] uppercase tracking-tighter leading-none text-black selection:bg-[#B19CFF] dark:text-white">
+
+                    <span className="text-[21px] font-black uppercase leading-none tracking-[-0.04em] text-[#10201D]">
                         Atlash
                     </span>
                 </Link>
 
-                {/* Navigation Links  */}
-                <nav className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 -translate-x-1/2 z-0">
+                {/* Desktop navigation */}
+                <nav
+                    aria-label="Main navigation"
+                    className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex">
                     <Link
                         href="/explore"
-                        className="text-sm font-bold text-black/60 hover:text-black transition-colors dark:text-zinc-400 dark:hover:text-white">
+                        className="text-[13px] font-semibold text-[#10201D]/60 transition-colors duration-150 hover:text-[#10201D]">
                         Explore
                     </Link>
+
                     <Link
                         href="/submit"
-                        className="text-sm font-bold text-black/60 hover:text-black transition-colors dark:text-zinc-400 dark:hover:text-white">
+                        className="text-[13px] font-semibold text-[#10201D]/60 transition-colors duration-150 hover:text-[#10201D]">
                         Submit
                     </Link>
+
                     <Link
                         href="/support"
-                        className="text-sm font-bold text-black/60 hover:text-black transition-colors dark:text-zinc-400 dark:hover:text-white">
+                        className="text-[13px] font-semibold text-[#10201D]/60 transition-colors duration-150 hover:text-[#10201D]">
                         Support
                     </Link>
                 </nav>
 
+                {/* Authentication */}
                 <div className="z-10 shrink-0">
                     <Suspense fallback={<AuthAreaSkeleton />}>
                         <AuthArea />
@@ -72,12 +79,12 @@ async function AuthArea() {
     }
 
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
             <Link href="/sign-in">
                 <Button
                     variant="outline"
                     size="sm"
-                    className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer">
+                    className="h-9 rounded-md border-[#10201D] bg-transparent px-4 text-xs font-bold text-[#10201D] shadow-[2px_2px_0_#10201D] transition-all duration-150 hover:bg-[#10201D]/5 hover:shadow-[1px_1px_0_#10201D] active:translate-x-px active:translate-y-px active:shadow-none">
                     Log in
                 </Button>
             </Link>
@@ -85,7 +92,7 @@ async function AuthArea() {
             <Link href="/sign-up">
                 <Button
                     size="sm"
-                    className="font-bold shadow-[2px_2px_0px_0px_#000] cursor-pointer active:shadow-none active:translate-x-px active:translate-y-px">
+                    className="h-9 rounded-md border-2 border-[#10201D] bg-[#E97B77] px-4 text-xs font-bold text-[#10201D] shadow-[2px_2px_0_#10201D] transition-all duration-150 hover:bg-[#E97B77] hover:shadow-[1px_1px_0_#10201D] active:translate-x-px active:translate-y-px active:shadow-none">
                     Get started
                 </Button>
             </Link>
@@ -95,9 +102,9 @@ async function AuthArea() {
 
 function AuthAreaSkeleton() {
     return (
-        <div className="flex items-center gap-3 animate-pulse">
-            <div className="h-9 w-16 bg-stone-100 rounded-lg dark:bg-zinc-800" />
-            <div className="h-9 w-24 bg-stone-100 rounded-lg dark:bg-zinc-800" />
+        <div className="flex items-center gap-2.5">
+            <div className="h-9 w-16 animate-pulse rounded-md bg-[#10201D]/5" />
+            <div className="h-9 w-24 animate-pulse rounded-md bg-[#10201D]/5" />
         </div>
     );
 }

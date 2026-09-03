@@ -6,7 +6,7 @@ export default async function FeaturedProducts() {
     const featuredProducts = await getFeaturedProducts();
 
     return (
-        <section className="py-24 bg-[#F9F7F0] relative">
+        <section className="relative w-full border-b-2 border-[#10201D] bg-[#F2F2EB] py-20 md:py-28">
             <div className="wrapper">
                 <SectionHeader
                     title="Top Picks of the Week"

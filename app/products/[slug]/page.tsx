@@ -214,10 +214,7 @@ export default async function ProductDetailPage({
 
                         {/* website */}
                         {product.websiteUrl && (
-                            <Button
-                                asChild
-                                size="lg"
-                                className="w-full h-16 bg-[#FFB38A]">
+                            <Button asChild size="xl" variant="default">
                                 <a
                                     href={product.websiteUrl}
                                     target="_blank"

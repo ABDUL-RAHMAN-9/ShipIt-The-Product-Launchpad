@@ -40,7 +40,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${outfit.className} ${martianMono.variable} ${barlow.variable} antialiased relative min-h-screen bg-[#FBF7F0]`}>
+                className={`${outfit.className} ${martianMono.variable} ${barlow.variable} antialiased relative min-h-screen bg-[#FBF7F0] selection:bg-[#E97B77] selection:text-foreground`}>
                 {children}
 
                 <Toaster

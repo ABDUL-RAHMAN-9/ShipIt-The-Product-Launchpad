@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 interface BackHomeProps {
     href?: string;
@@ -8,32 +8,17 @@ interface BackHomeProps {
 
 export default function BackHome({
     href = "/",
-    label = "back home",
+    label = "Back to home",
 }: BackHomeProps) {
     return (
         <Link
             href={href}
-            className="group inline-flex items-center gap-3 transition-transform active:scale-[0.98]">
-            {/* icon container */}
-            <div
-                className="
-          p-2
-          rounded-xl
-          border-2
-          border-black
-          bg-[#ffffff]
-          shadow-[3px_3px_0px_0px_#000]
-          transition-all
-          group-hover:translate-x-0.5
-          group-hover:translate-y-0.5
-          group-hover:shadow-none
-        ">
-                <ChevronLeft className="size-4 text-[#0F201D]" />
-            </div>
-
-            <span className="font-black text-[#0F201D]/60 transition-colors group-hover:text-[#0F201D]">
-                {label}
-            </span>
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-opacity hover:opacity-70">
+            <ArrowLeft
+                className="size-4 transition-transform duration-150 group-hover:-translate-x-0.5"
+                aria-hidden="true"
+            />
+            {label}
         </Link>
     );
 }

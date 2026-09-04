@@ -4,16 +4,7 @@ import HeroSection from "@/components/landing-page/hero-section";
 import RecentLaunches from "@/components/landing-page/recent-launches";
 import ProductSkeleton from "@/components/products/product-skeleton";
 import SubmitSection from "@/components/landing-page/submit-section";
-
-// This temporary placeholder prevents layout layout jumps during streaming
-function SubmitSectionFallback() {
-    return (
-        <div
-            className="w-full bg-[#3d5f58] h-[550px] border-b-2 border-[#0F201D]"
-            aria-hidden="true"
-        />
-    );
-}
+import SubmitSectionSkeleton from "@/components/landing-page/submit-section-skeleton";
 
 export default function Home() {
     return (
@@ -43,7 +34,7 @@ export default function Home() {
                 <RecentLaunches />
             </Suspense>
 
-            <Suspense fallback={<SubmitSectionFallback />}>
+            <Suspense fallback={<SubmitSectionSkeleton />}>
                 <SubmitSection />
             </Suspense>
         </div>

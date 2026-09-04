@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { LogOut, LayoutDashboard } from "lucide-react";
-import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { ChevronDown, LayoutDashboard, LogOut } from "lucide-react";
 
+import { authClient } from "@/lib/auth-client";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -28,51 +28,74 @@ export default function UserMenu({ name, image, isAdmin }: UserMenuProps) {
         router.refresh();
     }
 
+    const initial = name.charAt(0).toUpperCase();
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 border rounded-full px-3 py-1 hover:bg-black/5 transition-colors">
+                <button
+                    type="button"
+                    aria-label="Open user menu"
+                    className="group flex items-center gap-2 rounded-full p-0.5 pr-2 outline-none transition-colors duration-150 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#F7F7F2]/30">
                     {image ? (
                         <Image
                             src={image}
                             alt={name}
                             width={32}
                             height={32}
-                            className="rounded-full"
+                            className="size-8 rounded-full object-cover"
                         />
                     ) : (
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
-                            {name.charAt(0).toUpperCase()}
+                        <div
+                            className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#F7F7F2] text-sm font-bold text-[#3d5f58]"
+                            aria-hidden="true">
+                            {initial}
                         </div>
                     )}
 
-                    <span className="text-sm font-medium">{name}</span>
+                    <span className="hidden max-w-28 truncate text-[14.5px] font-semibold text-[#F7F7F2] sm:block">
+                        {name}
+                    </span>
+
+                    <ChevronDown
+                        className="size-3.5 text-[#F7F7F2]/70 transition-transform duration-200 group-data-[state=open]:rotate-180"
+                        strokeWidth={2}
+                        aria-hidden="true"
+                    />
                 </button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent
                 align="end"
-                className="w-56 rounded-xl border-2 border-black">
+                sideOffset={7}
+                className="w-48 rounded-xl border border-[#10201D]/10 bg-white p-1 shadow-[0_10px_30px_rgba(16,32,29,0.12)]">
                 {isAdmin && (
                     <>
-                        <DropdownMenuItem asChild>
+                        <DropdownMenuItem
+                            asChild
+                            className="cursor-pointer rounded-lg px-2.5 py-2 text-[13.5px] font-medium text-[#10201D] outline-none focus:bg-[#3d5f58]/[0.07]">
                             <Link
                                 href="/admin"
-                                className="cursor-pointer flex items-center">
-                                <LayoutDashboard className="mr-2 size-4" />
-                                Admin Dashboard
+                                className="flex items-center gap-2.5">
+                                <LayoutDashboard
+                                    className="size-4 text-[#3d5f58]"
+                                    strokeWidth={2}
+                                />
+
+                                <span>Admin Dashboard</span>
                             </Link>
                         </DropdownMenuItem>
 
-                        <DropdownMenuSeparator />
+                        <DropdownMenuSeparator className="my-1 bg-[#10201D]/10" />
                     </>
                 )}
 
                 <DropdownMenuItem
                     onClick={handleLogout}
-                    className="cursor-pointer">
-                    <LogOut className="mr-2 size-4" />
-                    Sign Out
+                    className="cursor-pointer rounded-lg px-2.5 py-2 text-[13.5px] font-medium text-[#10201D] outline-none focus:bg-[#3d5f58]/[0.07]">
+                    <LogOut className="size-4 text-[#3d5f58]" strokeWidth={2} />
+
+                    <span>Sign Out</span>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

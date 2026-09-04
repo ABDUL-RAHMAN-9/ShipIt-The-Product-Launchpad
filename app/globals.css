@@ -102,7 +102,7 @@ body::after {
     --foreground: #0f201d;
     --border: #0f201d;
 
-    --background: oklch(0.98 0.01 90);
+    --background: #fbf7f0;
     --radius: 0.75rem;
 
     --card: oklch(1 0 0);

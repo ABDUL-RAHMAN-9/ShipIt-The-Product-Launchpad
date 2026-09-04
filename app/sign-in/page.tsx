@@ -212,7 +212,7 @@ export default function SignInPage() {
                         <span className="absolute inset-x-0 top-1/2 h-px bg-foreground/10" />
 
                         <span className="relative bg-[#F7F7F2] px-3 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                            Or Continue with
+                            Or
                         </span>
                     </div>
 

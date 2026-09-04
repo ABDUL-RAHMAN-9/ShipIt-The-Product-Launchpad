@@ -8,6 +8,7 @@ import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import BackHome from "@/components/common/back-home";
 
 type AuthProvider = "email" | "google" | "github" | null;
 
@@ -96,15 +97,9 @@ export default function SignInPage() {
     return (
         <main className="relative flex min-h-screen w-full items-center justify-center bg-background px-4 py-20 sm:px-6">
             {/* Back to home */}
-            <Link
-                href="/"
-                className="group absolute left-5 top-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-opacity hover:opacity-70 sm:left-8 sm:top-7">
-                <ArrowLeft
-                    className="size-4 transition-transform duration-150 group-hover:-translate-x-0.5"
-                    aria-hidden="true"
-                />
-                Back to home
-            </Link>
+            <div className="group absolute left-5 top-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-opacity hover:opacity-70 sm:left-8 sm:top-7">
+                <BackHome />
+            </div>
 
             {/* Sign in card */}
             <section className="w-full max-w-xl rounded-none border-2 border-foreground bg-[#F7F7F2] p-8 text-center shadow-foreground shadow-nb-md sm:p-12 lg:p-20">

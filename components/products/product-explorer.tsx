@@ -1,125 +1,267 @@
 "use client";
 
-import { Clock, Search, TrendingUp, Filter } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import ProductCard from "@/components/products/product-card";
-import { useMemo, useState } from "react";
-import { products } from "@/db/schema";
-import { InferSelectModel } from "drizzle-orm";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ProductCard from "@/components/products/product-card";
+import { Button } from "@/components/ui/button";
+import { getExploreProductsAction } from "@/lib/products/explore-actions";
 
-type Product = InferSelectModel<typeof products>;
+type ExploreActionResult = Awaited<ReturnType<typeof getExploreProductsAction>>;
+
+type ExploreProduct = Extract<
+    ExploreActionResult,
+    { success: true }
+>["products"][number];
+
+type ProductExplorerProps = {
+    products?: ExploreProduct[];
+    hasMore?: boolean;
+    nextCursor?: string | null;
+};
+
+type SortOption = "trending" | "latest";
 
 export default function ProductExplorer({
-    products: initialProducts,
-}: {
-    products: Product[];
-}) {
-    const [sortBy, setSortBy] = useState<"trending" | "latest">("trending");
-    const [searchQuery, setSearchQuery] = useState("");
+    products: initialProducts = [],
+    hasMore: initialHasMore = false,
+    nextCursor: initialNextCursor = null,
+}: ProductExplorerProps) {
+    const [products, setProducts] = useState<ExploreProduct[]>(initialProducts);
 
-    const filteredProducts = useMemo(() => {
-        let result = [...initialProducts];
+    const [hasMore, setHasMore] = useState(initialHasMore);
 
-        if (searchQuery.length > 0) {
-            const query = searchQuery.toLowerCase().trim();
+    const [nextCursor, setNextCursor] = useState<string | null>(
+        initialNextCursor,
+    );
 
-            result = result.filter((p) => {
-                // 1. Check Name
-                const nameMatch = p.name.toLowerCase().includes(query);
+    const [search, setSearch] = useState("");
 
-                // 2. Check Tagline
-                const taglineMatch = p.tagline?.toLowerCase().includes(query);
+    const [sortBy, setSortBy] = useState<SortOption>("trending");
 
-                // 3. Check Tags Array (This was the missing piece!)
-                const tagsMatch = p.tags?.some((tag) =>
-                    tag.toLowerCase().includes(query),
-                );
+    const [isLoading, setIsLoading] = useState(false);
 
-                return nameMatch || taglineMatch || tagsMatch;
+    const requestId = useRef(0);
+
+    const firstRender = useRef(true);
+
+    const fetchProducts = useCallback(
+        async (nextSearch: string, nextSort: SortOption) => {
+            const currentRequestId = ++requestId.current;
+
+            setIsLoading(true);
+
+            const result: ExploreActionResult = await getExploreProductsAction({
+                cursor: null,
+                search: nextSearch,
+                sortBy: nextSort,
             });
+
+            if (currentRequestId !== requestId.current) {
+                return;
+            }
+
+            setIsLoading(false);
+
+            if (!result.success) {
+                toast.error(result.message);
+                return;
+            }
+
+            setProducts(result.products || []);
+
+            setHasMore(result.hasMore || false);
+
+            setNextCursor(result.nextCursor ?? null);
+        },
+        [],
+    );
+
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false;
+            return;
         }
 
-        // Sorting Logic
-        return result.sort((a, b) => {
-            if (sortBy === "trending") return b.voteCount - a.voteCount;
-            const dateA = a.createAt ? new Date(a.createAt).getTime() : 0;
-            const dateB = b.createAt ? new Date(b.createAt).getTime() : 0;
-            return dateB - dateA;
+        const timeout = window.setTimeout(() => {
+            void fetchProducts(search, sortBy);
+        }, 300);
+
+        return () => window.clearTimeout(timeout);
+    }, [search, sortBy, fetchProducts]);
+
+    const handleLoadMore = async () => {
+        if (isLoading || !hasMore || !nextCursor) {
+            return;
+        }
+
+        const currentRequestId = ++requestId.current;
+
+        setIsLoading(true);
+
+        const result: ExploreActionResult = await getExploreProductsAction({
+            cursor: nextCursor,
+            search,
+            sortBy,
         });
-    }, [searchQuery, initialProducts, sortBy]);
+
+        if (currentRequestId !== requestId.current) {
+            return;
+        }
+
+        setIsLoading(false);
+
+        if (!result.success) {
+            toast.error(result.message);
+            return;
+        }
+
+        setProducts((current) => [...current, ...(result.products || [])]);
+
+        setHasMore(result.hasMore || false);
+
+        setNextCursor(result.nextCursor ?? null);
+    };
+
+    const handleSortChange = (nextSort: SortOption) => {
+        if (nextSort === sortBy) {
+            return;
+        }
+
+        setSortBy(nextSort);
+    };
 
     return (
-        <div className="space-y-10">
-            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4">
-                <div className="relative flex-1">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0F201D]/20 size-5" />
-                    <Input
-                        type="text"
-                        placeholder="Search by name, tagline, or tags (e.g. #saas)..."
-                        className="h-14 pl-12 bg-white border-2 border-black rounded-2xl focus:ring-0 focus:ring-offset-0 placeholder:text-[#0F201D]/20 text-base shadow-none w-full lowercase"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
+        <div className="space-y-6">
+            {/* Search */}
+
+            <div className="flex h-10 w-full shrink-0 items-stretch border-2 border-foreground bg-background shadow-[3px_3px_0px_0px_#000]">
+                <div className="flex w-10 shrink-0 select-none items-center justify-center border-r-2 border-foreground bg-foreground/[0.06]">
+                    <span className="text-sm font-bold leading-none text-foreground/60">
+                        ⌕
+                    </span>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <input
+                    type="search"
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                    placeholder="Search by name, tagline, or tags..."
+                    aria-label="Search products"
+                    className="h-full min-w-0 flex-1 bg-transparent px-3 text-xs font-semibold text-foreground outline-none placeholder:text-foreground/35"
+                />
+            </div>
+
+            {/* Controls */}
+
+            <div className="flex flex-col justify-between gap-4 px-1 sm:flex-row sm:items-center">
+                <div className="flex shrink-0 items-center gap-3">
+                    <p className="text-[10px] font-bold uppercase leading-none tracking-[0.18em] text-foreground/40">
+                        Showing {products.length}{" "}
+                        {products.length === 1 ? "result" : "results"}
+                    </p>
+
+                    {search && (
+                        <button
+                            type="button"
+                            onClick={() => setSearch("")}
+                            className="cursor-pointer text-[10px] font-bold uppercase leading-none tracking-[0.18em] text-foreground/50 transition-colors hover:text-foreground">
+                            Clear search
+                        </button>
+                    )}
+                </div>
+
+                <div className="flex h-10 shrink-0 items-stretch self-start border-2 border-foreground bg-background shadow-[3px_3px_0px_0px_#000] sm:self-auto">
                     <button
                         type="button"
-                        onClick={() => setSortBy("trending")}
+                        onClick={() => handleSortChange("trending")}
+                        disabled={isLoading}
                         className={cn(
-                            "flex-1 md:flex-none flex items-center justify-center gap-2 px-6 h-14 rounded-2xl text-sm font-black transition-all border-2 border-black",
+                            "h-full cursor-pointer select-none border-r-2 border-foreground px-4 text-[10px] font-bold uppercase tracking-wider outline-none transition-colors duration-150",
                             sortBy === "trending"
-                                ? "bg-[#FFB38A] text-[#0F201D] shadow-[4px_4px_0px_0px_#000]"
-                                : "bg-white text-[#0F201D]/40 hover:bg-black/5",
+                                ? "bg-foreground text-background"
+                                : "bg-background text-foreground/60 hover:bg-foreground/[0.02]",
                         )}>
-                        <TrendingUp className="size-4" />
                         Trending
                     </button>
+
                     <button
                         type="button"
-                        onClick={() => setSortBy("latest")}
+                        onClick={() => handleSortChange("latest")}
+                        disabled={isLoading}
                         className={cn(
-                            "flex-1 md:flex-none flex items-center justify-center gap-2 px-6 h-14 rounded-2xl text-sm font-black transition-all border-2 border-black",
+                            "h-full cursor-pointer select-none px-4 text-[10px] font-bold uppercase tracking-wider outline-none transition-colors duration-150",
                             sortBy === "latest"
-                                ? "bg-[#B19CFF] text-[#0F201D] shadow-[4px_4px_0px_0px_#000]"
-                                : "bg-white text-[#0F201D]/40 hover:bg-black/5",
+                                ? "bg-foreground text-background"
+                                : "bg-background text-foreground/60 hover:bg-foreground/[0.02]",
                         )}>
-                        <Clock className="size-4" />
                         Recents
                     </button>
                 </div>
             </div>
 
-            <div className="flex items-center justify-between px-1">
-                <p className="text-[10px] text-[#0F201D]/40 font-black uppercase tracking-widest">
-                    Showing {filteredProducts.length} results
-                </p>
+            {/* Loading */}
 
-                {searchQuery && (
-                    <button
-                        onClick={() => setSearchQuery("")}
-                        className="text-[10px] font-black uppercase tracking-widest text-[#B19CFF] hover:text-[#0F201D] transition-colors">
-                        Clear Search
-                    </button>
-                )}
-            </div>
-
-            {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+            {isLoading && products.length === 0 ? (
+                <div className="flex min-h-60 items-center justify-center">
+                    <Loader2 className="animate-spin text-primary" size={28} />
                 </div>
-            ) : (
-                <div className="py-32 text-center bg-black/2 rounded-4xl border-2 border-dashed border-black/5">
-                    <div className="inline-flex p-4 bg-white border border-black/5 rounded-2xl mb-4">
-                        <Filter className="size-6 text-[#0F201D]/20" />
+            ) : products.length === 0 ? (
+                /* Empty state */
+
+                <div className="border border-dashed border-foreground/15 bg-foreground/[0.02] px-6 py-32 text-center">
+                    <div className="mb-4 inline-flex select-none border-2 border-foreground bg-background p-4">
+                        <span className="text-xl font-bold leading-none text-foreground/45">
+                            ⌕
+                        </span>
                     </div>
-                    <p className="text-sm font-bold text-[#0F201D]/40 uppercase tracking-tighter">
+
+                    <p className="text-sm font-semibold uppercase tracking-tight text-foreground/45">
                         No products match your search criteria
                     </p>
+
+                    {search && (
+                        <button
+                            type="button"
+                            onClick={() => setSearch("")}
+                            className="mt-4 cursor-pointer text-xs font-bold text-foreground underline underline-offset-4 transition-opacity hover:opacity-60">
+                            Clear search
+                        </button>
+                    )}
                 </div>
+            ) : (
+                <>
+                    {/* Product grid */}
+
+                    <div className="grid gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3">
+                        {products.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+
+                    {/* Load more */}
+
+                    {hasMore && nextCursor && (
+                        <div className="mt-10 flex justify-center">
+                            <Button
+                                variant="default"
+                                size="default"
+                                onClick={handleLoadMore}
+                                disabled={isLoading}
+                                className="cursor-pointer text-foreground">
+                                {isLoading ? (
+                                    <>
+                                        <Loader2 className="mr-2 size-4 animate-spin" />
+                                        Loading...
+                                    </>
+                                ) : (
+                                    "Load more"
+                                )}
+                            </Button>
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );

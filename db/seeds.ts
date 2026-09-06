@@ -53,6 +53,6 @@ main()
         process.exit(1);
     })
     .finally(() => {
-        console.log("\n✨ Seeding process finished.");
+        console.log("\n✅ Seeding process finished.");
         process.exit(0);
     });

@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
+
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 import ProductCard from "@/components/products/product-card";
 import { Button } from "@/components/ui/button";
@@ -153,7 +155,7 @@ export default function ProductExplorer({
                 />
             </div>
 
-            {/* Controls */}
+            {/* Result count + sorting */}
 
             <div className="flex flex-col justify-between gap-4 px-1 sm:flex-row sm:items-center">
                 <div className="flex shrink-0 items-center gap-3">
@@ -201,15 +203,13 @@ export default function ProductExplorer({
                 </div>
             </div>
 
-            {/* Loading */}
+            {/* Loading / empty / products */}
 
             {isLoading && products.length === 0 ? (
                 <div className="flex min-h-60 items-center justify-center">
                     <Loader2 className="animate-spin text-primary" size={28} />
                 </div>
             ) : products.length === 0 ? (
-                /* Empty state */
-
                 <div className="border border-dashed border-foreground/15 bg-foreground/[0.02] px-6 py-32 text-center">
                     <div className="mb-4 inline-flex select-none border-2 border-foreground bg-background p-4">
                         <span className="text-xl font-bold leading-none text-foreground/45">
@@ -236,7 +236,11 @@ export default function ProductExplorer({
 
                     <div className="grid gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3">
                         {products.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                hasVoted={product.hasVoted}
+                            />
                         ))}
                     </div>
 

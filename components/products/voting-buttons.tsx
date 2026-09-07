@@ -3,7 +3,7 @@
 import React, { useOptimistic, useTransition, useState } from "react";
 import { upvoteProductAction } from "@/lib/products/product-actions";
 import { cn } from "@/lib/utils";
-import { ShieldCheck, Loader2, ArrowBigUpDash } from "lucide-react";
+import { Loader2, ArrowBigUpDash } from "lucide-react";
 
 export default function VotingButtons({
     hasVoted: initialHasVoted,

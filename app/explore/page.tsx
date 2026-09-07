@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 
 import ProductExplorer from "@/components/products/product-explorer";
+
 import {
     EXPLORE_PAGE_SIZE,
     getApprovedProductsPage,
 } from "@/lib/products/product-select";
+
 import BackHome from "@/components/common/back-home";
 import SectionHeader from "@/components/common/section-header";
+import { getCurrentSession } from "@/lib/auth-session";
 
 export const metadata: Metadata = {
     title: "Explore",
@@ -14,11 +17,14 @@ export const metadata: Metadata = {
 };
 
 export default async function ExplorePage() {
+    const session = await getCurrentSession();
+
     const data = await getApprovedProductsPage({
         limit: EXPLORE_PAGE_SIZE,
         cursor: null,
         search: "",
         sortBy: "trending",
+        userId: session?.user?.id ?? null,
     });
 
     return (

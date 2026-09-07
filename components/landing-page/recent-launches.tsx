@@ -1,11 +1,16 @@
 import SectionHeader from "@/components/common/section-header";
 import { Inbox } from "lucide-react";
+
 import ProductCard from "@/components/products/product-card";
 import EmptyState from "@/components/common/empty-state";
+
 import { getRecentProducts } from "@/lib/products/product-select";
+import { getCurrentSession } from "@/lib/auth-session";
 
 export default async function RecentLaunches() {
-    const recentProducts = await getRecentProducts();
+    const session = await getCurrentSession();
+
+    const recentProducts = await getRecentProducts(session?.user?.id ?? null);
 
     return (
         <section className="relative w-full border-b-2 border-[#0F201D] bg-background py-20 md:py-28">
@@ -22,9 +27,13 @@ export default async function RecentLaunches() {
                 />
 
                 {recentProducts.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {recentProducts.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                hasVoted={product.hasVoted}
+                            />
                         ))}
                     </div>
                 ) : (

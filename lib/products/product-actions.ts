@@ -5,15 +5,18 @@ import { products, productVotes } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { getCurrentSession } from "@/lib/auth-session";
 import { FormState } from "@/types";
-import { eq, and, sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { z } from "zod";
 
 function sanitizeUrl(url: string): string {
     let sanitized = url.trim();
+
     if (!sanitized) return "";
+
     if (!/^https?:\/\//i.test(sanitized)) {
         sanitized = `https://${sanitized}`;
     }
+
     return sanitized;
 }
 
@@ -22,20 +25,26 @@ const ProductSubmitSchema = z.object({
         .string()
         .min(2, "Product name must be at least 2 characters.")
         .max(50, "Product name can be at most 50 characters."),
+
     websiteUrl: z
         .string()
         .transform((val) => sanitizeUrl(val))
         .pipe(z.string().url("Please enter a valid URL.")),
+
     tagline: z
         .string()
         .min(3, "Tagline must be at least 3 characters.")
         .max(80, "Tagline must be at most 80 characters."),
+
     tags: z.string().min(1, "Please provide at least one category tag."),
+
     description: z
         .string()
         .min(10, "Full story must be at least 10 characters.")
         .max(400, "Full story can be at most 400 characters."),
 });
+
+const ProductIdSchema = z.number().int().positive("Invalid product ID.");
 
 function slugify(text: string): string {
     return text
@@ -49,6 +58,7 @@ function slugify(text: string): string {
 
 async function generateUniqueSlug(name: string): Promise<string> {
     const baseSlug = slugify(name);
+
     let slug = baseSlug;
     let counter = 0;
 
@@ -64,9 +74,14 @@ async function generateUniqueSlug(name: string): Promise<string> {
         }
 
         const shortId = Math.random().toString(36).substring(2, 6);
+
         slug = `${baseSlug}-${shortId}`;
+
         counter++;
-        if (counter > 5) break;
+
+        if (counter > 5) {
+            break;
+        }
     }
 
     return slug;
@@ -82,7 +97,9 @@ export async function addProductAction(
         return {
             success: false,
             message: "Unauthenticated. Please log in to submit a product.",
-            errors: { auth: ["Unauthenticated"] },
+            errors: {
+                auth: ["Unauthenticated"],
+            },
             timestamp: Date.now(),
         };
     }
@@ -131,7 +148,6 @@ export async function addProductAction(
             status: "pending",
         });
 
-        // Revalidate background paths without forcing browser redirect
         revalidatePath("/");
         revalidatePath("/explore");
         revalidatePath("/submit");
@@ -144,6 +160,7 @@ export async function addProductAction(
         };
     } catch (err) {
         console.error("Database submission crash:", err);
+
         return {
             success: false,
             message: "An unexpected database error occurred. Please try again.",
@@ -162,80 +179,90 @@ export async function upvoteProductAction(
         return {
             success: false,
             message: "You must be logged in to upvote a project.",
-            errors: { auth: ["Unauthenticated"] },
+            errors: {
+                auth: ["Unauthenticated"],
+            },
+            timestamp: Date.now(),
+        };
+    }
+
+    const parsedProductId = ProductIdSchema.safeParse(productId);
+
+    if (!parsedProductId.success) {
+        return {
+            success: false,
+            message: "Invalid product.",
+            errors: {
+                productId: ["Invalid product ID."],
+            },
             timestamp: Date.now(),
         };
     }
 
     try {
-        const existingVote = await db
-            .select()
-            .from(productVotes)
-            .where(
-                and(
-                    eq(productVotes.productId, productId),
-                    eq(productVotes.userId, session.user.id),
-                ),
-            )
+        const product = await db
+            .select({
+                id: products.id,
+            })
+            .from(products)
+            .where(eq(products.id, parsedProductId.data))
             .limit(1);
 
-        if (existingVote.length > 0) {
-            await db.transaction(async (tx) => {
-                await tx
-                    .delete(productVotes)
-                    .where(
-                        and(
-                            eq(productVotes.productId, productId),
-                            eq(productVotes.userId, session.user.id),
-                        ),
-                    );
-
-                await tx
-                    .update(products)
-                    .set({
-                        voteCount: sql`GREATEST(0, ${products.voteCount} - 1)`,
-                    })
-                    .where(eq(products.id, productId));
-            });
-
-            revalidatePath("/");
-            revalidatePath("/explore");
-            revalidatePath(`/products/${productId}`);
-
+        if (product.length === 0) {
             return {
-                success: true,
-                message: "Vote removed successfully.",
-                errors: undefined,
-                timestamp: Date.now(),
-            };
-        } else {
-            await db.transaction(async (tx) => {
-                await tx.insert(productVotes).values({
-                    productId,
-                    userId: session.user.id,
-                });
-
-                await tx
-                    .update(products)
-                    .set({
-                        voteCount: sql`${products.voteCount} + 1`,
-                    })
-                    .where(eq(products.id, productId));
-            });
-
-            revalidatePath("/");
-            revalidatePath("/explore");
-            revalidatePath(`/products/${productId}`);
-
-            return {
-                success: true,
-                message: "Upvote registered!",
-                errors: undefined,
+                success: false,
+                message: "Product not found.",
+                errors: {
+                    productId: ["Product not found."],
+                },
                 timestamp: Date.now(),
             };
         }
+
+        const insertedVote = await db
+            .insert(productVotes)
+            .values({
+                productId: parsedProductId.data,
+                userId: session.user.id,
+            })
+            .onConflictDoNothing({
+                target: [productVotes.productId, productVotes.userId],
+            })
+            .returning({
+                id: productVotes.id,
+            });
+
+        if (insertedVote.length === 0) {
+            return {
+                success: false,
+                message: "You have already upvoted this project.",
+                errors: {
+                    vote: ["Already voted"],
+                },
+                timestamp: Date.now(),
+            };
+        }
+
+        await db
+            .update(products)
+            .set({
+                voteCount: sql`${products.voteCount} + 1`,
+            })
+            .where(eq(products.id, parsedProductId.data));
+
+        revalidatePath("/");
+        revalidatePath("/explore");
+        revalidatePath(`/products/${parsedProductId.data}`);
+
+        return {
+            success: true,
+            message: "Upvote registered!",
+            errors: undefined,
+            timestamp: Date.now(),
+        };
     } catch (err) {
         console.error("Upvote action crash:", err);
+
         return {
             success: false,
             message: "Unable to record your vote right now. Please try again.",

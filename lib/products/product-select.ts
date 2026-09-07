@@ -5,6 +5,7 @@ import {
     desc,
     eq,
     gte,
+    getTableColumns,
     ilike,
     isNull,
     isNotNull,
@@ -16,10 +17,40 @@ import { connection } from "next/server";
 
 export const EXPLORE_PAGE_SIZE = 6;
 
-export async function getFeaturedProducts() {
+type UserId = string | null | undefined;
+
+function getProductSelection(userId: UserId) {
+    return {
+        ...getTableColumns(products),
+
+        hasVoted: userId
+            ? sql<boolean>`
+                  CASE
+                      WHEN ${productVotes.id} IS NOT NULL
+                      THEN true
+                      ELSE false
+                  END
+              `
+            : sql<boolean>`false`,
+    };
+}
+
+function getProductVoteJoin(userId: UserId) {
+    if (!userId) {
+        return sql`false`;
+    }
+
+    return and(
+        eq(productVotes.productId, products.id),
+        eq(productVotes.userId, userId),
+    );
+}
+
+export async function getFeaturedProducts(userId?: string | null) {
     const productsData = await db
-        .select()
+        .select(getProductSelection(userId))
         .from(products)
+        .leftJoin(productVotes, getProductVoteJoin(userId))
         .where(eq(products.status, "approved"))
         .orderBy(desc(products.voteCount))
         .limit(6);
@@ -27,15 +58,17 @@ export async function getFeaturedProducts() {
     return productsData;
 }
 
-export async function getRecentProducts() {
+export async function getRecentProducts(userId?: string | null) {
     await connection();
 
     const oneWeekAgo = new Date();
+
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-    return await db
-        .select()
+    const recentProducts = await db
+        .select(getProductSelection(userId))
         .from(products)
+        .leftJoin(productVotes, getProductVoteJoin(userId))
         .where(
             and(
                 eq(products.status, "approved"),
@@ -44,6 +77,8 @@ export async function getRecentProducts() {
         )
         .orderBy(desc(products.createAt))
         .limit(3);
+
+    return recentProducts;
 }
 
 export async function getProductBySlug(slug: string) {
@@ -153,13 +188,16 @@ export async function getApprovedProductsPage({
     cursor,
     search,
     sortBy,
+    userId,
 }: {
     limit: number;
     cursor?: string | null;
     search: string;
     sortBy: ExploreSort;
+    userId?: string | null;
 }) {
     const query = search.trim();
+
     const decodedCursor = cursor ? decodeCursor(cursor) : null;
 
     const searchCondition = query
@@ -172,16 +210,6 @@ export async function getApprovedProductsPage({
 
     let cursorCondition;
 
-    /*
-     * TRENDING
-     *
-     * Order:
-     *   voteCount DESC
-     *   id DESC
-     *
-     * The cursor tells us the last voteCount + id
-     * that the client already received.
-     */
     if (sortBy === "trending" && decodedCursor?.sortBy === "trending") {
         cursorCondition = or(
             lt(products.voteCount, decodedCursor.voteCount),
@@ -192,25 +220,8 @@ export async function getApprovedProductsPage({
         );
     }
 
-    /*
-     * LATEST
-     *
-     * Order:
-     *   createAt DESC
-     *   id DESC
-     *
-     * createAt is nullable in your current schema,
-     * so we handle null values safely.
-     */
     if (sortBy === "latest" && decodedCursor?.sortBy === "latest") {
         if (decodedCursor.createAt === null) {
-            /*
-             * PostgreSQL sorts NULL values first when using DESC.
-             *
-             * If our cursor is currently on a NULL date,
-             * continue through remaining NULL dates and then
-             * move into the non-NULL dates.
-             */
             cursorCondition = or(
                 isNotNull(products.createAt),
                 and(
@@ -244,19 +255,38 @@ export async function getApprovedProductsPage({
         cursorCondition,
     );
 
-    /*
-     * Fetch one extra product.
-     *
-     * Example:
-     *   limit = 6
-     *   database returns up to 7
-     *
-     * If 7 are returned, we know another page exists.
-     */
-    const productsData = await db
-        .select()
-        .from(products)
-        .where(whereClause)
+    const productsQuery = userId
+        ? db
+              .select({
+                  ...getTableColumns(products),
+
+                  hasVoted: sql<boolean>`
+                          CASE
+                              WHEN ${productVotes.id} IS NOT NULL
+                              THEN true
+                              ELSE false
+                          END
+                      `,
+              })
+              .from(products)
+              .leftJoin(
+                  productVotes,
+                  and(
+                      eq(productVotes.productId, products.id),
+                      eq(productVotes.userId, userId),
+                  ),
+              )
+              .where(whereClause)
+        : db
+              .select({
+                  ...getTableColumns(products),
+
+                  hasVoted: sql<boolean>`false`,
+              })
+              .from(products)
+              .where(whereClause);
+
+    const productsData = await productsQuery
         .orderBy(
             sortBy === "trending"
                 ? desc(products.voteCount)
@@ -271,10 +301,6 @@ export async function getApprovedProductsPage({
         ? productsData.slice(0, limit)
         : productsData;
 
-    /*
-     * Create the cursor from the LAST product
-     * that was actually returned.
-     */
     let nextCursor: string | null = null;
 
     if (hasMore && slicedProducts.length > 0) {
